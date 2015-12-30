@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Магистърска тема</string>
+
+
+    <!-- General -->
+    <string name="settings">Настройки</string>
+
+    <!-- Login -->
+    <string name="prompt_email">Мейл</string>
+    <string name="prompt_password">Парола</string>
+    <string name="action_sign_in">Вход</string>
+    <string name="action_register">Регистрация</string>
+    <string name="error_invalid_email">Невалиден адрес</string>
+    <string name="error_invalid_password">Паролата не е достатъчно сложна</string>
+    <string name="error_incorrect_password">Грешна парола</string>
+    <string name="error_field_required">Полето е задължително</string>
+    <string name="contacts_permission_rationale">Ползваме контактите ти, за да попълнил мейла ти.</string>
+    <string name="denied_permission_text">Можеш да промениш правата за достъп през меню Настройки</string>
+    <string name="title_activity_home">Дипломна защита</string>
+
+    <!-- Navigation drawer -->
+    <string name="navigation_drawer_open">Отвори меню</string>
+    <string name="navigation_drawer_close">Затвори меню</string>
+    <string name="navigation_diploma">Дипломна защита</string>
+    <string name="navigation_teachers">Ръководители</string>
+    <string name="navigation_theses">Теми</string>
+    <string name="navigation_calendar">Календар</string>
+    <string name="navigation_exit">Изход</string>
+
+    <!-- Info -->
+    <string name="tab_documents">Документи</string>
+    <string name="tab_resources">Ресурси</string>
+    <string name="tab_internship">Стаж</string>
+
+</resources>
