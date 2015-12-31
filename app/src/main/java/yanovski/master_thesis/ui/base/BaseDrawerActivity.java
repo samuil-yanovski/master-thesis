@@ -26,6 +26,7 @@ public abstract class BaseDrawerActivity extends BaseActivity implements
     NavigationView.OnNavigationItemSelectedListener {
 
     protected abstract int getContentLayoutId();
+    protected abstract int getCurrentCheckedItemId();
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -60,6 +61,7 @@ public abstract class BaseDrawerActivity extends BaseActivity implements
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
+        navigationView.setCheckedItem(getCurrentCheckedItemId());
         navigationView.setNavigationItemSelectedListener(this);
     }
 

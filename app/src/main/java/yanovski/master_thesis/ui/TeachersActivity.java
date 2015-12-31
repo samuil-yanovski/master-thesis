@@ -11,4 +11,9 @@ public class TeachersActivity extends BaseDrawerActivity {
     protected int getContentLayoutId() {
         return R.layout.content_teachers;
     }
+
+    @Override
+    protected int getCurrentCheckedItemId() {
+        return R.id.nav_teachers;
+    }
 }

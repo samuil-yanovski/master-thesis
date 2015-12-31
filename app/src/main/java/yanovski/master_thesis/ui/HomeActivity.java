@@ -3,6 +3,7 @@ package yanovski.master_thesis.ui;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.PagerAdapter;
 
+import yanovski.master_thesis.R;
 import yanovski.master_thesis.ui.adapters.InfoAdapter;
 import yanovski.master_thesis.ui.base.BaseTabsActivity;
 
@@ -13,4 +14,8 @@ public class HomeActivity extends BaseTabsActivity {
         return new InfoAdapter(manager);
     }
 
+    @Override
+    protected int getCurrentCheckedItemId() {
+        return R.id.nav_info;
+    }
 }
