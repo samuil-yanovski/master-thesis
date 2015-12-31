@@ -7,6 +7,7 @@ import javax.inject.Singleton;
 import dagger.Component;
 import yanovski.master_thesis.ui.adapters.InfoAdapter;
 import yanovski.master_thesis.ui.base.BaseFragment;
+import yanovski.master_thesis.ui.fragments.InternshipFragment;
 import yanovski.master_thesis.ui.fragments.LoginFragment;
 import yanovski.master_thesis.utils.UrlHelper;
 
@@ -18,6 +19,7 @@ import yanovski.master_thesis.utils.UrlHelper;
 public interface MainComponent {
     void inject(BaseFragment fragment);
     void inject(LoginFragment fragment);
+    void inject(InternshipFragment fragment);
     void inject(InfoAdapter adapter);
     Context getContext();
     UrlHelper getHelper();
