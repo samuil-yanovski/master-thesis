@@ -3,7 +3,6 @@ package yanovski.master_thesis.ui.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.View;
 
 import javax.inject.Inject;
 
@@ -35,12 +34,12 @@ public class InternshipFragment extends BaseFragment {
     }
 
     @OnClick(R.id.offer)
-    public void onOfferClicked(View v) {
-        helper.loadDataUrl(v, context.getString(R.string.internship_offer_url));
+    public void onOfferClicked() {
+        helper.loadDataUrl(context.getString(R.string.internship_offer_url));
     }
 
     @OnClick(R.id.score)
-    public void onScoreClicked(View v) {
-        helper.loadDataUrl(v, context.getString(R.string.internship_score_url));
+    public void onScoreClicked() {
+        helper.loadDataUrl(context.getString(R.string.internship_score_url));
     }
 }
