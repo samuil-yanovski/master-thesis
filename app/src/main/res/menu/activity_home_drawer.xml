@@ -6,7 +6,8 @@
         <item
             android:id="@+id/nav_info"
             android:icon="@drawable/ic_info"
-            android:title="@string/navigation_diploma"/>
+            android:title="@string/navigation_diploma"
+            android:checked="true"/>
         <item
             android:id="@+id/nav_teachers"
             android:icon="@drawable/ic_people"

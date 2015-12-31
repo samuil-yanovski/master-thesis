@@ -1,4 +1,4 @@
-package yanovski.master_thesis.db.models;
+package yanovski.master_thesis.data.models;
 
 /**
  * Created by Samuil on 12/30/2015.

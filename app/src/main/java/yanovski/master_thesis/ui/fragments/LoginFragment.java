@@ -38,8 +38,8 @@ import java8.util.stream.StreamSupport;
 import rx.android.schedulers.AndroidSchedulers;
 import yanovski.master_thesis.MasterThesisApplication;
 import yanovski.master_thesis.R;
-import yanovski.master_thesis.db.models.PhoneContact;
-import yanovski.master_thesis.db.models.PhoneContactGetResolver;
+import yanovski.master_thesis.data.models.PhoneContact;
+import yanovski.master_thesis.data.resolvers.PhoneContactGetResolver;
 import yanovski.master_thesis.permissions.SnackBarInfoPermissionListener;
 import yanovski.master_thesis.ui.HomeActivity;
 import yanovski.master_thesis.ui.base.BaseFragment;
@@ -51,23 +51,23 @@ public class LoginFragment extends BaseFragment implements SnackBarInfoPermissio
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
-    private UserLoginTask mAuthTask = null;
+    private UserLoginTask authTask = null;
 
     // UI references.
     @Bind(R.id.email)
     @NotEmpty
     @Email
-    AutoCompleteTextView mEmailView;
+    AutoCompleteTextView emailView;
     @Bind(R.id.password)
     @NotEmpty
     @Password(min = 6, scheme = Password.Scheme.ALPHA_NUMERIC)
-    EditText mPasswordView;
+    EditText passwordView;
     @Bind(R.id.login_progress)
-    View mProgressView;
+    View progressView;
     @Bind(R.id.login_form)
-    View mLoginFormView;
+    View loginFormView;
     @Bind(R.id.email_sign_in_button)
-    View mEmailSignInButton;
+    View emailSignInButton;
 
     @Inject
     StorIOContentResolver storIOResolver;
@@ -113,7 +113,7 @@ public class LoginFragment extends BaseFragment implements SnackBarInfoPermissio
      */
     @OnClick(R.id.email_sign_in_button)
     protected void attemptLogin() {
-        if (mAuthTask != null) {
+        if (authTask != null) {
             return;
         }
         validate();
@@ -124,8 +124,8 @@ public class LoginFragment extends BaseFragment implements SnackBarInfoPermissio
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private void showProgress(final boolean show) {
-        mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-        mEmailSignInButton.setEnabled(!show);
+        progressView.setVisibility(show ? View.VISIBLE : View.GONE);
+        emailSignInButton.setEnabled(!show);
     }
 
     private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
@@ -134,7 +134,7 @@ public class LoginFragment extends BaseFragment implements SnackBarInfoPermissio
             new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line,
                 emailAddressCollection);
 
-        mEmailView.setAdapter(adapter);
+        emailView.setAdapter(adapter);
     }
 
     @Override
@@ -169,14 +169,14 @@ public class LoginFragment extends BaseFragment implements SnackBarInfoPermissio
     @Override
     public void onValidationSucceeded() {
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText()
+        String email = emailView.getText()
             .toString();
-        String password = mPasswordView.getText()
+        String password = passwordView.getText()
             .toString();
 
         showProgress(true);
-        mAuthTask = new UserLoginTask(email, password);
-        mAuthTask.execute((Void) null);
+        authTask = new UserLoginTask(email, password);
+        authTask.execute((Void) null);
     }
 
     @Override
@@ -213,7 +213,7 @@ public class LoginFragment extends BaseFragment implements SnackBarInfoPermissio
 
         @Override
         protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
+            authTask = null;
             showProgress(false);
 
             if (success) {
@@ -222,14 +222,14 @@ public class LoginFragment extends BaseFragment implements SnackBarInfoPermissio
                 activity.startActivity(intent);
                 activity.finish();
             } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+                passwordView.setError(getString(R.string.error_incorrect_password));
+                passwordView.requestFocus();
             }
         }
 
         @Override
         protected void onCancelled() {
-            mAuthTask = null;
+            authTask = null;
             showProgress(false);
         }
     }

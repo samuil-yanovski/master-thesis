@@ -1,4 +1,4 @@
-package yanovski.master_thesis.db.models;
+package yanovski.master_thesis.data.resolvers;
 
 import android.content.ContentValues;
 import android.net.Uri;
@@ -8,6 +8,8 @@ import android.support.annotation.NonNull;
 import com.pushtorefresh.storio.contentresolver.operations.put.DefaultPutResolver;
 import com.pushtorefresh.storio.contentresolver.queries.InsertQuery;
 import com.pushtorefresh.storio.contentresolver.queries.UpdateQuery;
+
+import yanovski.master_thesis.data.models.PhoneContact;
 
 /**
  * Created by Samuil on 12/30/2015.

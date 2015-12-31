@@ -32,4 +32,27 @@
     <string name="tab_resources">Ресурси</string>
     <string name="tab_internship">Стаж</string>
 
+    <!-- Documents -->
+    <string name="doc_assignment">Предложение за възлагане (1 бр.)</string>
+    <string name="doc_assignment_description">Предложението за възлагане се приема на Катедрен съвет, който се провежда във Вторник от 13:00 ч. в зала "С" на блок 2. То трябва да бъде прието поне 3 месеца преди датата на дипломната защита.</string>
+    <string name="doc_plagiarism">Декларация за липса на плагиатство (1 бр.)</string>
+    <string name="doc_defense">Молба за допускане до защита (2 бр.)</string>
+    <string name="doc_credits">Справка Кредити: от стая 111, ФМИ (1 бр.)</string>
+    <string name="doc_credits_description">Като се представят молба за допускане до защита (2 бр.) и протокол за преддипломен стаж или преддипломен проект</string>
+    <string name="doc_assignment_protocol">Протокол за възлагане (2 бр.)</string>
+    <string name="doc_assignment_protocol_description">Декларацията за липса на плагиатство, молбата за допускане до защита, справката Кредити и протоколът за възлагане трябва да се представят на ръководителя на дипломната работа или на ръководителя на съответната магистърска програма (ако ръководителят на дипломната работа е хоноруван преподавател) най-късно 20 работни дни преди датата на дипломната защита.</string>
+    <string name="doc_thesis">Дипломна работа  (1 бр.)</string>
+    <string name="doc_cd">CD (1 бр.)</string>
+    <string name="doc_summary">Резюме на български и английски езици (по 1 бр.)</string>
+
+    <!-- Resources -->
+    <string name="res_instructions">Инструкции за дипломни работи</string>
+    <string name="res_instructions_url">http://dse.fmi.uni-sofia.bg/documents/diploma/diplomni-zashtiti-iziskvania.ppt</string>
+    <string name="res_graduates">Дипломирани студенти 2008-2011 г.</string>
+    <string name="res_graduates_url">http://dse.fmi.uni-sofia.bg/documents/diploma/Graduated_Students_2008-2011.xls</string>
+    <string name="res_review">Бланка за рецензия</string>
+    <string name="res_review_url">http://dse.fmi.uni-sofia.bg/documents/diploma/Review.xls</string>
+    <string name="res_template">Шаблон за дипломна работа</string>
+    <string name="res_template_url">http://dse.fmi.uni-sofia.bg/documents/diploma/template-msc-thesis-dse-2011.doc</string>
+
 </resources>

@@ -10,10 +10,10 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import yanovski.master_thesis.db.models.PhoneContact;
-import yanovski.master_thesis.db.models.PhoneContactDeleteResolver;
-import yanovski.master_thesis.db.models.PhoneContactGetResolver;
-import yanovski.master_thesis.db.models.PhoneContactPutResolver;
+import yanovski.master_thesis.data.models.PhoneContact;
+import yanovski.master_thesis.data.resolvers.PhoneContactDeleteResolver;
+import yanovski.master_thesis.data.resolvers.PhoneContactGetResolver;
+import yanovski.master_thesis.data.resolvers.PhoneContactPutResolver;
 
 /**
  * Created by Samuil on 12/30/2015.

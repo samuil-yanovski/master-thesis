@@ -1,10 +1,12 @@
-package yanovski.master_thesis.db.models;
+package yanovski.master_thesis.data.resolvers;
 
 import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 
 import com.pushtorefresh.storio.contentresolver.operations.get.DefaultGetResolver;
+
+import yanovski.master_thesis.data.models.PhoneContact;
 
 /**
  * Created by Samuil on 12/30/2015.

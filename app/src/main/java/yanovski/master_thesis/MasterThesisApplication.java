@@ -6,7 +6,6 @@ import com.crashlytics.android.Crashlytics;
 import com.karumi.dexter.Dexter;
 
 import io.fabric.sdk.android.Fabric;
-import java8.util.stream.StreamSupport;
 import yanovski.master_thesis.di.ApplicationModule;
 import yanovski.master_thesis.di.DaggerMainComponent;
 import yanovski.master_thesis.di.MainComponent;
