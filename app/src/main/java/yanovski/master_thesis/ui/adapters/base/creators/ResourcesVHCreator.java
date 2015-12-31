@@ -27,7 +27,7 @@ public class ResourcesVHCreator implements ViewHolderCreator<Resource> {
 
         public ResourceViewHolder(View view) {
             super(view);
-            urlHelper = MasterThesisApplication.getMainComponent().getHelper();
+            urlHelper = MasterThesisApplication.getMainComponent().getUrlHelper();
         }
 
         @Override

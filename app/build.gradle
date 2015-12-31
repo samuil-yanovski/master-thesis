@@ -66,4 +66,5 @@ dependencies {
     compile 'net.sourceforge.streamsupport:streamsupport:1.4.1'
     compile 'net.sourceforge.streamsupport:streamsupport-atomic:1.4.1'
     compile 'com.yqritc:recyclerview-flexibledivider:1.2.6'
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }

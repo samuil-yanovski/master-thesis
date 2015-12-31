@@ -4,6 +4,8 @@
 
     <!-- General -->
     <string name="settings">Настройки</string>
+    <string name="title_activity_home">Дипломна защита</string>
+    <string name="title_activity_teachers">Ръководители</string>
 
     <!-- Login -->
     <string name="prompt_email">Мейл</string>
@@ -16,7 +18,6 @@
     <string name="error_field_required">Полето е задължително</string>
     <string name="contacts_permission_rationale">Искаме да попълним мейла ти</string>
     <string name="denied_permission_text">Винаги можеш да промениш правата за достъп</string>
-    <string name="title_activity_home">Дипломна защита</string>
 
     <!-- Navigation drawer -->
     <string name="navigation_drawer_open">Отвори меню</string>

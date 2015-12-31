@@ -16,6 +16,11 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="e9022f571feb0bfbf7d66cbc7dcaf12cb7f86d21"/>
+
         <activity
             android:name=".ui.LoginActivity"
             android:label="@string/app_name">
@@ -26,10 +31,6 @@
             </intent-filter>
         </activity>
 
-        <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="e9022f571feb0bfbf7d66cbc7dcaf12cb7f86d21"/>
-
         <activity
             android:name=".ui.HomeActivity"
             android:label="@string/title_activity_home"
@@ -38,6 +39,16 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="yanovski.master_thesis.ui.LoginActivity"/>
+        </activity>
+
+        <activity
+            android:name=".ui.TeachersActivity"
+            android:label="@string/title_activity_teachers"
+            android:parentActivityName=".ui.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="yanovski.master_thesis.ui.HomeActivity"/>
         </activity>
     </application>
 
