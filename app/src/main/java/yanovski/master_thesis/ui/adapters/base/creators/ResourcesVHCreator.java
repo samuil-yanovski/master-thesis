@@ -33,7 +33,7 @@ public class ResourcesVHCreator implements ViewHolderCreator<Resource> {
         @Override
         public void onClick(View v) {
             super.onClick(v);
-            urlHelper.loadUrl(url);
+            urlHelper.loadDataUrl(v, url);
         }
     }
 

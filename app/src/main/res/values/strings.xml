@@ -14,8 +14,8 @@
     <string name="error_invalid_password">Паролата не е достатъчно сложна</string>
     <string name="error_incorrect_password">Грешна парола</string>
     <string name="error_field_required">Полето е задължително</string>
-    <string name="contacts_permission_rationale">Ползваме контактите ти, за да попълнил мейла ти.</string>
-    <string name="denied_permission_text">Можеш да промениш правата за достъп през меню Настройки</string>
+    <string name="contacts_permission_rationale">Искаме да попълним мейла ти</string>
+    <string name="denied_permission_text">Винаги можеш да промениш правата за достъп</string>
     <string name="title_activity_home">Дипломна защита</string>
 
     <!-- Navigation drawer -->
@@ -31,6 +31,7 @@
     <string name="tab_documents">Документи</string>
     <string name="tab_resources">Ресурси</string>
     <string name="tab_internship">Стаж</string>
+    <string name="storage_permission_rationale">Съхраняваме изтеглените документи</string>
 
     <!-- Documents -->
     <string name="doc_assignment">Предложение за възлагане (1 бр.)</string>
