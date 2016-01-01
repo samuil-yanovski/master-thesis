@@ -33,13 +33,17 @@ public class BaseListFragment extends BaseFragment {
         Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
 
+        addDecorations(list);
+        list.setLayoutManager(new LinearLayoutManager(getActivity()));
+        return view;
+    }
+
+    protected void addDecorations(RecyclerView list) {
         HorizontalDividerItemDecoration divider =
             new HorizontalDividerItemDecoration.Builder(getActivity()).drawable(
                 R.drawable.list_divider)
                 .showLastDivider()
                 .build();
         list.addItemDecoration(divider);
-        list.setLayoutManager(new LinearLayoutManager(getActivity()));
-        return view;
     }
 }

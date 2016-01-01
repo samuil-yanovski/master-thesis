@@ -6,20 +6,20 @@
         <item
             android:id="@+id/nav_info"
             android:icon="@drawable/ic_info"
-            android:title="@string/navigation_diploma"
+            android:title="@string/title_activity_home"
             android:checked="true"/>
         <item
             android:id="@+id/nav_teachers"
             android:icon="@drawable/ic_people"
-            android:title="@string/navigation_teachers"/>
+            android:title="@string/title_activity_teachers"/>
         <item
             android:id="@+id/nav_theses"
             android:icon="@drawable/ic_list"
-            android:title="@string/navigation_theses"/>
+            android:title="@string/title_activity_theses"/>
         <item
             android:id="@+id/nav_calendar"
             android:icon="@drawable/ic_date"
-            android:title="@string/navigation_calendar"/>
+            android:title="@string/title_activity_calendar"/>
     </group>
     <group android:id="@+id/nav_controls">
         <item

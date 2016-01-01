@@ -1,6 +1,7 @@
 package yanovski.master_thesis.data;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 
 import java.util.ArrayList;
@@ -8,11 +9,13 @@ import java.util.List;
 
 import yanovski.master_thesis.MasterThesisApplication;
 import yanovski.master_thesis.R;
+import yanovski.master_thesis.data.models.Category;
 import yanovski.master_thesis.data.models.Contacts;
 import yanovski.master_thesis.data.models.Document;
 import yanovski.master_thesis.data.models.Interest;
 import yanovski.master_thesis.data.models.Resource;
 import yanovski.master_thesis.data.models.Teacher;
+import yanovski.master_thesis.data.models.Thesis;
 
 /**
  * Created by Samuil on 12/30/2015.
@@ -22,9 +25,79 @@ public class LocalDataProvider {
         .getContext();
 
     @Deprecated
+    public static List<Category> getAllCategories() {
+        List<Category> categories = new ArrayList<>();
+
+        Category agile = new Category();
+        agile.name = "Гъвкави методологии";
+
+        List<Thesis> agileTheses = new ArrayList<>();
+        Teacher ilieva = createIlieva();
+        Teacher petrov = createPetrov();
+
+        Thesis spem = new Thesis();
+        spem.title = "SPEM (Software Process Engineering Meta-Model) - базирано моделиране на процеси за разработване на софтуер";
+        spem.description = "Да се създаде разширение на SPEM за моделиране на софтуерни процеси. Да се разгледат възможностите, предоставени от Eclipse Modeling Framework и Graphical Modeling Framework (for Eclipse), за създаване на спецификации на метамодели. Да се разшири спецификацията на SPEM на ниво метамодел. Да се конфигурира Eclipse Process Framework Composer инструмента да поддържа разширената спецификация.";
+        spem.author = ilieva;
+        agileTheses.add(spem);
+
+        Thesis is = new Thesis();
+        is.title = "Изграждане на информационна система, подпомагаща решаването на етични казуси в областта на софтуерно инженерство";
+        is.description = "Да се разработи информационна система, която ще съдържа: 1) набор от широко приложими етични теории (като деонтология, утилитаризъм и др.); 2) съществуващи етични кодекси в софтуерното инженерство; 3) набор от често срещани етични проблеми и казуси в софтуерното инженерство идентифицирани на базата на литературно проучване и личен опит ";
+        is.author = ilieva;
+        agileTheses.add(is);
+
+        agile.theses = agileTheses;
+        categories.add(agile);
+
+
+        Category dev = new Category();
+        dev.name = "Софтуерни разработки";
+
+        List<Thesis> devTheses = new ArrayList<>();
+
+        Thesis mobile = new Thesis();
+        mobile.title = "Android базирана платформа за оптимизация, наблюдение и управление на процеса по разработка и защита на дипломна работа";
+        mobile.description = "Дипломната работа ще включва анализ, проектиране и разработка на система за управление и подпомагане на процеса по разработка и защита на дипломна работа. Проекта включва уеб базирано приложение, предоставящо уеб услуги, както и мобилен клиент предоставящ възможност за комуникация между дипломен ръководител и дипломант.";
+        mobile.author = petrov;
+        devTheses.add(mobile);
+
+        dev.theses = devTheses;
+        categories.add(dev);
+
+        return categories;
+    }
+
+    @Deprecated
     public static List<Teacher> getAllTeachers() {
         List<Teacher> teachers = new ArrayList<>();
 
+        Teacher ilieva = createIlieva();
+        teachers.add(ilieva);
+
+        Teacher petrov = createPetrov();
+        teachers.add(petrov);
+
+        return teachers;
+    }
+
+    @NonNull
+    private static Teacher createPetrov() {
+        List<Interest> petrovInterests =
+            createInterests("Софтуерни инженерство", "Оперативна съвместимост", "Програмиране ",
+                "Системи и средства за електронно обучение", "Системи за оценяване");
+        Contacts petrovContacts =
+            createContacts("02 8161-572", "milen.petrov", "milenp@fmi.uni-sofia.bg");
+        Teacher petrov = new Teacher();
+        petrov.interests = petrovInterests;
+        petrov.contact = petrovContacts;
+        petrov.avatar = "http://www.fmi.uni-sofia.bg/lecturers/softeng/milenp/Photo";
+        petrov.name = "Милен Петров";
+        return petrov;
+    }
+
+    @NonNull
+    private static Teacher createIlieva() {
         List<Interest> ilievaInterests =
             createInterests("Софтуерни технологии", "Софтуерни процеси",
                 "Гъвкави методи за разработване на софтуер",
@@ -36,21 +109,7 @@ public class LocalDataProvider {
         ilieva.contact = ilievaContacts;
         ilieva.avatar = "http://www.fmi.uni-sofia.bg/lecturers/softeng/sylvia/Photo";
         ilieva.name = "Силвия Илиева";
-        teachers.add(ilieva);
-
-        List<Interest> petrovInterests =
-            createInterests("Софтуерни инженерство", "Оперативна съвместимост", "Програмиране ",
-                "Системи и средства за електронно обучение", "Системи за оценяване");
-        Contacts petrovContacts =
-            createContacts("02 8161-572", "milen.petrov", "milenp@fmi.uni-sofia.bg");
-        Teacher petrov = new Teacher();
-        petrov.interests = petrovInterests;
-        petrov.contact = petrovContacts;
-        petrov.avatar = "http://www.fmi.uni-sofia.bg/lecturers/softeng/milenp/Photo";
-        petrov.name = "Милен Петров";
-        teachers.add(petrov);
-
-        return teachers;
+        return ilieva;
     }
 
     @Deprecated

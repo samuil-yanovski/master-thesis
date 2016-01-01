@@ -7,6 +7,7 @@ import javax.inject.Singleton;
 import dagger.Component;
 import yanovski.master_thesis.ui.adapters.InfoAdapter;
 import yanovski.master_thesis.ui.adapters.base.creators.TeacherVHCreator;
+import yanovski.master_thesis.ui.adapters.base.creators.ThesisVHCreator;
 import yanovski.master_thesis.ui.base.BaseFragment;
 import yanovski.master_thesis.ui.fragments.InternshipFragment;
 import yanovski.master_thesis.ui.fragments.LoginFragment;
@@ -24,6 +25,7 @@ public interface MainComponent {
     void inject(InternshipFragment fragment);
     void inject(InfoAdapter adapter);
     void inject(TeacherVHCreator creator);
+    void inject(ThesisVHCreator creator);
     Context getContext();
     UrlHelper getUrlHelper();
     PhoneHelper getPhoneHelper();

@@ -6,6 +6,8 @@
     <string name="settings">Настройки</string>
     <string name="title_activity_home">Дипломна защита</string>
     <string name="title_activity_teachers">Ръководители</string>
+    <string name="title_activity_theses">Теми</string>
+    <string name="title_activity_calendar">Календар</string>
 
     <!-- Login -->
     <string name="prompt_email">Мейл</string>
@@ -22,10 +24,6 @@
     <!-- Navigation drawer -->
     <string name="navigation_drawer_open">Отвори меню</string>
     <string name="navigation_drawer_close">Затвори меню</string>
-    <string name="navigation_diploma">Дипломна защита</string>
-    <string name="navigation_teachers">Ръководители</string>
-    <string name="navigation_theses">Теми</string>
-    <string name="navigation_calendar">Календар</string>
     <string name="navigation_exit">Изход</string>
 
     <!-- Info -->
@@ -64,5 +62,9 @@
     <string name="internship_score">Оценка за стаж с проект за дипломна работа на студенти</string>
     <string name="internship_score_url">http://dse.fmi.uni-sofia.bg/documents/internship/SU_FMI_MS_SE-internship_template-estimation-2009.doc</string>
 
+    <!-- Theses -->
+    <string name="ask">ПРАТИ ЗАПИТВАНЕ</string>
+    <string name="expand_content_description">Show description</string>
+    <string name="collapse_content_description">Hide description</string>
 
 </resources>

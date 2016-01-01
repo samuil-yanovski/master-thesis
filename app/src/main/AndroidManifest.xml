@@ -50,6 +50,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="yanovski.master_thesis.ui.HomeActivity"/>
         </activity>
+        <activity
+            android:name=".ui.ThesesActivity"
+            android:label="@string/title_activity_theses"
+            android:parentActivityName=".ui.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="yanovski.master_thesis.ui.HomeActivity"/>
+        </activity>
     </application>
 
 </manifest>

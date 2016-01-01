@@ -18,6 +18,7 @@ import butterknife.ButterKnife;
 import yanovski.master_thesis.R;
 import yanovski.master_thesis.ui.HomeActivity;
 import yanovski.master_thesis.ui.TeachersActivity;
+import yanovski.master_thesis.ui.ThesesActivity;
 
 /**
  * Created by Samuil on 12/31/2015.
@@ -118,7 +119,8 @@ public abstract class BaseDrawerActivity extends BaseActivity implements
             Intent intent = new Intent(this, TeachersActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_theses) {
-
+            Intent intent = new Intent(this, ThesesActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_calendar) {
 
         } else if (id == R.id.nav_exit) {
