@@ -40,7 +40,8 @@ public class TeacherVHCreator implements ViewHolderCreator<Teacher> {
 
         public TeacherViewHolder(View view) {
             super(view);
-            phoneHelper = MasterThesisApplication.getMainComponent().getPhoneHelper();
+            phoneHelper = MasterThesisApplication.getMainComponent()
+                .getPhoneHelper();
         }
 
         @OnClick(R.id.call)
@@ -54,7 +55,8 @@ public class TeacherVHCreator implements ViewHolderCreator<Teacher> {
     Picasso picasso;
 
     public TeacherVHCreator() {
-        MasterThesisApplication.getMainComponent().inject(this);
+        MasterThesisApplication.getMainComponent()
+            .inject(this);
     }
 
     @Override
@@ -76,7 +78,10 @@ public class TeacherVHCreator implements ViewHolderCreator<Teacher> {
         TeacherViewHolder h = (TeacherViewHolder) holder;
 
         Teacher item = adapter.getItem(position);
-        picasso.load(item.avatar).error(R.drawable.ic_person).into(h.avatar);
+        picasso.load(item.avatar)
+            .placeholder(R.drawable.ic_person)
+            .error(R.drawable.ic_person)
+            .into(h.avatar);
         h.name.setText(item.name);
         if (null != item.interests && 0 < item.interests.size()) {
             h.interest.setText(item.interests.get(0).name);

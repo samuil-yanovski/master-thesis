@@ -1,7 +1,10 @@
 package yanovski.master_thesis.ui.adapters.base.creators;
 
 import android.animation.ValueAnimator;
+import android.graphics.Bitmap;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.support.v7.graphics.Palette;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -13,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import javax.inject.Inject;
 
@@ -21,6 +25,7 @@ import butterknife.OnClick;
 import yanovski.master_thesis.MasterThesisApplication;
 import yanovski.master_thesis.R;
 import yanovski.master_thesis.data.models.Thesis;
+import yanovski.master_thesis.di.ForColorPrimary;
 import yanovski.master_thesis.ui.adapters.ThesesAdapter;
 import yanovski.master_thesis.ui.adapters.base.BaseRecyclerViewAdapter;
 import yanovski.master_thesis.ui.adapters.base.BaseViewHolder;
@@ -31,7 +36,8 @@ import yanovski.master_thesis.ui.adapters.base.BaseViewHolder;
 public class ThesisVHCreator implements ViewHolderCreator<ThesesAdapter.Item> {
     private static final int VIEW_TYPE_ID = CreatorManager.ID_GENERATOR.getAndIncrement();
 
-    public static class ThesisViewHolder extends BaseViewHolder implements ValueAnimator.AnimatorUpdateListener {
+    public static class ThesisViewHolder extends BaseViewHolder implements
+        ValueAnimator.AnimatorUpdateListener {
         @Bind(R.id.name)
         public TextView name;
         @Bind(R.id.title)
@@ -42,6 +48,8 @@ public class ThesisVHCreator implements ViewHolderCreator<ThesesAdapter.Item> {
         public ImageView avatar;
         @Bind(R.id.toggle)
         public ImageButton toggle;
+        @Bind(R.id.header)
+        public View header;
         private TextPaint paint;
         private int duration;
 
@@ -118,6 +126,51 @@ public class ThesisVHCreator implements ViewHolderCreator<ThesesAdapter.Item> {
         }
     }
 
+    public static class AvatarTarget implements Target, Palette.PaletteAsyncListener {
+
+        private ThesisViewHolder holder;
+        @Inject
+        @ForColorPrimary
+        int colorPrimary;
+        int defaultTextColor;
+
+        public AvatarTarget(ThesisViewHolder holder) {
+            this.holder = holder;
+            this.defaultTextColor = holder.title.getContext()
+                .getResources()
+                .getColor(android.R.color.primary_text_dark);
+            MasterThesisApplication.getMainComponent()
+                .inject(this);
+        }
+
+        @Override
+        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+            holder.avatar.setImageBitmap(bitmap);
+            Palette.from(bitmap)
+                .generate(this);
+        }
+
+        @Override
+        public void onBitmapFailed(Drawable errorDrawable) {
+            holder.avatar.setImageDrawable(errorDrawable);
+            holder.header.setBackgroundColor(colorPrimary);
+        }
+
+        @Override
+        public void onPrepareLoad(Drawable placeHolderDrawable) {
+            holder.avatar.setImageDrawable(placeHolderDrawable);
+        }
+
+        @Override
+        public void onGenerated(Palette palette) {
+            int background = palette.getDarkMutedColor(colorPrimary);
+            int textColor = palette.getLightVibrantColor(defaultTextColor);
+
+            holder.header.setBackgroundColor(background);
+            holder.name.setTextColor(textColor);
+        }
+    }
+
     @Inject
     Picasso picasso;
 
@@ -150,8 +203,9 @@ public class ThesisVHCreator implements ViewHolderCreator<ThesesAdapter.Item> {
         h.description.setText(thesis.description);
         h.name.setText(thesis.author.name);
         picasso.load(thesis.author.avatar)
+            .placeholder(R.drawable.ic_person)
             .error(R.drawable.ic_person)
-            .into(h.avatar);
+            .into(new AvatarTarget(h));
     }
 
     @Override

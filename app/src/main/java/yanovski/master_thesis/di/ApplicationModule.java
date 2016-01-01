@@ -1,6 +1,7 @@
 package yanovski.master_thesis.di;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 
 import javax.inject.Singleton;
 
@@ -29,5 +30,16 @@ public class ApplicationModule {
     @Provides
     public Context provideAppContext() {
         return application;
+    }
+
+    @Singleton
+    @Provides
+    @ForColorPrimary
+    public int getColorPrimary(Context context) {
+        TypedArray a = context
+            .getTheme()
+            .obtainStyledAttributes(new int[] {android.R.attr.colorPrimary});
+        int attributeResourceId = a.getResourceId(0, 0);
+        return context.getResources().getColor(attributeResourceId);
     }
 }

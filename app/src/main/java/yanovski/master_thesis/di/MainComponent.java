@@ -26,6 +26,7 @@ public interface MainComponent {
     void inject(InfoAdapter adapter);
     void inject(TeacherVHCreator creator);
     void inject(ThesisVHCreator creator);
+    void inject(ThesisVHCreator.AvatarTarget target);
     Context getContext();
     UrlHelper getUrlHelper();
     PhoneHelper getPhoneHelper();
