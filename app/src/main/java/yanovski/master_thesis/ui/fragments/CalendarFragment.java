@@ -25,7 +25,6 @@ import java8.util.stream.StreamSupport;
 import yanovski.master_thesis.R;
 import yanovski.master_thesis.data.LocalDataProvider;
 import yanovski.master_thesis.data.models.Event;
-import yanovski.master_thesis.databinding.FragmentCalendarBinding;
 import yanovski.master_thesis.ui.adapters.EventsAdapter;
 import yanovski.master_thesis.ui.base.BaseListFragment;
 import yanovski.master_thesis.ui.utils.EventCellDecorator;
@@ -41,6 +40,9 @@ public class CalendarFragment extends BaseListFragment implements
     CalendarPickerView calendar;
     @Bind(R.id.footer)
     View footer;
+    @Bind(R.id.empty)
+    View empty;
+
     Map<LocalDate, List<Event>> dailyEvents = new HashMap<>();
 
     @Override
@@ -77,15 +79,7 @@ public class CalendarFragment extends BaseListFragment implements
         RecyclerView list = getList();
         int measuredHeight = footer.getMeasuredHeight();
         if (0 == measuredHeight) {
-            Resources res = getContext().getResources();
-            int height = res
-                .getDimensionPixelSize(R.dimen.events_list_height);
-            int duration = res
-                .getInteger(android.R.integer.config_shortAnimTime);
-            ValueAnimator animator = ValueAnimator.ofInt(0, height);
-            animator.setDuration(duration);
-            animator.addUpdateListener(this);
-            animator.start();
+            showEventsList();
         }
 
         List<Event> events = dailyEvents.get(new LocalDate(date));
@@ -94,12 +88,25 @@ public class CalendarFragment extends BaseListFragment implements
             events = Collections.emptyList();
         }
 
+        int size = events.size();
         EventsAdapter adapter = new EventsAdapter();
         adapter.setItems(events);
         list.setAdapter(adapter);
 
-        FragmentCalendarBinding binding = FragmentCalendarBinding.bind(getView());
-        binding.setAdapter(adapter);
+        list.setVisibility(0 < size ? View.VISIBLE : View.GONE);
+        empty.setVisibility(0 == size ? View.VISIBLE : View.GONE);
+    }
+
+    private void showEventsList() {
+        Resources res = getContext().getResources();
+        int height = res
+            .getDimensionPixelSize(R.dimen.events_list_height);
+        int duration = res
+            .getInteger(android.R.integer.config_shortAnimTime);
+        ValueAnimator animator = ValueAnimator.ofInt(0, height);
+        animator.setDuration(duration);
+        animator.addUpdateListener(this);
+        animator.start();
     }
 
     @Override
@@ -110,9 +117,7 @@ public class CalendarFragment extends BaseListFragment implements
     @Override
     public void onAnimationUpdate(ValueAnimator animation) {
         Integer value = (Integer) animation.getAnimatedValue();
-        int height = value.intValue();
-
-        footer.getLayoutParams().height = height;
+        footer.getLayoutParams().height = value.intValue();
         footer.requestLayout();
     }
 }

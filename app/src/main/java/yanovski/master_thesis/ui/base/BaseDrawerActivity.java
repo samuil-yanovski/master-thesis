@@ -68,6 +68,14 @@ public abstract class BaseDrawerActivity extends BaseActivity implements
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        navigationView.setNavigationItemSelectedListener(null);
+        navigationView.setCheckedItem(getCurrentCheckedItemId());
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
     public void setContentView(@LayoutRes int layoutResID) {
         super.setContentView(layoutResID);
         ViewStub stub = ButterKnife.findById(this, R.id.content);

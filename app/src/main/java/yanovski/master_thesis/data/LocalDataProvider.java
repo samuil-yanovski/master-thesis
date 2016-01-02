@@ -33,12 +33,9 @@ public class LocalDataProvider {
 
         DateTime today = DateTime.now();
         DateTime nextWeek = today.plusDays(7);
-        events.add(createEvent(today, "Finish Calendar screen"));
-        events.add(createEvent(today, "Finish profile screen"));
-        events.add(createEvent(nextWeek, "Finish mobile app screen"));
-
-//        int colorLight = ContextCompat.getColor(context, R.color.colorAccentLight);
-//        int colorDark = ContextCompat.getColor(context, R.color.colorAccentDark);
+        events.add(createEvent(today, "Завърши 'Календар' екрана"));
+        events.add(createEvent(today, "Завърши 'Профил' екраните"));
+        events.add(createEvent(nextWeek, "Завърши всички екрани"));
 
         return events;
     }
