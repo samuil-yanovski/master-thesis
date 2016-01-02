@@ -5,6 +5,8 @@ import android.app.Application;
 import com.crashlytics.android.Crashlytics;
 import com.karumi.dexter.Dexter;
 
+import net.danlew.android.joda.JodaTimeAndroid;
+
 import io.fabric.sdk.android.Fabric;
 import yanovski.master_thesis.di.ApplicationModule;
 import yanovski.master_thesis.di.DaggerMainComponent;
@@ -21,6 +23,7 @@ public class MasterThesisApplication extends Application {
     public void onCreate() {
         super.onCreate();
         Fabric.with(this, new Crashlytics());
+        JodaTimeAndroid.init(this);
 
         Dexter.initialize(this);
         mainComponent = DaggerMainComponent.builder()

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 
+import org.joda.time.DateTime;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +14,7 @@ import yanovski.master_thesis.R;
 import yanovski.master_thesis.data.models.Category;
 import yanovski.master_thesis.data.models.Contacts;
 import yanovski.master_thesis.data.models.Document;
+import yanovski.master_thesis.data.models.Event;
 import yanovski.master_thesis.data.models.Interest;
 import yanovski.master_thesis.data.models.Resource;
 import yanovski.master_thesis.data.models.Teacher;
@@ -25,6 +28,22 @@ public class LocalDataProvider {
         .getContext();
 
     @Deprecated
+    public static List<Event> getAllEvents() {
+        List<Event> events = new ArrayList<>();
+
+        DateTime today = DateTime.now();
+        DateTime nextWeek = today.plusDays(7);
+        events.add(createEvent(today, "Finish Calendar screen"));
+        events.add(createEvent(today, "Finish profile screen"));
+        events.add(createEvent(nextWeek, "Finish mobile app screen"));
+
+//        int colorLight = ContextCompat.getColor(context, R.color.colorAccentLight);
+//        int colorDark = ContextCompat.getColor(context, R.color.colorAccentDark);
+
+        return events;
+    }
+
+    @Deprecated
     public static List<Category> getAllCategories() {
         List<Category> categories = new ArrayList<>();
 
@@ -36,14 +55,18 @@ public class LocalDataProvider {
         Teacher petrov = createPetrov();
 
         Thesis spem = new Thesis();
-        spem.title = "SPEM (Software Process Engineering Meta-Model) - базирано моделиране на процеси за разработване на софтуер";
-        spem.description = "Да се създаде разширение на SPEM за моделиране на софтуерни процеси. Да се разгледат възможностите, предоставени от Eclipse Modeling Framework и Graphical Modeling Framework (for Eclipse), за създаване на спецификации на метамодели. Да се разшири спецификацията на SPEM на ниво метамодел. Да се конфигурира Eclipse Process Framework Composer инструмента да поддържа разширената спецификация.";
+        spem.title =
+            "SPEM (Software Process Engineering Meta-Model) - базирано моделиране на процеси за разработване на софтуер";
+        spem.description =
+            "Да се създаде разширение на SPEM за моделиране на софтуерни процеси. Да се разгледат възможностите, предоставени от Eclipse Modeling Framework и Graphical Modeling Framework (for Eclipse), за създаване на спецификации на метамодели. Да се разшири спецификацията на SPEM на ниво метамодел. Да се конфигурира Eclipse Process Framework Composer инструмента да поддържа разширената спецификация.";
         spem.author = ilieva;
         agileTheses.add(spem);
 
         Thesis is = new Thesis();
-        is.title = "Изграждане на информационна система, подпомагаща решаването на етични казуси в областта на софтуерно инженерство";
-        is.description = "Да се разработи информационна система, която ще съдържа: 1) набор от широко приложими етични теории (като деонтология, утилитаризъм и др.); 2) съществуващи етични кодекси в софтуерното инженерство; 3) набор от често срещани етични проблеми и казуси в софтуерното инженерство идентифицирани на базата на литературно проучване и личен опит ";
+        is.title =
+            "Изграждане на информационна система, подпомагаща решаването на етични казуси в областта на софтуерно инженерство";
+        is.description =
+            "Да се разработи информационна система, която ще съдържа: 1) набор от широко приложими етични теории (като деонтология, утилитаризъм и др.); 2) съществуващи етични кодекси в софтуерното инженерство; 3) набор от често срещани етични проблеми и казуси в софтуерното инженерство идентифицирани на базата на литературно проучване и личен опит ";
         is.author = ilieva;
         agileTheses.add(is);
 
@@ -57,8 +80,10 @@ public class LocalDataProvider {
         List<Thesis> devTheses = new ArrayList<>();
 
         Thesis mobile = new Thesis();
-        mobile.title = "Android базирана платформа за оптимизация, наблюдение и управление на процеса по разработка и защита на дипломна работа";
-        mobile.description = "Дипломната работа ще включва анализ, проектиране и разработка на система за управление и подпомагане на процеса по разработка и защита на дипломна работа. Проекта включва уеб базирано приложение, предоставящо уеб услуги, както и мобилен клиент предоставящ възможност за комуникация между дипломен ръководител и дипломант.";
+        mobile.title =
+            "Android базирана платформа за оптимизация, наблюдение и управление на процеса по разработка и защита на дипломна работа";
+        mobile.description =
+            "Дипломната работа ще включва анализ, проектиране и разработка на система за управление и подпомагане на процеса по разработка и защита на дипломна работа. Проекта включва уеб базирано приложение, предоставящо уеб услуги, както и мобилен клиент предоставящ възможност за комуникация между дипломен ръководител и дипломант.";
         mobile.author = petrov;
         devTheses.add(mobile);
 
@@ -79,6 +104,14 @@ public class LocalDataProvider {
         teachers.add(petrov);
 
         return teachers;
+    }
+
+    @NonNull
+    private static Event createEvent(DateTime date, String name) {
+        Event event = new Event();
+        event.date = date;
+        event.name = name;
+        return event;
     }
 
     @NonNull

@@ -4,6 +4,7 @@ import android.animation.ValueAnimator;
 import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.graphics.Palette;
 import android.text.Layout;
 import android.text.StaticLayout;
@@ -136,9 +137,8 @@ public class ThesisVHCreator implements ViewHolderCreator<ThesesAdapter.Item> {
 
         public AvatarTarget(ThesisViewHolder holder) {
             this.holder = holder;
-            this.defaultTextColor = holder.title.getContext()
-                .getResources()
-                .getColor(android.R.color.primary_text_dark);
+            this.defaultTextColor = ContextCompat.getColor(holder.title.getContext(),
+                android.R.color.primary_text_dark);
             MasterThesisApplication.getMainComponent()
                 .inject(this);
         }
@@ -203,8 +203,8 @@ public class ThesisVHCreator implements ViewHolderCreator<ThesesAdapter.Item> {
         h.description.setText(thesis.description);
         h.name.setText(thesis.author.name);
         picasso.load(thesis.author.avatar)
-            .placeholder(R.drawable.ic_person)
-            .error(R.drawable.ic_person)
+            .placeholder(R.drawable.ic_person_white)
+            .error(R.drawable.ic_person_white)
             .into(new AvatarTarget(h));
     }
 

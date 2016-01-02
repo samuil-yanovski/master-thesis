@@ -64,7 +64,11 @@
 
     <!-- Theses -->
     <string name="ask">ПРАТИ ЗАПИТВАНЕ</string>
-    <string name="expand_content_description">Show description</string>
-    <string name="collapse_content_description">Hide description</string>
+    <string name="expand_content_description">Покажи резюме</string>
+    <string name="collapse_content_description">Скрий резюме</string>
+
+    <!-- Calendar -->
+    <string name="no_events">Няма събития</string>
+
 
 </resources>

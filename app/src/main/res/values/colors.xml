@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="background">#eeeeee</color>
+    <color name="background">#EEEEEE</color>
     <color name="colorPrimary">#5E85AD</color>
-    <color name="colorPrimaryDark">#29517a</color>
-    <color name="colorAccent">#e57d2e</color>
+    <color name="colorPrimaryLight">#8DA8C5</color>
+    <color name="colorPrimaryDark">#29517A</color>
+    <color name="colorAccent">#E57d2E</color>
+    <color name="colorAccentDark">#AB5D22</color>
+    <color name="colorAccentLight">#ECA36B</color>
 
     <color name="text_color_subtitle">#656565</color>
     <color name="divider">#CBCBCB</color>
+
+    <color name="calendar_background_disabled">#ECF0F5</color>
+    <color name="calendar_background">#CFDAE6</color>
+    <color name="calendar_text_selected">#FFFFFFFF</color>
+    <color name="calendar_text_normal">#6C6E70</color>
+    <color name="calendar_text_inactive">#7f778088</color>
 </resources>

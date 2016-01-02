@@ -16,6 +16,7 @@ import android.view.ViewStub;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import yanovski.master_thesis.R;
+import yanovski.master_thesis.ui.CalendarActivity;
 import yanovski.master_thesis.ui.HomeActivity;
 import yanovski.master_thesis.ui.TeachersActivity;
 import yanovski.master_thesis.ui.ThesesActivity;
@@ -122,7 +123,8 @@ public abstract class BaseDrawerActivity extends BaseActivity implements
             Intent intent = new Intent(this, ThesesActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_calendar) {
-
+            Intent intent = new Intent(this, CalendarActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_exit) {
 
         }
