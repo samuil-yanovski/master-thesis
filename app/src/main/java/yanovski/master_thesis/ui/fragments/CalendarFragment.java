@@ -6,13 +6,11 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.squareup.timessquare.CalendarCellDecorator;
 import com.squareup.timessquare.CalendarPickerView;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -27,7 +25,6 @@ import yanovski.master_thesis.data.LocalDataProvider;
 import yanovski.master_thesis.data.models.Event;
 import yanovski.master_thesis.ui.adapters.EventsAdapter;
 import yanovski.master_thesis.ui.base.BaseListFragment;
-import yanovski.master_thesis.ui.utils.EventCellDecorator;
 
 
 /**
@@ -63,9 +60,6 @@ public class CalendarFragment extends BaseListFragment implements
         dailyEvents = StreamSupport.stream(allEvents)
             .collect(Collectors.groupingBy(e -> e.date.toLocalDate()));
 
-        List<CalendarCellDecorator> decorators = new ArrayList<>();
-        decorators.add(new EventCellDecorator(dailyEvents));
-        calendar.setDecorators(decorators);
         calendar.init(minDate, maxDate)
             .withSelectedDate(today.toDate())
             .withHighlightedDates(StreamSupport.stream(allEvents)

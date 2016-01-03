@@ -4,6 +4,7 @@
 
     <!-- General -->
     <string name="settings">Настройки</string>
+    <string name="add">ДОБАВИ</string>
     <string name="title_activity_home">Дипломна защита</string>
     <string name="title_activity_teachers">Ръководители</string>
     <string name="title_activity_theses">Теми</string>
