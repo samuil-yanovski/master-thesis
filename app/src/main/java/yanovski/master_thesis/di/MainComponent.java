@@ -10,6 +10,7 @@ import yanovski.master_thesis.ui.adapters.base.creators.TeacherVHCreator;
 import yanovski.master_thesis.ui.adapters.base.creators.ThesisVHCreator;
 import yanovski.master_thesis.ui.base.BaseDrawerActivity;
 import yanovski.master_thesis.ui.base.BaseFragment;
+import yanovski.master_thesis.ui.base.BaseProfileFragment;
 import yanovski.master_thesis.ui.fragments.InternshipFragment;
 import yanovski.master_thesis.ui.fragments.LoginFragment;
 import yanovski.master_thesis.ui.fragments.StudentProfileFragment;
@@ -34,6 +35,7 @@ public interface MainComponent {
     void inject(ThesisVHCreator.AvatarTarget target);
     void inject(BaseDrawerActivity activity);
     void inject(StudentProfileFragment fragment);
+    void inject(BaseProfileFragment fragment);
     void inject(StudentNavigationViewListener listener);
     Context getContext();
     UrlHelper getUrlHelper();

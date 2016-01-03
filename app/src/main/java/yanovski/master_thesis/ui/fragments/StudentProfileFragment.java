@@ -21,7 +21,7 @@ public class StudentProfileFragment extends BaseProfileFragment {
     Account currentAccount;
 
     @Override
-    protected Account getCurrentAccount() {
+    protected Account getPerson() {
         return currentAccount;
     }
 

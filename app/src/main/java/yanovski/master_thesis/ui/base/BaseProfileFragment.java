@@ -13,8 +13,10 @@ import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import yanovski.master_thesis.MasterThesisApplication;
 import yanovski.master_thesis.R;
-import yanovski.master_thesis.data.models.Account;
+import yanovski.master_thesis.data.models.Contacts;
+import yanovski.master_thesis.data.models.Person;
 import yanovski.master_thesis.ui.utils.CircleTransform;
 import yanovski.master_thesis.utils.MailHelper;
 import yanovski.master_thesis.utils.PhoneHelper;
@@ -25,7 +27,7 @@ import yanovski.master_thesis.utils.SkypeHelper;
  */
 public abstract class BaseProfileFragment extends BaseFragment {
 
-    protected abstract Account getCurrentAccount();
+    protected abstract Person getPerson();
 
     @Bind(R.id.avatar)
     ImageView avatar;
@@ -53,28 +55,30 @@ public abstract class BaseProfileFragment extends BaseFragment {
     @Inject
     SkypeHelper skypeHelper;
 
-    Account currentAccount;
+    Person person;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        currentAccount = getCurrentAccount();
+        person = getPerson();
+        MasterThesisApplication.getMainComponent().inject(this);
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        picasso.load(currentAccount.avatar)
+        picasso.load(person.getAvatar())
             .placeholder(R.drawable.ic_person_white)
             .error(R.drawable.ic_person_white)
             .transform(new CircleTransform())
             .into(avatar);
 
-        name.setText(currentAccount.name);
+        name.setText(person.getName());
 
-        bind(currentAccount.contacts.email, email, emailContainer);
-        bind(currentAccount.contacts.phone, phone, phoneContainer);
-        bind(currentAccount.contacts.skype, skype, skypeContainer);
+        Contacts contacts = person.getContacts();
+        bind(contacts.email, email, emailContainer);
+        bind(contacts.phone, phone, phoneContainer);
+        bind(contacts.skype, skype, skypeContainer);
     }
 
     private void bind(String value, TextView field, View container) {
@@ -87,16 +91,16 @@ public abstract class BaseProfileFragment extends BaseFragment {
 
     @OnClick(R.id.phone_container)
     public void onPhoneClicked() {
-        phoneHelper.call(currentAccount.contacts.phone);
+        phoneHelper.call(person.getContacts().phone);
     }
 
     @OnClick(R.id.email_container)
     public void onMailClicked() {
-        mailHelper.sendTo(currentAccount.contacts.email);
+        mailHelper.sendTo(person.getContacts().email);
     }
 
     @OnClick(R.id.skype_container)
     public void onSkypeClicked() {
-        skypeHelper.chatTo(currentAccount.contacts.skype);
+        skypeHelper.chatTo(person.getContacts().skype);
     }
 }
