@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Магистърска тема</string>
 
+    <!-- Transition names -->
+    <string name="transition_avatar">avatar</string>
+    <string name="transition_name">name</string>
+    <string name="transition_header">header</string>
 
     <!-- General -->
     <string name="settings">Настройки</string>
