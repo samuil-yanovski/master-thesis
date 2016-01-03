@@ -7,7 +7,6 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.ViewStub;
 
@@ -27,8 +26,6 @@ public abstract class BaseDrawerActivity extends BaseActivity implements
     protected abstract int getCurrentCheckedItemId();
     protected abstract NavigationViewListener getNavigationViewListener();
 
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;
     @Bind(R.id.drawer_layout)
     DrawerLayout drawer;
     @Bind(R.id.nav_view)
@@ -66,8 +63,6 @@ public abstract class BaseDrawerActivity extends BaseActivity implements
     }
 
     private void initActionBar() {
-        setSupportActionBar(toolbar);
-
         ActionBarDrawerToggle toggle =
             new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open,
                 R.string.navigation_drawer_close);
