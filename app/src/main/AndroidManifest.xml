@@ -68,6 +68,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="yanovski.master_thesis.ui.HomeActivity"/>
         </activity>
+        <activity
+            android:name=".ui.StudentProfileActivity"
+            android:label="@string/title_activity_profile"
+            android:parentActivityName=".ui.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="yanovski.master_thesis.ui.HomeActivity"/>
+        </activity>
     </application>
 
 </manifest>

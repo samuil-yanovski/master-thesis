@@ -8,10 +8,14 @@ import dagger.Component;
 import yanovski.master_thesis.ui.adapters.InfoAdapter;
 import yanovski.master_thesis.ui.adapters.base.creators.TeacherVHCreator;
 import yanovski.master_thesis.ui.adapters.base.creators.ThesisVHCreator;
+import yanovski.master_thesis.ui.base.BaseDrawerActivity;
 import yanovski.master_thesis.ui.base.BaseFragment;
 import yanovski.master_thesis.ui.fragments.InternshipFragment;
 import yanovski.master_thesis.ui.fragments.LoginFragment;
+import yanovski.master_thesis.ui.fragments.StudentProfileFragment;
+import yanovski.master_thesis.utils.MailHelper;
 import yanovski.master_thesis.utils.PhoneHelper;
+import yanovski.master_thesis.utils.SkypeHelper;
 import yanovski.master_thesis.utils.UrlHelper;
 
 /**
@@ -27,7 +31,11 @@ public interface MainComponent {
     void inject(TeacherVHCreator creator);
     void inject(ThesisVHCreator creator);
     void inject(ThesisVHCreator.AvatarTarget target);
+    void inject(BaseDrawerActivity activity);
+    void inject(StudentProfileFragment fragment);
     Context getContext();
     UrlHelper getUrlHelper();
     PhoneHelper getPhoneHelper();
+    MailHelper getMailHelper();
+    SkypeHelper getSkypeHelper();
 }

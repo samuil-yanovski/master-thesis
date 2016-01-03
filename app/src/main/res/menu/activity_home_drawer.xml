@@ -9,6 +9,10 @@
             android:title="@string/title_activity_home"
             android:checked="true"/>
         <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_profile"
+            android:title="@string/title_activity_profile"/>
+        <item
             android:id="@+id/nav_teachers"
             android:icon="@drawable/ic_people"
             android:title="@string/title_activity_teachers"/>

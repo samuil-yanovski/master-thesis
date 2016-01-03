@@ -18,6 +18,7 @@ import yanovski.master_thesis.R;
 import yanovski.master_thesis.data.models.Teacher;
 import yanovski.master_thesis.ui.adapters.base.BaseRecyclerViewAdapter;
 import yanovski.master_thesis.ui.adapters.base.BaseViewHolder;
+import yanovski.master_thesis.ui.utils.CircleTransform;
 import yanovski.master_thesis.utils.PhoneHelper;
 
 /**
@@ -81,6 +82,7 @@ public class TeacherVHCreator implements ViewHolderCreator<Teacher> {
         picasso.load(item.avatar)
             .placeholder(R.drawable.ic_person)
             .error(R.drawable.ic_person)
+            .transform(new CircleTransform())
             .into(h.avatar);
         h.name.setText(item.name);
         if (null != item.interests && 0 < item.interests.size()) {

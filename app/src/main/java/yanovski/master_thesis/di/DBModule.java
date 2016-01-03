@@ -10,6 +10,8 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import yanovski.master_thesis.data.LocalDataProvider;
+import yanovski.master_thesis.data.models.Account;
 import yanovski.master_thesis.data.models.PhoneContact;
 import yanovski.master_thesis.data.resolvers.PhoneContactDeleteResolver;
 import yanovski.master_thesis.data.resolvers.PhoneContactGetResolver;
@@ -40,5 +42,11 @@ public class DBModule {
             .contentResolver(context.getContentResolver())
             .addTypeMapping(PhoneContact.class, phoneContactTypeMapping)
             .build();
+    }
+
+    @Singleton
+    @Provides
+    public Account getAccount() {
+        return LocalDataProvider.getAccount();
     }
 }

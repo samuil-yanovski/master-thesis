@@ -5,7 +5,9 @@
     <!-- General -->
     <string name="settings">Настройки</string>
     <string name="add">ДОБАВИ</string>
+    <string name="edit">РЕДАКТИРАЙ</string>
     <string name="title_activity_home">Дипломна защита</string>
+    <string name="title_activity_profile">Профил</string>
     <string name="title_activity_teachers">Ръководители</string>
     <string name="title_activity_theses">Теми</string>
     <string name="title_activity_calendar">Календар</string>
@@ -70,6 +72,10 @@
 
     <!-- Calendar -->
     <string name="no_events">Няма събития</string>
+
+    <!-- Profile -->
+    <string name="send_mail">Изпращане на писмо</string>
+    <string name="send_skype_message">Skype разговор</string>
 
 
 </resources>

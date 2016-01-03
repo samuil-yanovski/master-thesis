@@ -11,6 +11,7 @@ import java.util.List;
 
 import yanovski.master_thesis.MasterThesisApplication;
 import yanovski.master_thesis.R;
+import yanovski.master_thesis.data.models.Account;
 import yanovski.master_thesis.data.models.Category;
 import yanovski.master_thesis.data.models.Contacts;
 import yanovski.master_thesis.data.models.Document;
@@ -26,6 +27,21 @@ import yanovski.master_thesis.data.models.Thesis;
 public class LocalDataProvider {
     private static final Context context = MasterThesisApplication.getMainComponent()
         .getContext();
+
+    @Deprecated
+    public static Account getAccount() {
+        Account currentAccount = new Account();
+
+        Contacts contacts = new Contacts();
+        contacts.email = "samuil.yanovski@gmail.com";
+        contacts.phone = "0888 88 88 88";
+        contacts.skype = "samuil.yanovski";
+
+        currentAccount.name = "Samuil Yanovski";
+        currentAccount.contacts = contacts;
+        currentAccount.avatar = "https://lh3.googleusercontent.com/-adG2yZyCrOs/AAAAAAAAAAI/AAAAAAAAABc/rhvJ5H2vBAs/s140-p-no/photo.jpg";
+        return currentAccount;
+    }
 
     @Deprecated
     public static List<Event> getAllEvents() {
