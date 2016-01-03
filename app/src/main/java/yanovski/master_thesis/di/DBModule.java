@@ -44,9 +44,9 @@ public class DBModule {
             .build();
     }
 
-    @Singleton
+    @ForStudent
     @Provides
     public Account getAccount() {
-        return LocalDataProvider.getAccount();
+        return LocalDataProvider.getStudentAccount();
     }
 }

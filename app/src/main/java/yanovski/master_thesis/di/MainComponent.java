@@ -13,6 +13,7 @@ import yanovski.master_thesis.ui.base.BaseFragment;
 import yanovski.master_thesis.ui.fragments.InternshipFragment;
 import yanovski.master_thesis.ui.fragments.LoginFragment;
 import yanovski.master_thesis.ui.fragments.StudentProfileFragment;
+import yanovski.master_thesis.ui.utils.StudentNavigationViewListener;
 import yanovski.master_thesis.utils.MailHelper;
 import yanovski.master_thesis.utils.PhoneHelper;
 import yanovski.master_thesis.utils.SkypeHelper;
@@ -33,6 +34,7 @@ public interface MainComponent {
     void inject(ThesisVHCreator.AvatarTarget target);
     void inject(BaseDrawerActivity activity);
     void inject(StudentProfileFragment fragment);
+    void inject(StudentNavigationViewListener listener);
     Context getContext();
     UrlHelper getUrlHelper();
     PhoneHelper getPhoneHelper();

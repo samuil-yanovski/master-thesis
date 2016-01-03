@@ -29,7 +29,7 @@ public class LocalDataProvider {
         .getContext();
 
     @Deprecated
-    public static Account getAccount() {
+    public static Account getStudentAccount() {
         Account currentAccount = new Account();
 
         Contacts contacts = new Contacts();
