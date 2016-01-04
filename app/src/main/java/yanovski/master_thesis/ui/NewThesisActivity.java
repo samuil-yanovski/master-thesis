@@ -9,12 +9,12 @@ import icepick.State;
 import yanovski.master_thesis.R;
 import yanovski.master_thesis.data.models.Teacher;
 import yanovski.master_thesis.ui.base.BaseActivity;
-import yanovski.master_thesis.ui.fragments.ThesesFragment;
+import yanovski.master_thesis.ui.fragments.NewThesisFragment;
 
 /**
  * Created by Samuil on 12/31/2015.
  */
-public class FilteredThesesActivity extends BaseActivity {
+public class NewThesisActivity extends BaseActivity {
 
     public static final String KEY_TEACHER = "teacher";
 
@@ -24,7 +24,7 @@ public class FilteredThesesActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.new_item, menu);
+        getMenuInflater().inflate(R.menu.send, menu);
         return true;
     }
 
@@ -36,7 +36,7 @@ public class FilteredThesesActivity extends BaseActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_add) {
+        if (id == R.id.action_send) {
             return true;
         }
 
@@ -45,54 +45,23 @@ public class FilteredThesesActivity extends BaseActivity {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_inner_generic;
+        return R.layout.activity_new_thesis;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (null == savedInstanceState) {
-            Bundle extras = getIntent().getExtras();
-            if (null != extras && extras.containsKey(KEY_TEACHER)) {
-                teacher = extras.getParcelable(KEY_TEACHER);
-            }
-            init();
-        }
+        init();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
-        if (null == savedInstanceState) {
-            Bundle extras = getIntent().getExtras();
-            if (null != extras && extras.containsKey(KEY_TEACHER)) {
-                teacher = extras.getParcelable(KEY_TEACHER);
-            }
-            init();
-        }
-    }
-
-    @Override
-    public void onRestoreInstanceState(Bundle savedInstanceState,
-        PersistableBundle persistentState) {
-        super.onRestoreInstanceState(savedInstanceState, persistentState);
-        init();
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
         init();
     }
 
     private void init() {
-        if (null == teacher) {
-            finish();
-            return;
-        }
-
-        ThesesFragment fragment = new ThesesFragment();
-        fragment.setTeacher(teacher);
+        NewThesisFragment fragment = new NewThesisFragment();
         getSupportFragmentManager().beginTransaction()
             .add(R.id.fragment_container, fragment)
             .commit();

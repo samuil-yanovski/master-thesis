@@ -13,7 +13,10 @@ import com.trello.rxlifecycle.components.support.RxFragment;
 import java.util.List;
 
 import butterknife.ButterKnife;
+import icepick.Icepick;
+import icepick.State;
 import yanovski.master_thesis.MasterThesisApplication;
+import yanovski.master_thesis.ui.utils.UIModes;
 
 /**
  * Created by Samuil on 12/29/2015.
@@ -23,6 +26,16 @@ public abstract class BaseFragment extends RxFragment implements Validator.Valid
 
     protected abstract int getLayoutId();
 
+    @State
+    UIModes mode = UIModes.View;
+
+    public void setMode(UIModes mode) {
+        this.mode = mode;
+    }
+
+    public UIModes getMode() {
+        return mode;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,6 +62,18 @@ public abstract class BaseFragment extends RxFragment implements Validator.Valid
 
     public void validate() {
         validator.validate();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Icepick.saveInstanceState(this, outState);
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        Icepick.restoreInstanceState(this, savedInstanceState);
     }
 
     @Override

@@ -14,7 +14,10 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import icepick.Icepick;
+import icepick.State;
+import yanovski.master_thesis.Constants;
 import yanovski.master_thesis.R;
+import yanovski.master_thesis.ui.utils.UIModes;
 
 /**
  * Created by Samuil on 12/28/2015.
@@ -26,6 +29,8 @@ public abstract class BaseActivity extends RxAppCompatActivity implements
     Toolbar toolbar;
 
     private Validator validator;
+    @State
+    UIModes mode = UIModes.View;
 
     protected abstract int getLayoutId();
 
@@ -72,6 +77,15 @@ public abstract class BaseActivity extends RxAppCompatActivity implements
         validator = new Validator(this);
         validator.setValidationListener(this);
         setSupportActionBar(toolbar);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras.containsKey(Constants.KEY_MODE)) {
+            mode = UIModes.valueOf(extras.getString(Constants.KEY_MODE));
+        }
+    }
+
+    public UIModes getMode() {
+        return mode;
     }
 
     public void validate() {

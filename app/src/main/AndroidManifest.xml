@@ -36,6 +36,7 @@
             android:name=".ui.HomeActivity"
             android:label="@string/title_activity_home"
             android:parentActivityName=".ui.LoginActivity"
+            android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -55,6 +56,7 @@
             android:name=".ui.ThesesActivity"
             android:label="@string/title_activity_theses"
             android:parentActivityName=".ui.HomeActivity"
+            android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -96,6 +98,15 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="yanovski.master_thesis.ui.TeacherProfileActivity"/>
+        </activity>
+        <activity
+            android:name=".ui.NewThesisActivity"
+            android:label="@string/title_activity_new_thesis"
+            android:parentActivityName=".ui.ThesesActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="yanovski.master_thesis.ui.ThesesActivity"/>
         </activity>
     </application>
 

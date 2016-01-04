@@ -11,11 +11,13 @@
     <string name="add">ДОБАВИ</string>
     <string name="edit">РЕДАКТИРАЙ</string>
     <string name="theses">ТЕМИ</string>
+    <string name="send">ИЗПРАТИ</string>
     <string name="title_activity_home">Дипломна защита</string>
     <string name="title_activity_profile">Профил</string>
     <string name="title_activity_teachers">Ръководители</string>
     <string name="title_activity_theses">Теми</string>
     <string name="title_activity_calendar">Календар</string>
+    <string name="title_activity_new_thesis">Нова тема</string>
 
     <!-- Login -->
     <string name="prompt_email">Мейл</string>
@@ -82,5 +84,9 @@
     <string name="send_mail">Изпращане на писмо</string>
     <string name="send_skype_message">Skype разговор</string>
 
+    <!-- Profile -->
+    <string name="title">Заглавие</string>
+    <string name="description">Резюме</string>
+    <string name="select_teacher">Избери ръководител</string>
 
 </resources>

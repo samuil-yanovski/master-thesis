@@ -1,5 +1,6 @@
 package yanovski.master_thesis.ui;
 
+import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -44,6 +45,8 @@ public class ThesesActivity extends BaseDrawerActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_add) {
+            Intent intent = new Intent(this, NewThesisActivity.class);
+            startActivity(intent);
             return true;
         }
 
