@@ -9,7 +9,6 @@ import icepick.State;
 import yanovski.master_thesis.R;
 import yanovski.master_thesis.data.models.Teacher;
 import yanovski.master_thesis.ui.base.BaseActivity;
-import yanovski.master_thesis.ui.fragments.NewThesisFragment;
 
 /**
  * Created by Samuil on 12/31/2015.
@@ -61,11 +60,6 @@ public class NewThesisActivity extends BaseActivity {
     }
 
     private void init() {
-        NewThesisFragment fragment = new NewThesisFragment();
-        getSupportFragmentManager().beginTransaction()
-            .add(R.id.fragment_container, fragment)
-            .commit();
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }
