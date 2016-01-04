@@ -9,6 +9,8 @@ import org.joda.time.DateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import java8.util.stream.Collectors;
+import java8.util.stream.StreamSupport;
 import yanovski.master_thesis.MasterThesisApplication;
 import yanovski.master_thesis.R;
 import yanovski.master_thesis.data.models.Account;
@@ -57,10 +59,27 @@ public class LocalDataProvider {
     }
 
     @Deprecated
+    public static List<Category> getAllCategories(Teacher teacher) {
+        List<Category> categories = getAllCategories();
+
+        if (null != teacher) {
+            categories = StreamSupport.stream(categories)
+                .flatMap(c -> StreamSupport.stream(c.theses))
+                .filter(t -> t.author.equals(teacher))
+                .map(t -> t.category)
+                .distinct()
+                .collect(Collectors.toList());
+        }
+
+        return categories;
+    }
+
+    @Deprecated
     public static List<Category> getAllCategories() {
         List<Category> categories = new ArrayList<>();
 
         Category agile = new Category();
+        agile.id = "1";
         agile.name = "Гъвкави методологии";
 
         List<Thesis> agileTheses = new ArrayList<>();
@@ -73,6 +92,7 @@ public class LocalDataProvider {
         spem.description =
             "Да се създаде разширение на SPEM за моделиране на софтуерни процеси. Да се разгледат възможностите, предоставени от Eclipse Modeling Framework и Graphical Modeling Framework (for Eclipse), за създаване на спецификации на метамодели. Да се разшири спецификацията на SPEM на ниво метамодел. Да се конфигурира Eclipse Process Framework Composer инструмента да поддържа разширената спецификация.";
         spem.author = ilieva;
+        spem.category = agile;
         agileTheses.add(spem);
 
         Thesis is = new Thesis();
@@ -81,6 +101,7 @@ public class LocalDataProvider {
         is.description =
             "Да се разработи информационна система, която ще съдържа: 1) набор от широко приложими етични теории (като деонтология, утилитаризъм и др.); 2) съществуващи етични кодекси в софтуерното инженерство; 3) набор от често срещани етични проблеми и казуси в софтуерното инженерство идентифицирани на базата на литературно проучване и личен опит ";
         is.author = ilieva;
+        is.category = agile;
         agileTheses.add(is);
 
         agile.theses = agileTheses;
@@ -88,6 +109,7 @@ public class LocalDataProvider {
 
 
         Category dev = new Category();
+        dev.id = "2";
         dev.name = "Софтуерни разработки";
 
         List<Thesis> devTheses = new ArrayList<>();
@@ -98,6 +120,7 @@ public class LocalDataProvider {
         mobile.description =
             "Дипломната работа ще включва анализ, проектиране и разработка на система за управление и подпомагане на процеса по разработка и защита на дипломна работа. Проекта включва уеб базирано приложение, предоставящо уеб услуги, както и мобилен клиент предоставящ възможност за комуникация между дипломен ръководител и дипломант.";
         mobile.author = petrov;
+        mobile.category = dev;
         devTheses.add(mobile);
 
         dev.theses = devTheses;
@@ -139,6 +162,7 @@ public class LocalDataProvider {
         petrov.contact = petrovContacts;
         petrov.avatar = "http://www.fmi.uni-sofia.bg/lecturers/softeng/milenp/Photo";
         petrov.name = "Милен Петров";
+        petrov.id = "2";
         return petrov;
     }
 
@@ -155,6 +179,7 @@ public class LocalDataProvider {
         ilieva.contact = ilievaContacts;
         ilieva.avatar = "http://www.fmi.uni-sofia.bg/lecturers/softeng/sylvia/Photo";
         ilieva.name = "Силвия Илиева";
+        ilieva.id = "1";
         return ilieva;
     }
 

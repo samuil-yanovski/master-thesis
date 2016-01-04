@@ -1,6 +1,5 @@
 package yanovski.master_thesis.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.Menu;
@@ -10,12 +9,12 @@ import icepick.State;
 import yanovski.master_thesis.R;
 import yanovski.master_thesis.data.models.Teacher;
 import yanovski.master_thesis.ui.base.BaseActivity;
-import yanovski.master_thesis.ui.fragments.TeacherProfileFragment;
+import yanovski.master_thesis.ui.fragments.ThesesFragment;
 
 /**
  * Created by Samuil on 12/31/2015.
  */
-public class TeacherProfileActivity extends BaseActivity {
+public class FilteredThesesActivity extends BaseActivity {
 
     public static final String KEY_TEACHER = "teacher";
 
@@ -23,8 +22,30 @@ public class TeacherProfileActivity extends BaseActivity {
     Teacher teacher;
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.new_item, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_add) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     protected int getLayoutId() {
-        return R.layout.activity_teacher_profile;
+        return R.layout.activity_filtered_theses;
     }
 
     @Override
@@ -70,37 +91,12 @@ public class TeacherProfileActivity extends BaseActivity {
             return;
         }
 
-        TeacherProfileFragment fragment = new TeacherProfileFragment();
+        ThesesFragment fragment = new ThesesFragment();
         fragment.setTeacher(teacher);
         getSupportFragmentManager().beginTransaction()
             .add(R.id.fragment_container, fragment)
             .commit();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.theses, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_theses) {
-            Intent intent = new Intent(this, FilteredThesesActivity.class);
-            intent.putExtra(FilteredThesesActivity.KEY_TEACHER, teacher);
-            startActivity(intent);
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }

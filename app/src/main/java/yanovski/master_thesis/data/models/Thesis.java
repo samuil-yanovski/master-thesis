@@ -7,4 +7,5 @@ public class Thesis {
     public String title;
     public String description;
     public Teacher author;
+    public Category category;
 }

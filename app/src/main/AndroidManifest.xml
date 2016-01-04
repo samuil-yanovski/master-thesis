@@ -82,10 +82,20 @@
             android:name=".ui.TeacherProfileActivity"
             android:label="@string/title_activity_profile"
             android:parentActivityName=".ui.TeachersActivity"
+            android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="yanovski.master_thesis.ui.TeachersActivity"/>
+        </activity>
+        <activity
+            android:name=".ui.FilteredThesesActivity"
+            android:label="@string/title_activity_theses"
+            android:parentActivityName=".ui.TeacherProfileActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="yanovski.master_thesis.ui.TeacherProfileActivity"/>
         </activity>
     </application>
 
