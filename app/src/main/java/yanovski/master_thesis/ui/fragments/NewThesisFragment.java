@@ -1,8 +1,10 @@
 package yanovski.master_thesis.ui.fragments;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -15,8 +17,10 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
+import icepick.State;
 import yanovski.master_thesis.Constants;
 import yanovski.master_thesis.R;
+import yanovski.master_thesis.data.models.Teacher;
 import yanovski.master_thesis.ui.TeachersActivity;
 import yanovski.master_thesis.ui.base.BaseFragment;
 import yanovski.master_thesis.ui.utils.UIModes;
@@ -30,7 +34,6 @@ public class NewThesisFragment extends BaseFragment {
 
     // UI references.
     @Bind(R.id.author)
-    @NotEmpty
     TextView author;
     @Bind(R.id.title)
     @NotEmpty
@@ -41,6 +44,8 @@ public class NewThesisFragment extends BaseFragment {
     @Bind(R.id.login_progress)
     View progressView;
 
+    @State
+    Teacher teacher;
 
     @Override
     protected int getLayoutId() {
@@ -50,7 +55,7 @@ public class NewThesisFragment extends BaseFragment {
     @OnClick(R.id.author)
     protected void onAuthorClicked() {
         Intent intent = new Intent(getActivity(), TeachersActivity.class);
-        intent.putExtra(Constants.KEY_MODE, UIModes.Select);
+        intent.putExtra(Constants.KEY_MODE, UIModes.Select.name());
         startActivityForResult(intent, REQUEST_CODE_SELECT_AUTHOR);
     }
 
@@ -61,6 +66,11 @@ public class NewThesisFragment extends BaseFragment {
     }
 
     public void send() {
+        if (null == teacher) {
+            Snackbar.make(getView(), R.string.error_select_teacher, Snackbar.LENGTH_LONG)
+                .show();
+            return;
+        }
         validate();
     }
 
@@ -72,12 +82,10 @@ public class NewThesisFragment extends BaseFragment {
         progressView.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
-
-
     @Override
     public void onValidationSucceeded() {
         getActivity().finish();
-//        TODO: invoke network calls + show progress
+        //        TODO: invoke network calls + show progress
     }
 
     @Override
@@ -91,4 +99,19 @@ public class NewThesisFragment extends BaseFragment {
         }
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (REQUEST_CODE_SELECT_AUTHOR == requestCode) {
+            if (Activity.RESULT_OK == resultCode && null != data &&
+                data.hasExtra(Constants.KEY_ITEM)) {
+                teacher = data.getParcelableExtra(Constants.KEY_ITEM);
+                showTeacher();
+            }
+        }
+    }
+
+    private void showTeacher() {
+        author.setText(teacher.name);
+    }
 }

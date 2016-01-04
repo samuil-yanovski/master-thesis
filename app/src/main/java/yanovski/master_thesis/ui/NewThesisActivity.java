@@ -5,10 +5,9 @@ import android.os.PersistableBundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import icepick.State;
 import yanovski.master_thesis.R;
-import yanovski.master_thesis.data.models.Teacher;
 import yanovski.master_thesis.ui.base.BaseActivity;
+import yanovski.master_thesis.ui.fragments.NewThesisFragment;
 
 /**
  * Created by Samuil on 12/31/2015.
@@ -16,9 +15,6 @@ import yanovski.master_thesis.ui.base.BaseActivity;
 public class NewThesisActivity extends BaseActivity {
 
     public static final String KEY_TEACHER = "teacher";
-
-    @State
-    Teacher teacher;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -36,6 +32,10 @@ public class NewThesisActivity extends BaseActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_send) {
+            NewThesisFragment fragment =
+                (NewThesisFragment) getSupportFragmentManager().findFragmentById(
+                    R.id.fragment_new_thesis);
+            fragment.send();
             return true;
         }
 

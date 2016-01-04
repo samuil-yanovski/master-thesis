@@ -84,9 +84,10 @@
     <string name="send_mail">Изпращане на писмо</string>
     <string name="send_skype_message">Skype разговор</string>
 
-    <!-- Profile -->
+    <!-- New thesis -->
     <string name="title">Заглавие</string>
     <string name="description">Резюме</string>
     <string name="select_teacher">Избери ръководител</string>
+    <string name="error_select_teacher">Трябва да избереш ръководител</string>
 
 </resources>
