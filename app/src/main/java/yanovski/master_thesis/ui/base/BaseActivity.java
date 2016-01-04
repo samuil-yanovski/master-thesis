@@ -79,7 +79,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements
         setSupportActionBar(toolbar);
 
         Bundle extras = getIntent().getExtras();
-        if (extras.containsKey(Constants.KEY_MODE)) {
+        if (null != extras && extras.containsKey(Constants.KEY_MODE)) {
             mode = UIModes.valueOf(extras.getString(Constants.KEY_MODE));
         }
     }
