@@ -7,12 +7,12 @@ import android.view.MenuItem;
 
 import yanovski.master_thesis.R;
 import yanovski.master_thesis.ui.base.BaseActivity;
-import yanovski.master_thesis.ui.fragments.NewThesisFragment;
+import yanovski.master_thesis.ui.fragments.NewEventFragment;
 
 /**
  * Created by Samuil on 12/31/2015.
  */
-public class NewThesisActivity extends BaseActivity {
+public class NewEventActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -30,9 +30,9 @@ public class NewThesisActivity extends BaseActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_send) {
-            NewThesisFragment fragment =
-                (NewThesisFragment) getSupportFragmentManager().findFragmentById(
-                    R.id.fragment_new_thesis);
+            NewEventFragment fragment =
+                (NewEventFragment) getSupportFragmentManager().findFragmentById(
+                    R.id.fragment_new_event);
             fragment.send();
             return true;
         }
@@ -42,7 +42,7 @@ public class NewThesisActivity extends BaseActivity {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_new_thesis;
+        return R.layout.activity_new_event;
     }
 
     @Override

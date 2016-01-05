@@ -73,4 +73,5 @@ dependencies {
     compile 'com.squareup:android-times-square:1.6.4@aar'
     compile 'frankiesardo:icepick:3.1.0'
     provided 'frankiesardo:icepick-processor:3.1.0'
+    compile 'com.code-troopers.betterpickers:library:2.2.2'
 }

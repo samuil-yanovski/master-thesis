@@ -108,6 +108,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="yanovski.master_thesis.ui.ThesesActivity"/>
         </activity>
+        <activity
+            android:name=".ui.NewEventActivity"
+            android:label="@string/title_activity_new_event"
+            android:parentActivityName=".ui.CalendarActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="yanovski.master_thesis.ui.CalendarActivity"/>
+        </activity>
     </application>
 
 </manifest>
