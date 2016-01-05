@@ -138,7 +138,7 @@ public class LoginFragment extends BaseFragment implements SnackBarInfoPermissio
     }
 
     @Override
-    public void onPermissionRequestResult(boolean granted) {
+    public void onPermissionRequestResult(String permissionName, boolean granted) {
         if (granted) {
             storIOResolver.get()
                 .listOfObjects(PhoneContact.class)

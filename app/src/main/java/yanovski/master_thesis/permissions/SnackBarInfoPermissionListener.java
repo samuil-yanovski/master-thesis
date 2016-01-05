@@ -50,7 +50,7 @@ public class SnackBarInfoPermissionListener extends EmptyPermissionListener {
     public void onPermissionGranted(PermissionGrantedResponse response) {
         super.onPermissionGranted(response);
         if (null != callback) {
-            callback.onPermissionRequestResult(true);
+            callback.onPermissionRequestResult(response.getPermissionName(), true);
         }
     }
 
@@ -59,7 +59,7 @@ public class SnackBarInfoPermissionListener extends EmptyPermissionListener {
         super.onPermissionDenied(response);
         innerListener.onPermissionDenied(response);
         if (null != callback) {
-            callback.onPermissionRequestResult(false);
+            callback.onPermissionRequestResult(response.getPermissionName(), false);
         }
     }
 
@@ -103,7 +103,7 @@ public class SnackBarInfoPermissionListener extends EmptyPermissionListener {
     }
 
     public static interface Callback {
-        void onPermissionRequestResult(boolean granted);
+        void onPermissionRequestResult(String permissionName, boolean granted);
     }
 
     public static class Builder {

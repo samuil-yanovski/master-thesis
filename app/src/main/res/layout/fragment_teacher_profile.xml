@@ -23,7 +23,8 @@
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
-                android:src="@drawable/header_wide"/>
+                android:src="@drawable/header_wide"
+                tools:ignore="ContentDescription"/>
 
             <ImageView
                 android:id="@+id/avatar"
@@ -32,7 +33,8 @@
                 android:transitionName="@string/transition_avatar"
                 android:layout_below="@id/header"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="-50dp"/>
+                android:layout_marginTop="-50dp"
+                tools:ignore="ContentDescription"/>
 
             <TextView
                 android:id="@+id/name"

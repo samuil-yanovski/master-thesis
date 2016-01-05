@@ -1,8 +1,16 @@
 package yanovski.master_thesis.ui;
 
+import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import butterknife.Bind;
 import yanovski.master_thesis.R;
 import yanovski.master_thesis.ui.base.BaseDrawerActivity;
 import yanovski.master_thesis.ui.utils.NavigationViewListener;
@@ -12,6 +20,11 @@ import yanovski.master_thesis.ui.utils.StudentNavigationViewListener;
  * Created by Samuil on 12/31/2015.
  */
 public class StudentProfileActivity extends BaseDrawerActivity {
+
+    @Bind(R.id.avatar)
+    ImageView avatar;
+    @Bind(R.id.name)
+    TextView name;
 
     @Override
     protected int getContentLayoutId() {
@@ -44,6 +57,14 @@ public class StudentProfileActivity extends BaseDrawerActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_edit) {
+            Pair<View, String> avatarPair =
+                Pair.create(avatar, getString(R.string.transition_avatar));
+            Pair<View, String> namePair = Pair.create(name, getString(R.string.transition_name));
+            ActivityOptionsCompat options =
+                ActivityOptionsCompat.makeSceneTransitionAnimation(this, avatarPair, namePair);
+
+            Intent intent = new Intent(this, EditStudentProfileActivity.class);
+            ActivityCompat.startActivity(this, intent, options.toBundle());
             return true;
         }
 

@@ -23,20 +23,24 @@
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
-                android:src="@drawable/header_wide"/>
+                android:src="@drawable/header_wide"
+                tools:ignore="ContentDescription"/>
 
             <ImageView
                 android:id="@+id/avatar"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_below="@id/header"
+                android:transitionName="@string/transition_avatar"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="-50dp"/>
+                android:layout_marginTop="-50dp"
+                tools:ignore="ContentDescription"/>
 
             <TextView
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:transitionName="@string/transition_name"
                 android:layout_below="@id/avatar"
                 android:layout_marginTop="16dp"
                 android:layout_centerHorizontal="true"
