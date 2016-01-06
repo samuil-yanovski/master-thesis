@@ -25,7 +25,9 @@ import butterknife.Bind;
 import butterknife.OnClick;
 import yanovski.master_thesis.MasterThesisApplication;
 import yanovski.master_thesis.R;
+import yanovski.master_thesis.data.models.Person;
 import yanovski.master_thesis.data.models.Thesis;
+import yanovski.master_thesis.data.models.Types;
 import yanovski.master_thesis.di.ForColorPrimary;
 import yanovski.master_thesis.ui.adapters.ThesesAdapter;
 import yanovski.master_thesis.ui.adapters.base.BaseRecyclerViewAdapter;
@@ -51,6 +53,8 @@ public class ThesisVHCreator implements ViewHolderCreator<ThesesAdapter.Item> {
         public ImageButton toggle;
         @Bind(R.id.header)
         public View header;
+        @Bind(R.id.ask)
+        public View ask;
         private TextPaint paint;
         private int duration;
 
@@ -173,6 +177,8 @@ public class ThesisVHCreator implements ViewHolderCreator<ThesesAdapter.Item> {
 
     @Inject
     Picasso picasso;
+    @Inject
+    Person person;
 
     public ThesisVHCreator() {
         MasterThesisApplication.getMainComponent()
@@ -189,7 +195,12 @@ public class ThesisVHCreator implements ViewHolderCreator<ThesesAdapter.Item> {
         ViewGroup parent) {
         View v = LayoutInflater.from(parent.getContext())
             .inflate(R.layout.item_thesis, parent, false);
-        return new ThesisViewHolder(v);
+        ThesisViewHolder holder = new ThesisViewHolder(v);
+
+        if (Types.TEACHER.equals(person.getType())) {
+            holder.ask.setVisibility(View.GONE);
+        }
+        return holder;
     }
 
     @Override

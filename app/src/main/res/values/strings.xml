@@ -87,6 +87,7 @@
 
     <!-- Theses -->
     <string name="ask">ПРАТИ ЗАПИТВАНЕ</string>
+    <string name="approve">УДОБРИ</string>
     <string name="expand_content_description">Покажи резюме</string>
     <string name="collapse_content_description">Скрий резюме</string>
 
