@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Mastereasy</string>
 
+    <!-- Authenticator -->
+    <string name="account_type_suffix" translatable="false">.account</string>
+
     <!-- Transition names -->
     <string name="transition_avatar">avatar</string>
     <string name="transition_name">name</string>
