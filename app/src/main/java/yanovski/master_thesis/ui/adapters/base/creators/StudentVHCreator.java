@@ -11,6 +11,7 @@ import com.squareup.picasso.Picasso;
 import javax.inject.Inject;
 
 import butterknife.Bind;
+import yanovski.master_thesis.MasterThesisApplication;
 import yanovski.master_thesis.R;
 import yanovski.master_thesis.data.models.Student;
 import yanovski.master_thesis.ui.adapters.base.BaseRecyclerViewAdapter;
@@ -38,6 +39,11 @@ public class StudentVHCreator implements ViewHolderCreator<Student> {
 
     @Inject
     Picasso picasso;
+
+    public StudentVHCreator() {
+        MasterThesisApplication.getMainComponent()
+            .inject(this);
+    }
 
     @Override
     public int getItemViewType() {

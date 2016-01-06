@@ -42,7 +42,6 @@ import yanovski.master_thesis.MasterThesisApplication;
 import yanovski.master_thesis.R;
 import yanovski.master_thesis.data.LocalDataProvider;
 import yanovski.master_thesis.data.models.PhoneContact;
-import yanovski.master_thesis.data.models.Student;
 import yanovski.master_thesis.data.resolvers.PhoneContactGetResolver;
 import yanovski.master_thesis.permissions.SnackBarInfoPermissionListener;
 import yanovski.master_thesis.ui.RegisterStudentActivity;
@@ -261,8 +260,9 @@ public class LoginFragment extends BaseFragment implements SnackBarInfoPermissio
             showProgress(false);
 
             if (success) {
-                Student samuil = LocalDataProvider.getSamuil();
-                helper.enterApp(getActivity(), samuil);
+//                Student samuil = LocalDataProvider.createSamuil();
+//                helper.enterApp(getActivity(), samuil);
+                helper.enterApp(getActivity(), LocalDataProvider.createPetrov());
             } else {
                 passwordView.setError(getString(R.string.error_incorrect_password));
                 passwordView.requestFocus();

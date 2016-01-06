@@ -47,6 +47,6 @@ public class DBModule {
     @Singleton
     @Provides
     public Person getCurrentPerson() {
-        return LocalDataProvider.getSamuil();
+        return LocalDataProvider.createSamuil();
     }
 }

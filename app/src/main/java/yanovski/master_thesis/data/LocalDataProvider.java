@@ -33,13 +33,13 @@ public class LocalDataProvider {
     @Deprecated
     public static List<Student> getAllStudents() {
         List<Student> students = new ArrayList<>();
-        students.add(getSamuil());
+        students.add(createSamuil());
 
         return students;
     }
 
     @Deprecated
-    public static Student getSamuil() {
+    public static Student createSamuil() {
         Student currentStudent = new Student();
 
         Contacts contacts = new Contacts();
@@ -169,7 +169,7 @@ public class LocalDataProvider {
     }
 
     @NonNull
-    private static Teacher createPetrov() {
+    public static Teacher createPetrov() {
         List<Interest> petrovInterests =
             createInterests("Софтуерни инженерство", "Оперативна съвместимост", "Програмиране ",
                 "Системи и средства за електронно обучение", "Системи за оценяване");
@@ -185,7 +185,7 @@ public class LocalDataProvider {
     }
 
     @NonNull
-    private static Teacher createIlieva() {
+    public static Teacher createIlieva() {
         List<Interest> ilievaInterests =
             createInterests("Софтуерни технологии", "Софтуерни процеси",
                 "Гъвкави методи за разработване на софтуер",

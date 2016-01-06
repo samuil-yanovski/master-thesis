@@ -42,13 +42,10 @@ public class StudentsActivity extends BaseDrawerActivity {
     }
 
     private void init() {
-
         StudentsFragment fragment = new StudentsFragment();
         fragment.setMode(getMode());
         getSupportFragmentManager().beginTransaction()
             .add(R.id.fragment_container, fragment)
             .commit();
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }

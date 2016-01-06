@@ -30,13 +30,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:transitionName="@string/transition_name"
+            android:lines="1"
+            android:ellipsize="end"
             android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/interest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_color_subtitle"/>
+            android:textColor="@color/text_color_subtitle"
+            android:ellipsize="end"
+            android:lines="1"/>
 
     </LinearLayout>
 
