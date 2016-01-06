@@ -25,6 +25,7 @@
     <string name="title_activity_new_thesis">Нова тема</string>
     <string name="title_activity_new_event">Ново събитие</string>
     <string name="title_activity_register">Нов акаунт</string>
+    <string name="title_activity_students">Студенти</string>
 
     <!-- Login -->
     <string name="prompt_email">Мейл</string>

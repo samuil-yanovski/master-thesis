@@ -9,7 +9,7 @@ import yanovski.master_thesis.ui.base.BaseActivity;
  * Created by Samuil on 1/3/2016.
  */
 public interface NavigationViewListener {
-    void loadHeader(NavigationView view);
+    void load(NavigationView view);
     void personalize();
     boolean onItemSelected(BaseActivity activity, MenuItem item);
 }

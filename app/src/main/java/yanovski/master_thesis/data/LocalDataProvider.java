@@ -13,7 +13,7 @@ import java8.util.stream.Collectors;
 import java8.util.stream.StreamSupport;
 import yanovski.master_thesis.MasterThesisApplication;
 import yanovski.master_thesis.R;
-import yanovski.master_thesis.data.models.Account;
+import yanovski.master_thesis.data.models.Student;
 import yanovski.master_thesis.data.models.Category;
 import yanovski.master_thesis.data.models.Contacts;
 import yanovski.master_thesis.data.models.Document;
@@ -31,18 +31,30 @@ public class LocalDataProvider {
         .getContext();
 
     @Deprecated
-    public static Account getStudentAccount() {
-        Account currentAccount = new Account();
+    public static List<Student> getAllStudents() {
+        List<Student> students = new ArrayList<>();
+        students.add(getSamuil());
+
+        return students;
+    }
+
+    @Deprecated
+    public static Student getSamuil() {
+        Student currentStudent = new Student();
 
         Contacts contacts = new Contacts();
         contacts.email = "samuil.yanovski@gmail.com";
         contacts.phone = "0888 88 88 88";
         contacts.skype = "samuil.yanovski";
 
-        currentAccount.name = "Samuil Yanovski";
-        currentAccount.contacts = contacts;
-        currentAccount.avatar = "https://lh3.googleusercontent.com/-adG2yZyCrOs/AAAAAAAAAAI/AAAAAAAAABc/rhvJ5H2vBAs/s140-p-no/photo.jpg";
-        return currentAccount;
+        currentStudent.name = "Samuil Yanovski";
+        currentStudent.contacts = contacts;
+        currentStudent.avatar = "https://lh3.googleusercontent.com/-adG2yZyCrOs/AAAAAAAAAAI/AAAAAAAAABc/rhvJ5H2vBAs/s140-p-no/photo.jpg";
+
+        Category dev = getDevCategory();
+        currentStudent.thesis = dev.theses.get(0);
+
+        return currentStudent;
     }
 
     @Deprecated
@@ -84,7 +96,6 @@ public class LocalDataProvider {
 
         List<Thesis> agileTheses = new ArrayList<>();
         Teacher ilieva = createIlieva();
-        Teacher petrov = createPetrov();
 
         Thesis spem = new Thesis();
         spem.title =
@@ -108,9 +119,18 @@ public class LocalDataProvider {
         categories.add(agile);
 
 
+        Category dev = getDevCategory();
+        categories.add(dev);
+
+        return categories;
+    }
+
+    @NonNull
+    private static Category getDevCategory() {
         Category dev = new Category();
         dev.id = "2";
         dev.name = "Софтуерни разработки";
+        Teacher petrov = createPetrov();
 
         List<Thesis> devTheses = new ArrayList<>();
 
@@ -124,9 +144,7 @@ public class LocalDataProvider {
         devTheses.add(mobile);
 
         dev.theses = devTheses;
-        categories.add(dev);
-
-        return categories;
+        return dev;
     }
 
     @Deprecated

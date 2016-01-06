@@ -7,4 +7,5 @@ public interface Person {
     String getAvatar();
     String getName();
     Contacts getContacts();
+    Types getType();
 }

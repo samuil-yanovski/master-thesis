@@ -1,32 +1,39 @@
 package yanovski.master_thesis.ui.fragments;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 
+import javax.inject.Inject;
+
 import icepick.State;
+import yanovski.master_thesis.MasterThesisApplication;
 import yanovski.master_thesis.R;
-import yanovski.master_thesis.data.models.Account;
+import yanovski.master_thesis.data.LocalDataProvider;
 import yanovski.master_thesis.data.models.Contacts;
 import yanovski.master_thesis.data.models.Person;
-import yanovski.master_thesis.ui.HomeActivity;
+import yanovski.master_thesis.data.models.Student;
 import yanovski.master_thesis.ui.base.BaseEditProfileFragment;
+import yanovski.master_thesis.utils.PersonHelper;
 
 /**
  * Created by Samuil on 12/29/2015.
  */
 public class RegisterStudentFragment extends BaseEditProfileFragment {
 
+    @Inject
+    PersonHelper helper;
+
     @State
-    Account currentAccount;
+    Student currentStudent;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        currentAccount = new Account();
-        currentAccount.contacts = new Contacts();
+        MasterThesisApplication.getMainComponent().inject(this);
+        currentStudent = new Student();
+        currentStudent.contacts = new Contacts();
     }
 
     @Override
@@ -38,16 +45,16 @@ public class RegisterStudentFragment extends BaseEditProfileFragment {
     @Override
     public void onValidationSucceeded() {
         FragmentActivity activity = getActivity();
-        Intent intent = new Intent(activity, HomeActivity.class);
-        startActivity(intent);
-
         activity.setResult(Activity.RESULT_OK);
         activity.finish();
+
+        Student samuil = LocalDataProvider.getSamuil();
+        helper.enterApp(activity, samuil);
         //        TODO: invoke network calls + show progress
     }
 
     @Override
     public Person getPerson() {
-        return currentAccount;
+        return currentStudent;
     }
 }

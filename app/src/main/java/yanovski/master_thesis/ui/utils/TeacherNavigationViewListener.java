@@ -22,16 +22,15 @@ import yanovski.master_thesis.MasterThesisApplication;
 import yanovski.master_thesis.R;
 import yanovski.master_thesis.data.models.Person;
 import yanovski.master_thesis.ui.CalendarActivity;
-import yanovski.master_thesis.ui.HomeActivity;
 import yanovski.master_thesis.ui.StudentProfileActivity;
-import yanovski.master_thesis.ui.TeachersActivity;
+import yanovski.master_thesis.ui.StudentsActivity;
 import yanovski.master_thesis.ui.ThesesActivity;
 import yanovski.master_thesis.ui.base.BaseActivity;
 
 /**
  * Created by Samuil on 1/3/2016.
  */
-public class StudentNavigationViewListener implements NavigationViewListener, View.OnClickListener {
+public class TeacherNavigationViewListener implements NavigationViewListener, View.OnClickListener {
 
     ImageView profile;
     TextView username;
@@ -42,14 +41,14 @@ public class StudentNavigationViewListener implements NavigationViewListener, Vi
     @Inject
     Picasso picasso;
 
-    public StudentNavigationViewListener() {
+    public TeacherNavigationViewListener() {
         MasterThesisApplication.getMainComponent()
             .inject(this);
     }
 
     @Override
     public void load(NavigationView navigationView) {
-        navigationView.inflateMenu(R.menu.students_drawer);
+        navigationView.inflateMenu(R.menu.teachers_drawer);
         View header = navigationView.inflateHeaderView(R.layout.nav_header_home);
         header.setOnClickListener(this);
 
@@ -74,16 +73,12 @@ public class StudentNavigationViewListener implements NavigationViewListener, Vi
         boolean handled = false;
 
         int id = item.getItemId();
-        if (id == R.id.nav_info) {
-            Intent intent = new Intent(activity, HomeActivity.class);
+        if (id == R.id.nav_students) {
+            Intent intent = new Intent(activity, StudentsActivity.class);
             activity.startActivity(intent);
             handled = true;
         } else if (id == R.id.nav_profile) {
             onProfileClicked(activity);
-            handled = true;
-        } else if (id == R.id.nav_teachers) {
-            Intent intent = new Intent(activity, TeachersActivity.class);
-            activity.startActivity(intent);
             handled = true;
         } else if (id == R.id.nav_theses) {
             Intent intent = new Intent(activity, ThesesActivity.class);

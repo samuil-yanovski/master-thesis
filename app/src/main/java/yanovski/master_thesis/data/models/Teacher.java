@@ -10,6 +10,7 @@ import java.util.List;
  * Created by Samuil on 12/31/2015.
  */
 public class Teacher implements Person, Parcelable {
+    public final Types type = Types.TEACHER;
     public String id;
     public String name;
     public String avatar;
@@ -59,6 +60,11 @@ public class Teacher implements Person, Parcelable {
     @Override
     public Contacts getContacts() {
         return contact;
+    }
+
+    @Override
+    public Types getType() {
+        return type;
     }
 
     @Override

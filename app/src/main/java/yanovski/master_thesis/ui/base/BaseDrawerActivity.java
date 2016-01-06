@@ -12,7 +12,6 @@ import android.view.ViewStub;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import yanovski.master_thesis.MasterThesisApplication;
 import yanovski.master_thesis.R;
 import yanovski.master_thesis.ui.utils.NavigationViewListener;
 
@@ -43,16 +42,12 @@ public abstract class BaseDrawerActivity extends BaseActivity implements
         listener = getNavigationViewListener();
         super.onCreate(savedInstanceState);
         initActionBar();
-        MasterThesisApplication.getMainComponent()
-            .inject(this);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
         initActionBar();
-        MasterThesisApplication.getMainComponent()
-            .inject(this);
     }
 
     private void initNavigationView() {
@@ -87,7 +82,7 @@ public abstract class BaseDrawerActivity extends BaseActivity implements
         stub.inflate();
 
         NavigationView navigationView = ButterKnife.findById(this, R.id.nav_view);
-        listener.loadHeader(navigationView);
+        listener.load(navigationView);
     }
 
     @Override

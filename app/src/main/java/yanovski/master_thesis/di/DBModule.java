@@ -11,7 +11,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import yanovski.master_thesis.data.LocalDataProvider;
-import yanovski.master_thesis.data.models.Account;
+import yanovski.master_thesis.data.models.Person;
 import yanovski.master_thesis.data.models.PhoneContact;
 import yanovski.master_thesis.data.resolvers.PhoneContactDeleteResolver;
 import yanovski.master_thesis.data.resolvers.PhoneContactGetResolver;
@@ -44,9 +44,9 @@ public class DBModule {
             .build();
     }
 
-    @ForStudent
+    @Singleton
     @Provides
-    public Account getAccount() {
-        return LocalDataProvider.getStudentAccount();
+    public Person getCurrentPerson() {
+        return LocalDataProvider.getSamuil();
     }
 }

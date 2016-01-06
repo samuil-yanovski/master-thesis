@@ -7,8 +7,7 @@ import javax.inject.Inject;
 
 import yanovski.master_thesis.MasterThesisApplication;
 import yanovski.master_thesis.R;
-import yanovski.master_thesis.data.models.Account;
-import yanovski.master_thesis.di.ForStudent;
+import yanovski.master_thesis.data.models.Person;
 import yanovski.master_thesis.ui.base.BaseProfileFragment;
 
 /**
@@ -17,12 +16,11 @@ import yanovski.master_thesis.ui.base.BaseProfileFragment;
 public class StudentProfileFragment extends BaseProfileFragment {
 
     @Inject
-    @ForStudent
-    Account currentAccount;
+    Person currentPerson;
 
     @Override
-    protected Account getPerson() {
-        return currentAccount;
+    protected Person getPerson() {
+        return currentPerson;
     }
 
     @Override

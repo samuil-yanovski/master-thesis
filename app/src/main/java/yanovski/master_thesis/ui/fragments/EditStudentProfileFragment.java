@@ -7,9 +7,7 @@ import javax.inject.Inject;
 
 import yanovski.master_thesis.MasterThesisApplication;
 import yanovski.master_thesis.R;
-import yanovski.master_thesis.data.models.Account;
 import yanovski.master_thesis.data.models.Person;
-import yanovski.master_thesis.di.ForStudent;
 import yanovski.master_thesis.ui.base.BaseEditProfileFragment;
 
 /**
@@ -18,8 +16,7 @@ import yanovski.master_thesis.ui.base.BaseEditProfileFragment;
 public class EditStudentProfileFragment extends BaseEditProfileFragment {
 
     @Inject
-    @ForStudent
-    Account currentAccount;
+    Person currentStudent;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,6 +38,6 @@ public class EditStudentProfileFragment extends BaseEditProfileFragment {
 
     @Override
     public Person getPerson() {
-        return currentAccount;
+        return currentStudent;
     }
 }
