@@ -8,6 +8,10 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import yanovski.master_thesis.MasterThesisApplication;
+import yanovski.master_thesis.data.models.Person;
+import yanovski.master_thesis.ui.utils.NavigationViewListener;
+import yanovski.master_thesis.ui.utils.StudentNavigationViewListener;
+import yanovski.master_thesis.ui.utils.TeacherNavigationViewListener;
 
 /**
  * Created by Samuil on 12/29/2015.
@@ -41,5 +45,23 @@ public class ApplicationModule {
             .obtainStyledAttributes(new int[] {android.R.attr.colorPrimary});
         int attributeResourceId = a.getResourceId(0, 0);
         return context.getResources().getColor(attributeResourceId);
+    }
+
+    @Provides
+    public NavigationViewListener getNavigationViewListener(Person person) {
+        NavigationViewListener listener = null;
+
+        switch (person.getType()) {
+            case STUDENT: {
+                listener = new StudentNavigationViewListener();
+                break;
+            }
+            case TEACHER: {
+                listener = new TeacherNavigationViewListener();
+                break;
+            }
+        }
+
+        return listener;
     }
 }

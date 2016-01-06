@@ -125,6 +125,7 @@ public class LocalDataProvider {
         return categories;
     }
 
+    @Deprecated
     @NonNull
     private static Category getDevCategory() {
         Category dev = new Category();
@@ -168,6 +169,7 @@ public class LocalDataProvider {
         return event;
     }
 
+    @Deprecated
     @NonNull
     public static Teacher createPetrov() {
         List<Interest> petrovInterests =
@@ -184,6 +186,7 @@ public class LocalDataProvider {
         return petrov;
     }
 
+    @Deprecated
     @NonNull
     public static Teacher createIlieva() {
         List<Interest> ilievaInterests =

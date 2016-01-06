@@ -10,8 +10,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 import android.view.ViewStub;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import yanovski.master_thesis.MasterThesisApplication;
 import yanovski.master_thesis.R;
 import yanovski.master_thesis.ui.utils.NavigationViewListener;
 
@@ -23,13 +26,13 @@ public abstract class BaseDrawerActivity extends BaseActivity implements
 
     protected abstract int getContentLayoutId();
     protected abstract int getCurrentCheckedItemId();
-    protected abstract NavigationViewListener getNavigationViewListener();
 
     @Bind(R.id.drawer_layout)
     DrawerLayout drawer;
     @Bind(R.id.nav_view)
     NavigationView navigationView;
 
+    @Inject
     NavigationViewListener listener;
 
     @Override
@@ -39,7 +42,7 @@ public abstract class BaseDrawerActivity extends BaseActivity implements
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        listener = getNavigationViewListener();
+        MasterThesisApplication.getMainComponent().inject(this);
         super.onCreate(savedInstanceState);
         initActionBar();
     }
