@@ -127,6 +127,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="yanovski.master_thesis.ui.StudentProfileActivity"/>
         </activity>
+        <activity
+            android:name=".ui.RegisterStudentActivity"
+            android:label="@string/title_activity_register"
+            android:parentActivityName=".ui.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="yanovski.master_thesis.ui.LoginActivity"/>
+        </activity>
     </application>
 
 </manifest>

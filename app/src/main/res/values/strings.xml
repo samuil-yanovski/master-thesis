@@ -12,6 +12,7 @@
     <string name="edit">РЕДАКТИРАЙ</string>
     <string name="theses">ТЕМИ</string>
     <string name="send">ИЗПРАТИ</string>
+    <string name="register">РЕГИСТРИРАЙ</string>
     <string name="title">Заглавие</string>
     <string name="title_activity_home">Дипломна защита</string>
     <string name="title_activity_profile">Профил</string>
@@ -20,6 +21,7 @@
     <string name="title_activity_calendar">Календар</string>
     <string name="title_activity_new_thesis">Нова тема</string>
     <string name="title_activity_new_event">Ново събитие</string>
+    <string name="title_activity_register">Нов акаунт</string>
 
     <!-- Login -->
     <string name="prompt_email">Мейл</string>
@@ -32,6 +34,11 @@
     <string name="error_field_required">Полето е задължително</string>
     <string name="contacts_permission_rationale">Искаме да попълним мейла ти</string>
     <string name="denied_permission_text">Винаги можеш да промениш правата за достъп</string>
+    <string name="register_as">Регистрирай се като</string>
+    <string-array name="types">
+        <item>Студент</item>
+        <item>Ръководител</item>
+    </string-array>
 
     <!-- Navigation drawer -->
     <string name="navigation_drawer_open">Отвори меню</string>

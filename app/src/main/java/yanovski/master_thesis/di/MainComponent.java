@@ -9,6 +9,7 @@ import yanovski.master_thesis.ui.adapters.InfoAdapter;
 import yanovski.master_thesis.ui.adapters.base.creators.TeacherVHCreator;
 import yanovski.master_thesis.ui.adapters.base.creators.ThesisVHCreator;
 import yanovski.master_thesis.ui.base.BaseDrawerActivity;
+import yanovski.master_thesis.ui.base.BaseEditProfileFragment;
 import yanovski.master_thesis.ui.base.BaseFragment;
 import yanovski.master_thesis.ui.base.BaseProfileFragment;
 import yanovski.master_thesis.ui.fragments.EditStudentProfileFragment;
@@ -39,6 +40,7 @@ public interface MainComponent {
     void inject(BaseProfileFragment fragment);
     void inject(StudentNavigationViewListener listener);
     void inject(EditStudentProfileFragment fragment);
+    void inject(BaseEditProfileFragment fragment);
     Context getContext();
     UrlHelper getUrlHelper();
     PhoneHelper getPhoneHelper();

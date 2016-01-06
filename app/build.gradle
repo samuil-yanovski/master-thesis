@@ -75,4 +75,7 @@ dependencies {
     provided 'frankiesardo:icepick-processor:3.1.0'
     compile 'com.code-troopers.betterpickers:library:2.2.2'
     compile 'com.github.jkwiecien:EasyImage:1.1.2'
+    compile('com.github.afollestad.material-dialogs:core:0.8.5.3@aar') {
+        transitive = true
+    }
 }

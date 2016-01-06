@@ -2,6 +2,7 @@ package yanovski.master_thesis.ui.fragments;
 
 import android.Manifest;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -16,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.karumi.dexter.Dexter;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.annotation.Email;
@@ -42,12 +44,20 @@ import yanovski.master_thesis.data.models.PhoneContact;
 import yanovski.master_thesis.data.resolvers.PhoneContactGetResolver;
 import yanovski.master_thesis.permissions.SnackBarInfoPermissionListener;
 import yanovski.master_thesis.ui.HomeActivity;
+import yanovski.master_thesis.ui.RegisterStudentActivity;
 import yanovski.master_thesis.ui.base.BaseFragment;
 
 /**
  * Created by Samuil on 12/29/2015.
  */
-public class LoginFragment extends BaseFragment implements SnackBarInfoPermissionListener.Callback {
+public class LoginFragment extends BaseFragment implements SnackBarInfoPermissionListener.Callback,
+    MaterialDialog.ListCallback {
+
+    private static final int REQUEST_CODDE_REGISTER = 1000;
+
+    private static final int INDEX_STUDENT = 0;
+    private static final int INDEX_TEACHER = 1;
+
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -119,6 +129,15 @@ public class LoginFragment extends BaseFragment implements SnackBarInfoPermissio
         validate();
     }
 
+    @OnClick(R.id.register)
+    protected void register() {
+        new MaterialDialog.Builder(getContext())
+            .title(R.string.register_as)
+            .itemsCallback(this)
+            .items(R.array.types)
+            .show();
+    }
+
     /**
      * Shows the progress UI and hides the login form.
      */
@@ -187,6 +206,27 @@ public class LoginFragment extends BaseFragment implements SnackBarInfoPermissio
 
             // Display error messages ;)
             ((EditText) view).setError(message);
+        }
+    }
+
+    @Override
+    public void onSelection(MaterialDialog dialog, View itemView, int which, CharSequence text) {
+        if (INDEX_STUDENT == which) {
+            Intent intent = new Intent(getActivity(), RegisterStudentActivity.class);
+            startActivityForResult(intent, REQUEST_CODDE_REGISTER);
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (REQUEST_CODDE_REGISTER == requestCode) {
+            if (Activity.RESULT_OK == resultCode) {
+                FragmentActivity activity = getActivity();
+                if (null != activity) {
+                    activity.finish();
+                }
+            }
         }
     }
 
