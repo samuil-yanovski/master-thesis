@@ -1,7 +1,11 @@
 package yanovski.master_thesis.ui.fragments;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+
 import javax.inject.Inject;
 
+import yanovski.master_thesis.MasterThesisApplication;
 import yanovski.master_thesis.R;
 import yanovski.master_thesis.data.models.Account;
 import yanovski.master_thesis.data.models.Person;
@@ -16,6 +20,12 @@ public class EditStudentProfileFragment extends BaseEditProfileFragment {
     @Inject
     @ForStudent
     Account currentAccount;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        MasterThesisApplication.getMainComponent().inject(this);
+    }
 
     @Override
     protected int getLayoutId() {

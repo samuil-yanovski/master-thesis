@@ -110,5 +110,6 @@
     <string name="profile_storage_permission_rationale">Записваме снимките на устройството</string>
     <string name="profile_camera_permission_rationale">Може да направиш нова снимка</string>
     <string name="avatar_chooser">Избери снимка</string>
+    <string name="content_description_avatar">Смени аватара си</string>
 
 </resources>
