@@ -73,6 +73,15 @@
                 android:layout_height="wrap_content"
                 android:text="@string/approve"/>
 
+            <Button
+                android:id="@+id/decline"
+                style="?attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
+                android:text="@string/decline"/>
+
             <Space
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

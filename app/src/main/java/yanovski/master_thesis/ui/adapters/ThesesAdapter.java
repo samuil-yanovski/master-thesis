@@ -3,12 +3,17 @@ package yanovski.master_thesis.ui.adapters;
 import java.util.ArrayList;
 import java.util.List;
 
+import java8.util.stream.Collectors;
 import java8.util.stream.StreamSupport;
+import yanovski.master_thesis.data.LocalDataProvider;
 import yanovski.master_thesis.data.models.Category;
 import yanovski.master_thesis.data.models.Thesis;
+import yanovski.master_thesis.data.models.ThesisProposal;
 import yanovski.master_thesis.ui.adapters.base.BaseRecyclerViewAdapter;
 import yanovski.master_thesis.ui.adapters.base.creators.CategoryVHCreator;
+import yanovski.master_thesis.ui.adapters.base.creators.ThesisProposalVHCreator;
 import yanovski.master_thesis.ui.adapters.base.creators.ThesisVHCreator;
+import yanovski.master_thesis.utils.CollectionsUtils;
 
 /**
  * Created by Samuil on 12/30/2015.
@@ -17,13 +22,15 @@ public class ThesesAdapter extends BaseRecyclerViewAdapter<ThesesAdapter.Item> {
 
     public enum ItemType {
         Category,
-        Thesis
+        Thesis,
+        ThesisProposal
     }
 
     public static class Item {
         private ItemType type;
         private Category category;
         private Thesis thesis;
+        private ThesisProposal thesisProposal;
 
         public Item(Category category) {
             this.category = category;
@@ -33,6 +40,11 @@ public class ThesesAdapter extends BaseRecyclerViewAdapter<ThesesAdapter.Item> {
         public Item(Thesis thesis) {
             this.thesis = thesis;
             type = ItemType.Thesis;
+        }
+
+        public Item(ThesisProposal thesisProposal) {
+            this.thesisProposal = thesisProposal;
+            type = ItemType.ThesisProposal;
         }
 
         public ItemType getType() {
@@ -46,6 +58,10 @@ public class ThesesAdapter extends BaseRecyclerViewAdapter<ThesesAdapter.Item> {
         public Thesis getThesis() {
             return thesis;
         }
+
+        public ThesisProposal getThesisProposal() {
+            return thesisProposal;
+        }
     }
 
     @Override
@@ -53,9 +69,10 @@ public class ThesesAdapter extends BaseRecyclerViewAdapter<ThesesAdapter.Item> {
         super.init();
         add(new CategoryVHCreator());
         add(new ThesisVHCreator());
+        add(new ThesisProposalVHCreator());
     }
 
-    public void setCategories(List<Category> categories) {
+    public void addCategories(List<Category> categories) {
         List<Item> items = new ArrayList<>();
 
         StreamSupport.stream(categories)
@@ -67,6 +84,29 @@ public class ThesesAdapter extends BaseRecyclerViewAdapter<ThesesAdapter.Item> {
                     .forEachOrdered(t -> items.add(new Item(t)));
             });
 
-        setItems(items);
+
+        addItems(items);
+    }
+
+    public void addThesisProposal(List<ThesisProposal> proposals) {
+        List<Item> items = StreamSupport.stream(proposals)
+            .map(Item::new)
+            .collect(Collectors.toList());
+
+        if (!CollectionsUtils.isEmpty(items)) {
+            List<Item> categoryItems = new ArrayList<>();
+            categoryItems.add(new Item(LocalDataProvider.getProposalsCategory()));
+            addItems(categoryItems);
+        }
+        addItems(items);
+    }
+
+    private void addItems(List<Item> items) {
+        List<Item> current = getItems();
+        if (null == current) {
+            current = new ArrayList<>();
+        }
+        current.addAll(items);
+        setItems(current);
     }
 }

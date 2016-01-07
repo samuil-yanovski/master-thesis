@@ -21,8 +21,7 @@ import butterknife.OnClick;
 import yanovski.master_thesis.MasterThesisApplication;
 import yanovski.master_thesis.R;
 import yanovski.master_thesis.data.models.Person;
-import yanovski.master_thesis.data.models.Thesis;
-import yanovski.master_thesis.data.models.Types;
+import yanovski.master_thesis.data.models.ThesisProposal;
 import yanovski.master_thesis.ui.adapters.ThesesAdapter;
 import yanovski.master_thesis.ui.adapters.base.BaseRecyclerViewAdapter;
 import yanovski.master_thesis.ui.adapters.base.BaseViewHolder;
@@ -31,10 +30,10 @@ import yanovski.master_thesis.ui.utils.AvatarTarget;
 /**
  * Created by Samuil on 12/30/2015.
  */
-public class ThesisVHCreator implements ViewHolderCreator<ThesesAdapter.Item> {
+public class ThesisProposalVHCreator implements ViewHolderCreator<ThesesAdapter.Item> {
     private static final int VIEW_TYPE_ID = CreatorManager.ID_GENERATOR.getAndIncrement();
 
-    public static class ThesisViewHolder extends BaseViewHolder implements
+    public static class ThesisProposalViewHolder extends BaseViewHolder implements
         ValueAnimator.AnimatorUpdateListener {
         @Bind(R.id.name)
         public TextView name;
@@ -48,12 +47,10 @@ public class ThesisVHCreator implements ViewHolderCreator<ThesesAdapter.Item> {
         public ImageButton toggle;
         @Bind(R.id.header)
         public View header;
-        @Bind(R.id.ask)
-        public View ask;
         private TextPaint paint;
         private int duration;
 
-        public ThesisViewHolder(View view) {
+        public ThesisProposalViewHolder(View view) {
             super(view);
             paint = new TextPaint(Paint.ANTI_ALIAS_FLAG | Paint.LINEAR_TEXT_FLAG);
             paint.setStyle(Paint.Style.FILL);
@@ -99,8 +96,13 @@ public class ThesisVHCreator implements ViewHolderCreator<ThesesAdapter.Item> {
             animator.start();
         }
 
-        @OnClick(R.id.ask)
-        public void ask() {
+        @OnClick(R.id.approve)
+        public void approve() {
+
+        }
+
+        @OnClick(R.id.decline)
+        public void decline() {
 
         }
 
@@ -131,7 +133,7 @@ public class ThesisVHCreator implements ViewHolderCreator<ThesesAdapter.Item> {
     @Inject
     Person person;
 
-    public ThesisVHCreator() {
+    public ThesisProposalVHCreator() {
         MasterThesisApplication.getMainComponent()
             .inject(this);
     }
@@ -145,26 +147,23 @@ public class ThesisVHCreator implements ViewHolderCreator<ThesesAdapter.Item> {
     public BaseViewHolder onCreateViewHolder(BaseRecyclerViewAdapter<ThesesAdapter.Item> adapter,
         ViewGroup parent) {
         View v = LayoutInflater.from(parent.getContext())
-            .inflate(R.layout.item_thesis, parent, false);
-        ThesisViewHolder holder = new ThesisViewHolder(v);
+            .inflate(R.layout.item_thesis_proposal, parent, false);
+        ThesisProposalViewHolder holder = new ThesisProposalViewHolder(v);
 
-        if (Types.TEACHER.equals(person.getType())) {
-            holder.ask.setVisibility(View.GONE);
-        }
         return holder;
     }
 
     @Override
     public void onBindViewHolder(BaseRecyclerViewAdapter<ThesesAdapter.Item> adapter,
         BaseViewHolder holder, int position) {
-        ThesisViewHolder h = (ThesisViewHolder) holder;
+        ThesisProposalViewHolder h = (ThesisProposalViewHolder) holder;
 
         ThesesAdapter.Item item = adapter.getItem(position);
-        Thesis thesis = item.getThesis();
-        h.title.setText(thesis.title);
-        h.description.setText(thesis.description);
-        h.name.setText(thesis.author.name);
-        picasso.load(thesis.author.avatar)
+        ThesisProposal proposal = item.getThesisProposal();
+        h.title.setText(proposal.title);
+        h.description.setText(proposal.description);
+        h.name.setText(proposal.student.name);
+        picasso.load(proposal.student.avatar)
             .placeholder(R.drawable.ic_person_white)
             .error(R.drawable.ic_person_white)
             .into(new AvatarTarget(h.avatar, h.name, h.header));
@@ -172,7 +171,7 @@ public class ThesisVHCreator implements ViewHolderCreator<ThesesAdapter.Item> {
 
     @Override
     public boolean canHandle(BaseRecyclerViewAdapter<ThesesAdapter.Item> adapter, int position) {
-        return ThesesAdapter.ItemType.Thesis.equals(adapter.getItem(position)
+        return ThesesAdapter.ItemType.ThesisProposal.equals(adapter.getItem(position)
             .getType());
     }
 

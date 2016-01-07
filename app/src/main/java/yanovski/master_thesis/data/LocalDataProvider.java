@@ -22,6 +22,7 @@ import yanovski.master_thesis.data.models.Interest;
 import yanovski.master_thesis.data.models.Resource;
 import yanovski.master_thesis.data.models.Teacher;
 import yanovski.master_thesis.data.models.Thesis;
+import yanovski.master_thesis.data.models.ThesisProposal;
 
 /**
  * Created by Samuil on 12/30/2015.
@@ -84,6 +85,23 @@ public class LocalDataProvider {
         }
 
         return categories;
+    }
+
+    @Deprecated
+    public static List<ThesisProposal> getAllThesisProposals() {
+        List<ThesisProposal> proposals = new ArrayList<>();
+
+        Student samuil = createSamuil();
+        ThesisProposal testing = new ThesisProposal();
+        testing.title =
+            "Андройд базирана система за провеждане на тестове.";
+        testing.description =
+            "Система подпомагаща наблюдението и провеждане на изпити и тестове.";
+        testing.student = samuil;
+
+        proposals.add(testing);
+
+        return proposals;
     }
 
     @Deprecated
@@ -251,6 +269,14 @@ public class LocalDataProvider {
         resources.add(createResource(R.string.res_template, R.string.res_template_url));
 
         return resources;
+    }
+
+    public static Category getProposalsCategory() {
+        Category category = new Category();
+        category.id = "-1";
+        category.name = context.getString(R.string.category_proposals_title);
+
+        return category;
     }
 
     private static Document createDocument(@StringRes int titleId) {
