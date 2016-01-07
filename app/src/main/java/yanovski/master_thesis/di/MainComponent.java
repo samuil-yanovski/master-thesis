@@ -5,6 +5,7 @@ import android.content.Context;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import yanovski.master_thesis.ui.MyProfileActivity;
 import yanovski.master_thesis.ui.adapters.InfoAdapter;
 import yanovski.master_thesis.ui.adapters.base.creators.StudentVHCreator;
 import yanovski.master_thesis.ui.adapters.base.creators.TeacherVHCreator;
@@ -52,6 +53,7 @@ public interface MainComponent {
     void inject(RegisterStudentFragment fragment);
     void inject(ThesesFragment fragment);
     void inject(BaseDrawerActivity activity);
+    void inject(MyProfileActivity activity);
     Context getContext();
     UrlHelper getUrlHelper();
     PhoneHelper getPhoneHelper();

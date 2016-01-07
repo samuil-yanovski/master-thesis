@@ -20,8 +20,9 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
+    <fragment
+        android:id="@+id/fragment_edit_teacher_profile"
+        android:name="yanovski.master_thesis.ui.fragments.EditTeacherProfileFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>

@@ -22,7 +22,7 @@ import yanovski.master_thesis.MasterThesisApplication;
 import yanovski.master_thesis.R;
 import yanovski.master_thesis.data.models.Person;
 import yanovski.master_thesis.ui.CalendarActivity;
-import yanovski.master_thesis.ui.StudentProfileActivity;
+import yanovski.master_thesis.ui.MyProfileActivity;
 import yanovski.master_thesis.ui.StudentsActivity;
 import yanovski.master_thesis.ui.ThesesActivity;
 import yanovski.master_thesis.ui.base.BaseActivity;
@@ -103,12 +103,12 @@ public class TeacherNavigationViewListener implements NavigationViewListener, Vi
         ActivityOptionsCompat options =
             ActivityOptionsCompat.makeSceneTransitionAnimation(activity, avatar, name);
 
-        Intent intent = new Intent(activity, StudentProfileActivity.class);
+        Intent intent = new Intent(activity, MyProfileActivity.class);
         ActivityCompat.startActivity(activity, intent, options.toBundle());
     }
 
     private void onProfileClicked(Context context) {
-        Intent intent = new Intent(context, StudentProfileActivity.class);
+        Intent intent = new Intent(context, MyProfileActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }

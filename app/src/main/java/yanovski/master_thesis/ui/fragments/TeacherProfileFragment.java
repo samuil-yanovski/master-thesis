@@ -10,6 +10,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import icepick.State;
 import java8.util.stream.StreamSupport;
 import yanovski.master_thesis.R;
 import yanovski.master_thesis.data.models.Interest;
@@ -25,6 +26,7 @@ public class TeacherProfileFragment extends BaseProfileFragment {
     @Bind(R.id.interests)
     ViewGroup interestsContainer;
 
+    @State
     Teacher teacher;
 
     public void setTeacher(Teacher teacher) {

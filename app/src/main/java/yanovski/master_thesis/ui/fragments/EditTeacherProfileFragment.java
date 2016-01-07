@@ -13,7 +13,7 @@ import yanovski.master_thesis.ui.base.BaseEditProfileFragment;
 /**
  * Created by Samuil on 12/29/2015.
  */
-public class EditStudentProfileFragment extends BaseEditProfileFragment {
+public class EditTeacherProfileFragment extends BaseEditProfileFragment {
 
     @Inject
     Person person;
@@ -26,7 +26,7 @@ public class EditStudentProfileFragment extends BaseEditProfileFragment {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_edit_student_profile;
+        return R.layout.fragment_edit_teacher_profile;
     }
 
 

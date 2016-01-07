@@ -14,6 +14,7 @@ import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import icepick.State;
 import yanovski.master_thesis.MasterThesisApplication;
 import yanovski.master_thesis.R;
 import yanovski.master_thesis.ui.utils.NavigationViewListener;
@@ -35,6 +36,17 @@ public abstract class BaseDrawerActivity extends BaseActivity implements
     @Inject
     NavigationViewListener listener;
 
+    @State
+    boolean hasMenu = true;
+
+    public boolean hasMenu() {
+        return hasMenu;
+    }
+
+    public void setHasMenu(boolean hasMenu) {
+        this.hasMenu = hasMenu;
+    }
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_drawer;
@@ -54,21 +66,25 @@ public abstract class BaseDrawerActivity extends BaseActivity implements
     }
 
     private void initNavigationView() {
-        navigationView.setNavigationItemSelectedListener(null);
-        navigationView.setCheckedItem(getCurrentCheckedItemId());
-        navigationView.setNavigationItemSelectedListener(this);
-        listener.personalize();
+        if (hasMenu) {
+            navigationView.setNavigationItemSelectedListener(null);
+            navigationView.setCheckedItem(getCurrentCheckedItemId());
+            navigationView.setNavigationItemSelectedListener(this);
+            listener.personalize();
+        }
     }
 
     private void initActionBar() {
-        ActionBarDrawerToggle toggle =
-            new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open,
-                R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+        if (hasMenu) {
+            ActionBarDrawerToggle toggle =
+                new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open,
+                    R.string.navigation_drawer_close);
+            drawer.setDrawerListener(toggle);
+            toggle.syncState();
 
-        navigationView.setCheckedItem(getCurrentCheckedItemId());
-        navigationView.setNavigationItemSelectedListener(this);
+            navigationView.setCheckedItem(getCurrentCheckedItemId());
+            navigationView.setNavigationItemSelectedListener(this);
+        }
     }
 
     @Override

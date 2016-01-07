@@ -1,66 +1,79 @@
 package yanovski.master_thesis.ui;
 
-import android.content.Intent;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.util.Pair;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.os.Bundle;
+import android.os.PersistableBundle;
 
-import butterknife.Bind;
+import icepick.State;
 import yanovski.master_thesis.R;
-import yanovski.master_thesis.ui.base.BaseDrawerActivity;
+import yanovski.master_thesis.data.models.Student;
+import yanovski.master_thesis.ui.base.BaseActivity;
+import yanovski.master_thesis.ui.fragments.StudentProfileFragment;
 
 /**
  * Created by Samuil on 12/31/2015.
  */
-public class StudentProfileActivity extends BaseDrawerActivity {
+public class StudentProfileActivity extends BaseActivity {
 
-    @Bind(R.id.avatar)
-    ImageView avatar;
-    @Bind(R.id.name)
-    TextView name;
+    public static final String KEY_STUDENT = "student";
+
+    @State
+    Student student;
 
     @Override
-    protected int getContentLayoutId() {
-        return R.layout.content_student_profile;
+    protected int getLayoutId() {
+        return R.layout.activity_inner_generic;
     }
 
     @Override
-    protected int getCurrentCheckedItemId() {
-        return R.id.nav_profile;
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (null == savedInstanceState) {
+            Bundle extras = getIntent().getExtras();
+            if (null != extras && extras.containsKey(KEY_STUDENT)) {
+                student = extras.getParcelable(KEY_STUDENT);
+            }
+            init();
+        }
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.edit, menu);
-        return true;
+    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
+        super.onCreate(savedInstanceState, persistentState);
+        if (null == savedInstanceState) {
+            Bundle extras = getIntent().getExtras();
+            if (null != extras && extras.containsKey(KEY_STUDENT)) {
+                student = extras.getParcelable(KEY_STUDENT);
+            }
+            init();
+        }
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    public void onRestoreInstanceState(Bundle savedInstanceState,
+        PersistableBundle persistentState) {
+        super.onRestoreInstanceState(savedInstanceState, persistentState);
+        init();
+    }
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_edit) {
-            Pair<View, String> avatarPair =
-                Pair.create(avatar, getString(R.string.transition_avatar));
-            Pair<View, String> namePair = Pair.create(name, getString(R.string.transition_name));
-            ActivityOptionsCompat options =
-                ActivityOptionsCompat.makeSceneTransitionAnimation(this, avatarPair, namePair);
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        init();
+    }
 
-            Intent intent = new Intent(this, EditStudentProfileActivity.class);
-            ActivityCompat.startActivity(this, intent, options.toBundle());
-            return true;
+    private void init() {
+        if (null == student) {
+            finish();
+            return;
         }
 
-        return super.onOptionsItemSelected(item);
+        StudentProfileFragment fragment = new StudentProfileFragment();
+        fragment.setStudent(student);
+        getSupportFragmentManager().beginTransaction()
+            .add(R.id.fragment_container, fragment)
+            .commit();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
 }

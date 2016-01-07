@@ -12,7 +12,7 @@ import yanovski.master_thesis.ui.base.BaseEditProfileFragment;
 /**
  * Created by Samuil on 12/31/2015.
  */
-public class EditStudentProfileActivity extends BaseActivity {
+public class EditTeacherProfileActivity extends BaseActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -32,7 +32,7 @@ public class EditStudentProfileActivity extends BaseActivity {
         if (id == R.id.action_send) {
             BaseEditProfileFragment fragment =
                 (BaseEditProfileFragment) getSupportFragmentManager().findFragmentById(
-                    R.id.fragment_edit_student_profile);
+                    R.id.fragment_edit_teacher_profile);
             fragment.send();
             return true;
         }

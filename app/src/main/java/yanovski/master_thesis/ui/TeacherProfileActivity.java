@@ -24,7 +24,7 @@ public class TeacherProfileActivity extends BaseActivity {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_teacher_profile;
+        return R.layout.activity_inner_generic;
     }
 
     @Override

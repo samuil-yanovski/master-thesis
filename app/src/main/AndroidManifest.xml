@@ -40,9 +40,6 @@
             android:parentActivityName=".ui.LoginActivity"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="yanovski.master_thesis.ui.LoginActivity"/>
         </activity>
 
         <activity
@@ -50,9 +47,6 @@
             android:label="@string/title_activity_teachers"
             android:parentActivityName=".ui.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="yanovski.master_thesis.ui.HomeActivity"/>
         </activity>
         <activity
             android:name=".ui.ThesesActivity"
@@ -60,27 +54,18 @@
             android:parentActivityName=".ui.HomeActivity"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="yanovski.master_thesis.ui.HomeActivity"/>
         </activity>
         <activity
             android:name=".ui.CalendarActivity"
             android:label="@string/title_activity_calendar"
             android:parentActivityName=".ui.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="yanovski.master_thesis.ui.HomeActivity"/>
         </activity>
         <activity
             android:name=".ui.StudentProfileActivity"
             android:label="@string/title_activity_profile"
             android:parentActivityName=".ui.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="yanovski.master_thesis.ui.HomeActivity"/>
         </activity>
         <activity
             android:name=".ui.TeacherProfileActivity"
@@ -88,63 +73,55 @@
             android:parentActivityName=".ui.TeachersActivity"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="yanovski.master_thesis.ui.TeachersActivity"/>
         </activity>
         <activity
             android:name=".ui.FilteredThesesActivity"
             android:label="@string/title_activity_theses"
             android:parentActivityName=".ui.TeacherProfileActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="yanovski.master_thesis.ui.TeacherProfileActivity"/>
         </activity>
         <activity
             android:name=".ui.NewThesisActivity"
             android:label="@string/title_activity_new_thesis"
             android:parentActivityName=".ui.ThesesActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="yanovski.master_thesis.ui.ThesesActivity"/>
         </activity>
         <activity
             android:name=".ui.NewEventActivity"
             android:label="@string/title_activity_new_event"
             android:parentActivityName=".ui.CalendarActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="yanovski.master_thesis.ui.CalendarActivity"/>
         </activity>
         <activity
             android:name=".ui.EditStudentProfileActivity"
             android:label="@string/title_activity_profile"
-            android:parentActivityName=".ui.StudentProfileActivity"
+            android:parentActivityName=".ui.MyProfileActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="yanovski.master_thesis.ui.StudentProfileActivity"/>
         </activity>
         <activity
             android:name=".ui.RegisterStudentActivity"
             android:label="@string/title_activity_register"
             android:parentActivityName=".ui.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="yanovski.master_thesis.ui.LoginActivity"/>
         </activity>
         <activity
             android:name=".ui.StudentsActivity"
             android:label="@string/title_activity_students"
+            android:launchMode="singleTop"
             android:parentActivityName=".ui.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="yanovski.master_thesis.ui.LoginActivity"/>
+        </activity>
+        <activity
+            android:name=".ui.MyProfileActivity"
+            android:label="@string/title_activity_profile"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".ui.EditTeacherProfileActivity"
+            android:label="@string/title_activity_profile"
+            android:parentActivityName=".ui.MyProfileActivity"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 
