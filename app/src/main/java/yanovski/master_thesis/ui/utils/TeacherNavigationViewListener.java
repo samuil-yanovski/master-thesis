@@ -22,10 +22,12 @@ import yanovski.master_thesis.MasterThesisApplication;
 import yanovski.master_thesis.R;
 import yanovski.master_thesis.data.models.Person;
 import yanovski.master_thesis.ui.CalendarActivity;
+import yanovski.master_thesis.ui.LoginActivity;
 import yanovski.master_thesis.ui.MyProfileActivity;
 import yanovski.master_thesis.ui.StudentsActivity;
 import yanovski.master_thesis.ui.ThesesActivity;
 import yanovski.master_thesis.ui.base.BaseActivity;
+import yanovski.master_thesis.utils.PersonHelper;
 
 /**
  * Created by Samuil on 1/3/2016.
@@ -40,6 +42,8 @@ public class TeacherNavigationViewListener implements NavigationViewListener, Vi
     Person currentPerson;
     @Inject
     Picasso picasso;
+    @Inject
+    PersonHelper helper;
 
     public TeacherNavigationViewListener() {
         MasterThesisApplication.getMainComponent()
@@ -89,7 +93,12 @@ public class TeacherNavigationViewListener implements NavigationViewListener, Vi
             activity.startActivity(intent);
             handled = true;
         } else if (id == R.id.nav_exit) {
-
+            helper.clearAccount(activity);
+            Intent intent = new Intent(activity, LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+            activity.startActivity(intent);
+            activity.finish();
+            handled = true;
         }
 
         return handled;

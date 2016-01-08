@@ -29,6 +29,16 @@ public class PersonHelper {
     public PersonHelper() {
     }
 
+    public void clearAccount(Context context) {
+        AccountManager accountManager = AccountManager.get(context);
+        Account[] accounts =
+            accountManager.getAccountsByType(context.getString(R.string.account_type));
+
+        for (Account account : accounts) {
+            accountManager.removeAccountExplicitly(account);
+        }
+    }
+
     public Person getCurrentPerson(Context context) {
         Person person = null;
 
