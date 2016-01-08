@@ -27,6 +27,7 @@ import yanovski.master_thesis.ui.adapters.ThesesAdapter;
 import yanovski.master_thesis.ui.adapters.base.BaseRecyclerViewAdapter;
 import yanovski.master_thesis.ui.adapters.base.BaseViewHolder;
 import yanovski.master_thesis.ui.utils.AvatarTarget;
+import yanovski.master_thesis.ui.utils.CircleTransform;
 
 /**
  * Created by Samuil on 12/30/2015.
@@ -167,6 +168,7 @@ public class ThesisVHCreator implements ViewHolderCreator<ThesesAdapter.Item> {
         picasso.load(thesis.author.avatar)
             .placeholder(R.drawable.ic_person_white)
             .error(R.drawable.ic_person_white)
+            .transform(new CircleTransform())
             .into(new AvatarTarget(h.avatar, h.name, h.header));
     }
 
