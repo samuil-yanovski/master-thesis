@@ -197,7 +197,7 @@ public class LocalDataProvider {
             createContacts("02 8161-572", "milen.petrov", "milenp@fmi.uni-sofia.bg");
         Teacher petrov = new Teacher();
         petrov.interests = petrovInterests;
-        petrov.contact = petrovContacts;
+        petrov.contacts = petrovContacts;
         petrov.avatar = "http://www.fmi.uni-sofia.bg/lecturers/softeng/milenp/Photo";
         petrov.name = "Милен Петров";
         petrov.id = "2";
@@ -215,7 +215,7 @@ public class LocalDataProvider {
         Contacts ilievaContacts = createContacts("02 971 04 00", null, "sylvia@fmi.uni-sofia.bg");
         Teacher ilieva = new Teacher();
         ilieva.interests = ilievaInterests;
-        ilieva.contact = ilievaContacts;
+        ilieva.contacts = ilievaContacts;
         ilieva.avatar = "http://www.fmi.uni-sofia.bg/lecturers/softeng/sylvia/Photo";
         ilieva.name = "Силвия Илиева";
         ilieva.id = "1";

@@ -6,4 +6,10 @@ package yanovski.master_thesis;
 public class Constants {
     public static final String KEY_ITEM = "item";
     public static final String KEY_MODE = "mode";
+    public static final String KEY_PHONE = "phone";
+    public static final String KEY_EMAIL = "email";
+    public static final String KEY_SKYPE = "skype";
+    public static final String KEY_NAME = "name";
+    public static final String KEY_AVATAR = "avatar";
+    public static final String KEY_TYPE = "type";
 }

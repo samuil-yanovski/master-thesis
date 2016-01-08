@@ -13,7 +13,7 @@ import yanovski.master_thesis.ui.adapters.base.BaseRecyclerViewAdapter;
 import yanovski.master_thesis.ui.adapters.base.creators.CategoryVHCreator;
 import yanovski.master_thesis.ui.adapters.base.creators.ThesisProposalVHCreator;
 import yanovski.master_thesis.ui.adapters.base.creators.ThesisVHCreator;
-import yanovski.master_thesis.utils.CollectionsUtils;
+import yanovski.master_thesis.utils.CollectionUtils;
 
 /**
  * Created by Samuil on 12/30/2015.
@@ -93,7 +93,7 @@ public class ThesesAdapter extends BaseRecyclerViewAdapter<ThesesAdapter.Item> {
             .map(Item::new)
             .collect(Collectors.toList());
 
-        if (!CollectionsUtils.isEmpty(items)) {
+        if (!CollectionUtils.isEmpty(items)) {
             List<Item> categoryItems = new ArrayList<>();
             categoryItems.add(new Item(LocalDataProvider.getProposalsCategory()));
             addItems(categoryItems);

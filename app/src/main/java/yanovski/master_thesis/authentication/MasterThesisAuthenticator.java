@@ -11,18 +11,17 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
-import yanovski.master_thesis.BuildConfig;
 import yanovski.master_thesis.R;
 import yanovski.master_thesis.ui.LoginActivity;
 
 /**
  * Created by samuil.yanovski on 06/01/2016.
  */
-public class MastereasyAuthenticator extends AbstractAccountAuthenticator {
+public class MasterThesisAuthenticator extends AbstractAccountAuthenticator {
 
     Context context;
 
-    public MastereasyAuthenticator(Context context) {
+    public MasterThesisAuthenticator(Context context) {
         super(context);
         this.context = context;
     }
@@ -60,8 +59,7 @@ public class MastereasyAuthenticator extends AbstractAccountAuthenticator {
         String authTokenType, Bundle options) throws NetworkErrorException {
         String authToken = null;
 
-        String accountTypeId =
-            BuildConfig.APPLICATION_ID + context.getString(R.string.account_type_suffix);
+        String accountTypeId = context.getString(R.string.account_type);
         final AccountManager accountManager = AccountManager.get(context);
         Account[] accounts = accountManager.getAccountsByType(accountTypeId);
         if(accounts.length > 0) {

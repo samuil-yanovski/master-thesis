@@ -1,16 +1,12 @@
 package yanovski.master_thesis.data.models;
 
 import android.os.Parcel;
-import android.os.Parcelable;
 
 /**
  * Created by Samuil on 1/3/2016.
  */
-public class Student implements Person, Parcelable {
+public class Student extends BasePerson {
     public final Types type = Types.STUDENT;
-    public String name;
-    public Contacts contacts;
-    public String avatar;
     public Thesis thesis;
 
     public Student() {}
@@ -48,23 +44,7 @@ public class Student implements Person, Parcelable {
     };
 
     @Override
-    public String getAvatar() {
-        return avatar;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public Contacts getContacts() {
-        return contacts;
-    }
-
-    @Override
     public Types getType() {
         return type;
     }
-
 }

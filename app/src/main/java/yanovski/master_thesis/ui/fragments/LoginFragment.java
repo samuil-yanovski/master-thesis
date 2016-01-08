@@ -95,6 +95,7 @@ public class LoginFragment extends BaseFragment implements SnackBarInfoPermissio
         super.onCreate(savedInstanceState);
         MasterThesisApplication.getMainComponent()
             .inject(this);
+        helper.tryAutoLogin(getActivity());
     }
 
     @Override
@@ -260,8 +261,6 @@ public class LoginFragment extends BaseFragment implements SnackBarInfoPermissio
             showProgress(false);
 
             if (success) {
-//                Student samuil = LocalDataProvider.createSamuil();
-//                helper.enterApp(getActivity(), samuil);
                 helper.enterApp(getActivity(), LocalDataProvider.createPetrov());
             } else {
                 passwordView.setError(getString(R.string.error_incorrect_password));

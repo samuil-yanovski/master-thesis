@@ -91,7 +91,7 @@ public class TeacherVHCreator implements ViewHolderCreator<Teacher> {
             h.interest.setText(null);
         }
 
-        h.phone = item.contact.phone;
+        h.phone = item.contacts.phone;
         h.call.setVisibility(TextUtils.isEmpty(h.phone) ? View.GONE : View.VISIBLE);
     }
 

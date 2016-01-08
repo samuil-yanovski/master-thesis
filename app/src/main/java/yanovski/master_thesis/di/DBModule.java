@@ -10,12 +10,12 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import yanovski.master_thesis.data.LocalDataProvider;
 import yanovski.master_thesis.data.models.Person;
 import yanovski.master_thesis.data.models.PhoneContact;
 import yanovski.master_thesis.data.resolvers.PhoneContactDeleteResolver;
 import yanovski.master_thesis.data.resolvers.PhoneContactGetResolver;
 import yanovski.master_thesis.data.resolvers.PhoneContactPutResolver;
+import yanovski.master_thesis.utils.PersonHelper;
 
 /**
  * Created by Samuil on 12/30/2015.
@@ -44,9 +44,8 @@ public class DBModule {
             .build();
     }
 
-    @Singleton
     @Provides
-    public Person getCurrentPerson() {
-        return LocalDataProvider.createPetrov();
+    public Person getCurrentPerson(Context context, PersonHelper helper) {
+        return helper.getCurrentPerson(context);
     }
 }

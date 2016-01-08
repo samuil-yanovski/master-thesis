@@ -2,7 +2,7 @@
     <string name="app_name">Mastereasy</string>
 
     <!-- Authenticator -->
-    <string name="account_type_suffix" translatable="false">.account</string>
+    <string name="account_type" translatable="false">yanovski.master_thesis.account</string>
 
     <!-- Transition names -->
     <string name="transition_avatar">avatar</string>

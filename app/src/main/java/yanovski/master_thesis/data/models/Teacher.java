@@ -9,13 +9,10 @@ import java.util.List;
 /**
  * Created by Samuil on 12/31/2015.
  */
-public class Teacher implements Person, Parcelable {
+public class Teacher extends BasePerson {
     public final Types type = Types.TEACHER;
     public String id;
-    public String name;
-    public String avatar;
     public List<Interest> interests;
-    public Contacts contact;
 
     public Teacher() {
     }
@@ -24,7 +21,7 @@ public class Teacher implements Person, Parcelable {
         id = in.readString();
         name = in.readString();
         avatar = in.readString();
-        contact = in.readParcelable(Contacts.class.getClassLoader());
+        contacts = in.readParcelable(Contacts.class.getClassLoader());
 
         Parcelable[] parcelables = in.readParcelableArray(Interest.class.getClassLoader());
         if (null != parcelables) {
@@ -48,21 +45,6 @@ public class Teacher implements Person, Parcelable {
     };
 
     @Override
-    public String getAvatar() {
-        return avatar;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public Contacts getContacts() {
-        return contact;
-    }
-
-    @Override
     public Types getType() {
         return type;
     }
@@ -77,7 +59,7 @@ public class Teacher implements Person, Parcelable {
         dest.writeString(id);
         dest.writeString(name);
         dest.writeString(avatar);
-        dest.writeParcelable(contact, 0);
+        dest.writeParcelable(contacts, 0);
         dest.writeParcelableArray(null != interests ? interests.toArray(new Interest[0]) : null, 0);
     }
 
