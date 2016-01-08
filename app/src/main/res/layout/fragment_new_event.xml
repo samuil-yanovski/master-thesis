@@ -27,35 +27,64 @@
             android:background="@drawable/field_background"
             android:orientation="vertical">
 
+            <FrameLayout
+                android:id="@+id/recipients_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/recipients"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:gravity="center_vertical"
+                    android:minHeight="48dp"
+                    android:paddingBottom="8dp"
+                    android:paddingEnd="16dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingStart="16dp"
+                    android:paddingTop="8dp"
+                    android:text="@string/select_recipients"
+                    android:textSize="18sp"
+                    tools:text="1/1/2015"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider"/>
+            </FrameLayout>
+
             <TextView
                 android:id="@+id/date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:gravity="center_vertical"
+                android:minHeight="48dp"
                 android:paddingBottom="8dp"
-                android:paddingTop="8dp"
-                android:paddingLeft="16dp"
-                android:paddingStart="16dp"
                 android:paddingEnd="16dp"
+                android:paddingLeft="16dp"
                 android:paddingRight="16dp"
+                android:paddingStart="16dp"
+                android:paddingTop="8dp"
                 android:text="@string/select_date"
                 android:textSize="18sp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                tools:text="1/1/2015" />
+                tools:text="1/1/2015"/>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/divider" />
+                android:background="@color/divider"/>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="16dp"
-                android:paddingStart="16dp"
                 android:paddingEnd="16dp"
-                android:paddingRight="16dp">
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingStart="16dp">
 
                 <EditText
                     android:id="@+id/title"
@@ -65,7 +94,7 @@
                     android:imeActionId="@+id/send"
                     android:imeActionLabel="@string/send"
                     android:imeOptions="actionDone"
-                    android:inputType="textMultiLine" />
+                    android:inputType="textMultiLine"/>
 
             </android.support.design.widget.TextInputLayout>
 

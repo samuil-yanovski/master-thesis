@@ -34,6 +34,12 @@ public class StudentsFragment extends BaseListFragment implements
         adapter.setItems(LocalDataProvider.getAllStudents());
         adapter.setOnItemClickListener(this);
         getList().setAdapter(adapter);
+        switch (getMode()) {
+            case MultiSelect:Select: {
+                adapter.setSupportsSelections(true);
+                break;
+            }
+        }
     }
 
     @Override

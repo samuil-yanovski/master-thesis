@@ -5,5 +5,6 @@ package yanovski.master_thesis.ui.utils;
  */
 public enum UIModes {
     View,
-    Select
+    Select,
+    MultiSelect
 }

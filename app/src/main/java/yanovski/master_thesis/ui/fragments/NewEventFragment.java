@@ -1,7 +1,10 @@
 package yanovski.master_thesis.ui.fragments;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
@@ -17,12 +20,19 @@ import org.joda.time.DateTime;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
 import icepick.State;
+import yanovski.master_thesis.Constants;
+import yanovski.master_thesis.MasterThesisApplication;
 import yanovski.master_thesis.R;
+import yanovski.master_thesis.data.models.Person;
+import yanovski.master_thesis.ui.StudentsActivity;
 import yanovski.master_thesis.ui.base.BaseFragment;
+import yanovski.master_thesis.ui.utils.UIModes;
 import yanovski.master_thesis.utils.DateUtils;
 
 /**
@@ -31,6 +41,7 @@ import yanovski.master_thesis.utils.DateUtils;
 public class NewEventFragment extends BaseFragment implements CalendarDatePickerDialogFragment.OnDateSetListener {
 
     private static final String TAG_DATE_FRAGMENT = "date_fragment";
+    private static final int REQUEST_CODE_STUDENTS = 300;
 
     // UI references.
     @Bind(R.id.date)
@@ -40,6 +51,11 @@ public class NewEventFragment extends BaseFragment implements CalendarDatePicker
     EditText title;
     @Bind(R.id.login_progress)
     View progressView;
+    @Bind(R.id.recipients_container)
+    View container;
+
+    @Inject
+    Person person;
 
     @State
     DateTime selectedDate;
@@ -47,6 +63,30 @@ public class NewEventFragment extends BaseFragment implements CalendarDatePicker
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_new_event;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        MasterThesisApplication.getMainComponent().inject(this);
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        switch (person.getType()) {
+            case TEACHER: {
+                container.setVisibility(View.VISIBLE);
+                break;
+            }
+        }
+    }
+
+    @OnClick(R.id.recipients)
+    protected void onRecipientsClicked() {
+        Intent intent = new Intent(getActivity(), StudentsActivity.class);
+        intent.putExtra(Constants.KEY_MODE, UIModes.MultiSelect.name());
+        startActivityForResult(intent, REQUEST_CODE_STUDENTS);
     }
 
     @OnClick(R.id.date)
