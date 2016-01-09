@@ -112,7 +112,7 @@ public class LocalDataProvider {
         agile.id = "1";
         agile.name = "Гъвкави методологии";
 
-        List<Thesis> agileTheses = new ArrayList<>();
+        ArrayList<Thesis> agileTheses = new ArrayList<>();
         Teacher ilieva = createIlieva();
 
         Thesis spem = new Thesis();
@@ -151,7 +151,7 @@ public class LocalDataProvider {
         dev.name = "Софтуерни разработки";
         Teacher petrov = createPetrov();
 
-        List<Thesis> devTheses = new ArrayList<>();
+        ArrayList<Thesis> devTheses = new ArrayList<>();
 
         Thesis mobile = new Thesis();
         mobile.title =

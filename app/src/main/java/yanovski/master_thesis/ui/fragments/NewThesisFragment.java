@@ -4,6 +4,8 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.EditText;
@@ -14,13 +16,19 @@ import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
 import icepick.State;
 import yanovski.master_thesis.Constants;
+import yanovski.master_thesis.MasterThesisApplication;
 import yanovski.master_thesis.R;
+import yanovski.master_thesis.data.models.Category;
+import yanovski.master_thesis.data.models.Person;
 import yanovski.master_thesis.data.models.Teacher;
+import yanovski.master_thesis.ui.CategoriesActivity;
 import yanovski.master_thesis.ui.TeachersActivity;
 import yanovski.master_thesis.ui.base.BaseFragment;
 import yanovski.master_thesis.ui.utils.UIModes;
@@ -31,6 +39,7 @@ import yanovski.master_thesis.ui.utils.UIModes;
 public class NewThesisFragment extends BaseFragment {
 
     private static final int REQUEST_CODE_SELECT_AUTHOR = 100;
+    private static final int REQUEST_CODE_SELECT_CATEGORY = 101;
 
     // UI references.
     @Bind(R.id.author)
@@ -43,13 +52,46 @@ public class NewThesisFragment extends BaseFragment {
     EditText description;
     @Bind(R.id.login_progress)
     View progressView;
+    @Bind(R.id.category_container)
+    View container;
+    @Bind(R.id.category)
+    TextView categoryLabel;
+
+    @Inject
+    Person person;
 
     @State
     Teacher teacher;
+    @State
+    Category category;
 
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_new_thesis;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        MasterThesisApplication.getMainComponent().inject(this);
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        switch (person.getType()) {
+            case TEACHER: {
+                container.setVisibility(View.VISIBLE);
+                break;
+            }
+        }
+    }
+
+    @OnClick(R.id.category)
+    protected void onCategoryClicked() {
+        Intent intent = new Intent(getActivity(), CategoriesActivity.class);
+        intent.putExtra(Constants.KEY_MODE, UIModes.Select.name());
+        startActivityForResult(intent, REQUEST_CODE_SELECT_CATEGORY);
     }
 
     @OnClick(R.id.author)
@@ -108,10 +150,29 @@ public class NewThesisFragment extends BaseFragment {
                 teacher = data.getParcelableExtra(Constants.KEY_ITEM);
                 showTeacher();
             }
+
+        } else if (REQUEST_CODE_SELECT_CATEGORY == requestCode) {
+            if (Activity.RESULT_OK == resultCode && null != data &&
+                data.hasExtra(Constants.KEY_ITEM)) {
+                category = data.getParcelableExtra(Constants.KEY_ITEM);
+                showCategory();
+            }
         }
     }
 
     private void showTeacher() {
-        author.setText(teacher.name);
+        if (null != teacher) {
+            author.setText(teacher.name);
+        } else {
+            author.setText(R.string.select_teacher);
+        }
+    }
+
+    private void showCategory() {
+        if (null != category) {
+            categoryLabel.setText(category.name);
+        } else {
+            categoryLabel.setText(R.string.select_category);
+        }
     }
 }

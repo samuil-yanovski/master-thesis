@@ -50,7 +50,6 @@ public class TeachersFragment extends BaseListFragment implements
                 break;
             }
         }
-
     }
 
     private void returnTeacher(Teacher teacher) {

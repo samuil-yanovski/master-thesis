@@ -42,10 +42,11 @@ import yanovski.master_thesis.utils.DateUtils;
 /**
  * Created by Samuil on 12/29/2015.
  */
-public class NewEventFragment extends BaseFragment implements CalendarDatePickerDialogFragment.OnDateSetListener {
+public class NewEventFragment extends BaseFragment implements
+    CalendarDatePickerDialogFragment.OnDateSetListener {
 
     private static final String TAG_DATE_FRAGMENT = "date_fragment";
-    private static final int REQUEST_CODE_STUDENTS = 300;
+    private static final int REQUEST_CODE_SELECT_STUDENTS = 300;
 
     // UI references.
     @Bind(R.id.date)
@@ -76,7 +77,8 @@ public class NewEventFragment extends BaseFragment implements CalendarDatePicker
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MasterThesisApplication.getMainComponent().inject(this);
+        MasterThesisApplication.getMainComponent()
+            .inject(this);
     }
 
     @Override
@@ -94,16 +96,19 @@ public class NewEventFragment extends BaseFragment implements CalendarDatePicker
     protected void onRecipientsClicked() {
         Intent intent = new Intent(getActivity(), StudentsActivity.class);
         intent.putExtra(Constants.KEY_MODE, UIModes.MultiSelect.name());
-        startActivityForResult(intent, REQUEST_CODE_STUDENTS);
+        startActivityForResult(intent, REQUEST_CODE_SELECT_STUDENTS);
     }
 
     @OnClick(R.id.date)
     protected void onDateClicked() {
         DateTime now = DateTime.now();
         FragmentManager fm = getFragmentManager();
-        CalendarDatePickerDialogFragment calendarDatePickerDialogFragment = CalendarDatePickerDialogFragment
-            .newInstance(this, now.getYear(), now.getMonthOfYear() - 1, now.getDayOfMonth());
-        calendarDatePickerDialogFragment.setDateRange(new MonthAdapter.CalendarDay(now.getYear(), now.getMonthOfYear() - 2, now.getDayOfMonth()), null);
+        CalendarDatePickerDialogFragment calendarDatePickerDialogFragment =
+            CalendarDatePickerDialogFragment.newInstance(this, now.getYear(),
+                now.getMonthOfYear() - 1, now.getDayOfMonth());
+        calendarDatePickerDialogFragment.setDateRange(
+            new MonthAdapter.CalendarDay(now.getYear(), now.getMonthOfYear() - 2,
+                now.getDayOfMonth()), null);
         calendarDatePickerDialogFragment.show(fm, TAG_DATE_FRAGMENT);
     }
 
@@ -162,7 +167,8 @@ public class NewEventFragment extends BaseFragment implements CalendarDatePicker
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (Activity.RESULT_OK == resultCode) {
-            if (REQUEST_CODE_STUDENTS == requestCode && null != data) {
+            if (REQUEST_CODE_SELECT_STUDENTS == requestCode && null != data &&
+                data.hasExtra(Constants.KEY_ITEMS)) {
                 recipientsList = data.getParcelableArrayListExtra(Constants.KEY_ITEMS);
                 showRecipients();
             }

@@ -27,6 +27,7 @@
     <string name="title_activity_new_event">Ново събитие</string>
     <string name="title_activity_register">Нов акаунт</string>
     <string name="title_activity_students">Студенти</string>
+    <string name="title_activity_categories">Категории</string>
 
     <!-- Login -->
     <string name="prompt_email">Мейл</string>
@@ -105,6 +106,7 @@
     <string name="description">Резюме</string>
     <string name="select_teacher">Избери ръководител</string>
     <string name="error_select_teacher">Трябва да избереш ръководител</string>
+    <string name="select_category">Избери категория</string>
 
     <!-- New event -->
     <string name="select_date">Избери дата</string>

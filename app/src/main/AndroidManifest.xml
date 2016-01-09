@@ -24,7 +24,7 @@
             android:value="e9022f571feb0bfbf7d66cbc7dcaf12cb7f86d21"/>
 
         <service
-            android:name=".authentication.MasterThesisAuthenticationServic"
+            android:name=".authentication.MasterThesisAutheticationService"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />
@@ -132,6 +132,12 @@
             android:name=".ui.EditTeacherProfileActivity"
             android:label="@string/title_activity_profile"
             android:parentActivityName=".ui.MyProfileActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".ui.CategoriesActivity"
+            android:label="@string/title_activity_categories"
+            android:parentActivityName=".ui.NewThesisActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>

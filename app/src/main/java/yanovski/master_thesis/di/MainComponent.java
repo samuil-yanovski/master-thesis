@@ -19,6 +19,7 @@ import yanovski.master_thesis.ui.fragments.EditStudentProfileFragment;
 import yanovski.master_thesis.ui.fragments.InternshipFragment;
 import yanovski.master_thesis.ui.fragments.LoginFragment;
 import yanovski.master_thesis.ui.fragments.NewEventFragment;
+import yanovski.master_thesis.ui.fragments.NewThesisFragment;
 import yanovski.master_thesis.ui.fragments.RegisterStudentFragment;
 import yanovski.master_thesis.ui.fragments.StudentProfileFragment;
 import yanovski.master_thesis.ui.fragments.ThesesFragment;
@@ -54,6 +55,7 @@ public interface MainComponent {
     void inject(RegisterStudentFragment fragment);
     void inject(ThesesFragment fragment);
     void inject(NewEventFragment fragment);
+    void inject(NewThesisFragment fragment);
     void inject(BaseDrawerActivity activity);
     void inject(MyProfileActivity activity);
     Context getContext();
