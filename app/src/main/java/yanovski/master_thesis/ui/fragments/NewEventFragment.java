@@ -1,6 +1,7 @@
 package yanovski.master_thesis.ui.fragments;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 
 import org.joda.time.DateTime;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -30,9 +32,11 @@ import yanovski.master_thesis.Constants;
 import yanovski.master_thesis.MasterThesisApplication;
 import yanovski.master_thesis.R;
 import yanovski.master_thesis.data.models.Person;
+import yanovski.master_thesis.data.models.Student;
 import yanovski.master_thesis.ui.StudentsActivity;
 import yanovski.master_thesis.ui.base.BaseFragment;
 import yanovski.master_thesis.ui.utils.UIModes;
+import yanovski.master_thesis.utils.CollectionUtils;
 import yanovski.master_thesis.utils.DateUtils;
 
 /**
@@ -53,12 +57,16 @@ public class NewEventFragment extends BaseFragment implements CalendarDatePicker
     View progressView;
     @Bind(R.id.recipients_container)
     View container;
+    @Bind(R.id.recipients)
+    TextView recipients;
 
     @Inject
     Person person;
 
     @State
     DateTime selectedDate;
+    @State
+    ArrayList<Student> recipientsList;
 
     @Override
     protected int getLayoutId() {
@@ -148,5 +156,29 @@ public class NewEventFragment extends BaseFragment implements CalendarDatePicker
         int dayOfMonth) {
         selectedDate = new DateTime(year, monthOfYear + 1, dayOfMonth, 0, 0);
         showDate();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (Activity.RESULT_OK == resultCode) {
+            if (REQUEST_CODE_STUDENTS == requestCode && null != data) {
+                recipientsList = data.getParcelableArrayListExtra(Constants.KEY_ITEMS);
+                showRecipients();
+            }
+        }
+    }
+
+    public void showRecipients() {
+        if (!CollectionUtils.isEmpty(recipientsList)) {
+            if (1 == recipientsList.size()) {
+                Student student = recipientsList.get(0);
+                recipients.setText(student.getName());
+            } else {
+                recipients.setText(getString(R.string.recipients_format, recipientsList.size()));
+            }
+        } else {
+            recipients.setText(R.string.select_recipients);
+        }
     }
 }
