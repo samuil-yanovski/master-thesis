@@ -8,7 +8,10 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.RecyclerView;
+import android.util.SparseBooleanArray;
 import android.view.View;
+
+import java.util.ArrayList;
 
 import yanovski.master_thesis.Constants;
 import yanovski.master_thesis.R;
@@ -59,7 +62,26 @@ public class StudentsFragment extends BaseListFragment implements
 
     }
 
-    private void returnStudent(Student student) {
+    public void returnStudents() {
+        ArrayList<Student> students = new ArrayList<>();
+        StudentsAdapter adapter = (StudentsAdapter) getList().getAdapter();
+        int count = adapter.getItemCount();
+        SparseBooleanArray selectionStates =  adapter.getSelectionStates();
+        for (int index = 0; index < count; ++index) {
+            boolean selected = selectionStates.get(index);
+            if (selected)  {
+                students.add(adapter.getItem(index));
+            }
+        }
+
+        FragmentActivity activity = getActivity();
+        Intent data = new Intent();
+        data.putParcelableArrayListExtra(Constants.KEY_ITEMS, students);
+        activity.setResult(Activity.RESULT_OK, data);
+        activity.finish();
+    }
+
+    public void returnStudent(Student student) {
         FragmentActivity activity = getActivity();
         Intent data = new Intent();
         data.putExtra(Constants.KEY_ITEM, student);
@@ -67,7 +89,7 @@ public class StudentsFragment extends BaseListFragment implements
         activity.finish();
     }
 
-    private void showStudent(StudentVHCreator.StudentViewHolder holder, Student student) {
+    public void showStudent(StudentVHCreator.StudentViewHolder holder, Student student) {
         BaseActivity activity = (BaseActivity) getActivity();
         Pair<View, String> avatar =
             Pair.create(holder.avatar, getString(R.string.transition_avatar));
