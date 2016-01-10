@@ -13,4 +13,5 @@ public class Constants {
     public static final String KEY_NAME = "name";
     public static final String KEY_AVATAR = "avatar";
     public static final String KEY_TYPE = "type";
+    public static final String KEY_INTERESTS = "interests";
 }

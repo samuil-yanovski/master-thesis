@@ -28,6 +28,7 @@
     <string name="title_activity_register">Нов акаунт</string>
     <string name="title_activity_students">Студенти</string>
     <string name="title_activity_categories">Категории</string>
+    <string name="title_activity_interests">Интереси</string>
 
     <!-- Login -->
     <string name="prompt_email">Мейл</string>
@@ -124,4 +125,8 @@
     <string name="avatar_chooser">Избери снимка</string>
     <string name="content_description_avatar">Смени аватара си</string>
 
+    <!-- Edit teacher profile -->
+    <string name="select_interests">Избери интереси</string>
+    <string name="add_interest">Добави интерес</string>
+    <string name="interest">Интерес</string>
 </resources>

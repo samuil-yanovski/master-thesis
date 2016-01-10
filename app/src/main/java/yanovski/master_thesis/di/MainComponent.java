@@ -16,6 +16,7 @@ import yanovski.master_thesis.ui.base.BaseEditProfileFragment;
 import yanovski.master_thesis.ui.base.BaseFragment;
 import yanovski.master_thesis.ui.base.BaseProfileFragment;
 import yanovski.master_thesis.ui.fragments.EditStudentProfileFragment;
+import yanovski.master_thesis.ui.fragments.EditTeacherProfileFragment;
 import yanovski.master_thesis.ui.fragments.InternshipFragment;
 import yanovski.master_thesis.ui.fragments.LoginFragment;
 import yanovski.master_thesis.ui.fragments.NewEventFragment;
@@ -51,6 +52,7 @@ public interface MainComponent {
     void inject(StudentNavigationViewListener listener);
     void inject(TeacherNavigationViewListener listener);
     void inject(EditStudentProfileFragment fragment);
+    void inject(EditTeacherProfileFragment fragment);
     void inject(BaseEditProfileFragment fragment);
     void inject(RegisterStudentFragment fragment);
     void inject(ThesesFragment fragment);

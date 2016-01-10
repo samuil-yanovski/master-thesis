@@ -2,9 +2,11 @@ package yanovski.master_thesis.utils;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
 import javax.inject.Inject;
@@ -29,13 +31,18 @@ public class PersonHelper {
     public PersonHelper() {
     }
 
+    @SuppressLint("NewApi")
     public void clearAccount(Context context) {
         AccountManager accountManager = AccountManager.get(context);
         Account[] accounts =
             accountManager.getAccountsByType(context.getString(R.string.account_type));
 
         for (Account account : accounts) {
-            accountManager.removeAccountExplicitly(account);
+            if (Build.VERSION_CODES.LOLLIPOP_MR1 >= Build.VERSION.SDK_INT) {
+                accountManager.removeAccountExplicitly(account);
+            } else {
+                accountManager.removeAccount(account, null, null);
+            }
         }
     }
 
