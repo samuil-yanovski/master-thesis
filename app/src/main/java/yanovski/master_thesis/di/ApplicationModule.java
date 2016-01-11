@@ -3,6 +3,11 @@ package yanovski.master_thesis.di;
 import android.content.Context;
 import android.content.res.TypedArray;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import org.joda.time.DateTime;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -12,6 +17,7 @@ import yanovski.master_thesis.data.models.Person;
 import yanovski.master_thesis.ui.utils.NavigationViewListener;
 import yanovski.master_thesis.ui.utils.StudentNavigationViewListener;
 import yanovski.master_thesis.ui.utils.TeacherNavigationViewListener;
+import yanovski.master_thesis.utils.DateTimeTypeConverter;
 
 /**
  * Created by Samuil on 12/29/2015.
@@ -40,11 +46,11 @@ public class ApplicationModule {
     @Provides
     @ForColorPrimary
     public int getColorPrimary(Context context) {
-        TypedArray a = context
-            .getTheme()
-            .obtainStyledAttributes(new int[] {android.R.attr.colorPrimary});
+        TypedArray a = context.getTheme()
+            .obtainStyledAttributes(new int[]{android.R.attr.colorPrimary});
         int attributeResourceId = a.getResourceId(0, 0);
-        return context.getResources().getColor(attributeResourceId);
+        return context.getResources()
+            .getColor(attributeResourceId);
     }
 
     @Provides
@@ -63,5 +69,13 @@ public class ApplicationModule {
         }
 
         return listener;
+    }
+
+    @Singleton
+    @Provides
+    public Gson getGson() {
+        return new GsonBuilder()
+            .registerTypeAdapter(DateTime.class, new DateTimeTypeConverter())
+            .create();
     }
 }
