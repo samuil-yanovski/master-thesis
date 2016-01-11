@@ -24,8 +24,6 @@
             android:name="io.fabric.ApiKey"
             android:value="e9022f571feb0bfbf7d66cbc7dcaf12cb7f86d21"/>
 
-        <meta-data android:name="CLOUDINARY_URL" android:value=""/>
-
         <service
             android:name=".authentication.MasterThesisAutheticationService"
             android:exported="true">

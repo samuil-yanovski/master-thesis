@@ -3,6 +3,7 @@ package yanovski.master_thesis.di;
 import android.content.Context;
 import android.content.res.TypedArray;
 
+import com.cloudinary.Cloudinary;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -13,6 +14,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import yanovski.master_thesis.MasterThesisApplication;
+import yanovski.master_thesis.R;
 import yanovski.master_thesis.data.models.Person;
 import yanovski.master_thesis.ui.utils.NavigationViewListener;
 import yanovski.master_thesis.ui.utils.StudentNavigationViewListener;
@@ -77,5 +79,12 @@ public class ApplicationModule {
         return new GsonBuilder()
             .registerTypeAdapter(DateTime.class, new DateTimeTypeConverter())
             .create();
+    }
+
+    @Singleton
+    @Provides
+    public Cloudinary getCloudinary(Context context) {
+        Cloudinary cloudinary = new Cloudinary(context.getString(R.string.cloudinary_url));
+        return cloudinary;
     }
 }
