@@ -30,9 +30,13 @@ android {
         versionName "1.0"
     }
     buildTypes {
+        debug{
+            resValue "string", "cloudinary_url", project.property("cloudinary_url")
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            resValue "string", "cloudinary_url", project.property("cloudinary_url")
         }
     }
     compileOptions {
@@ -79,4 +83,5 @@ dependencies {
         transitive = true
     }
     compile 'com.google.code.gson:gson:2.5'
+    compile 'com.cloudinary:cloudinary-android:1.2.2'
 }
