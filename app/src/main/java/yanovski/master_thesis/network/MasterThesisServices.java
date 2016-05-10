@@ -11,6 +11,9 @@ import yanovski.master_thesis.data.models.Interest;
 import yanovski.master_thesis.data.models.api.Account;
 import yanovski.master_thesis.data.models.api.CategoriesResponse;
 import yanovski.master_thesis.data.models.api.Credentials;
+import yanovski.master_thesis.data.models.api.GraduationDateRequest;
+import yanovski.master_thesis.data.models.api.GraduationDateResponse;
+import yanovski.master_thesis.data.models.api.GraduationDatesResponse;
 import yanovski.master_thesis.data.models.api.InterestResponse;
 import yanovski.master_thesis.data.models.api.NewThesis;
 import yanovski.master_thesis.data.models.api.NewThesisProposal;
@@ -48,13 +51,13 @@ public interface MasterThesisServices {
     @PUT("theses")
     Call<ThesisResponse> createThesis(@Body NewThesis data);
 
-    @PUT("/theses/proposals")
+    @PUT("theses/proposals")
     Call<ThesisResponse> createThesisProposal(@Body NewThesisProposal data);
 
-    @POST("/theses/{key}/approve")
+    @POST("theses/{key}/approve")
     Call<ThesisResponse> approveThesisProposal(@Path("key") String key);
 
-    @POST("/theses/{key}/decline")
+    @POST("theses/{key}/decline")
     Call<ThesisResponse> declineThesisProposal(@Path("key") String key);
 
     @PUT("interests")
@@ -65,4 +68,16 @@ public interface MasterThesisServices {
 
     @DELETE("interests/{key}")
     Call<InterestResponse> deleteInterest(@Path("key") String key);
+
+    @GET("dates")
+    Call<GraduationDatesResponse> getDateS(@Body GraduationDateRequest date);
+
+    @PUT("dates")
+    Call<GraduationDateResponse> createDate(@Body GraduationDateRequest date);
+
+    @POST("dates/{key}")
+    Call<GraduationDateResponse> updateDate(@Path("key") String key, @Body GraduationDateRequest date);
+
+    @POST("dates/{key}")
+    Call<GraduationDateResponse> daleteDate(@Path("key") String key);
 }
