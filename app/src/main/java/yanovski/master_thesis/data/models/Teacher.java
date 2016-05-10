@@ -11,14 +11,14 @@ import java.util.List;
  */
 public class Teacher extends BasePerson {
     public final Types type = Types.TEACHER;
-    public String id;
+    public String key;
     public List<Interest> interests;
 
     public Teacher() {
     }
 
     protected Teacher(Parcel in) {
-        id = in.readString();
+        key = in.readString();
         name = in.readString();
         avatar = in.readString();
         contacts = in.readParcelable(Contacts.class.getClassLoader());
@@ -56,7 +56,7 @@ public class Teacher extends BasePerson {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id);
+        dest.writeString(key);
         dest.writeString(name);
         dest.writeString(avatar);
         dest.writeParcelable(contacts, 0);
@@ -68,10 +68,10 @@ public class Teacher extends BasePerson {
         boolean equal = false;
         if (o instanceof Teacher) {
             Teacher other = (Teacher) o;
-            if (null == id && null == other.id) {
+            if (null == key && null == other.key) {
                 equal = true;
-            } else if (null != id) {
-                equal = id.equals(other.id);
+            } else if (null != key) {
+                equal = key.equals(other.key);
             }
         }
         return equal;
@@ -79,6 +79,6 @@ public class Teacher extends BasePerson {
 
     @Override
     public int hashCode() {
-        return null != id ? id.hashCode() : 0;
+        return null != key ? key.hashCode() : 0;
     }
 }

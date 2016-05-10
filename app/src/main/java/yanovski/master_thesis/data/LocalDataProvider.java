@@ -72,7 +72,7 @@ public class LocalDataProvider {
     }
 
     @Deprecated
-    public static List<Category> getAllCategories(Teacher teacher) {
+    public static List<Category>   getAllCategories(Teacher teacher) {
         List<Category> categories = getAllCategories();
 
         if (null != teacher) {
@@ -109,7 +109,7 @@ public class LocalDataProvider {
         List<Category> categories = new ArrayList<>();
 
         Category agile = new Category();
-        agile.id = "1";
+        agile.key = "1";
         agile.name = "Гъвкави методологии";
 
         ArrayList<Thesis> agileTheses = new ArrayList<>();
@@ -147,7 +147,7 @@ public class LocalDataProvider {
     @NonNull
     private static Category getDevCategory() {
         Category dev = new Category();
-        dev.id = "2";
+        dev.key = "2";
         dev.name = "Софтуерни разработки";
         Teacher petrov = createPetrov();
 
@@ -200,7 +200,7 @@ public class LocalDataProvider {
         petrov.contacts = petrovContacts;
         petrov.avatar = "http://www.fmi.uni-sofia.bg/lecturers/softeng/milenp/Photo";
         petrov.name = "Милен Петров";
-        petrov.id = "2";
+        petrov.key = "2";
         return petrov;
     }
 
@@ -218,7 +218,7 @@ public class LocalDataProvider {
         ilieva.contacts = ilievaContacts;
         ilieva.avatar = "http://www.fmi.uni-sofia.bg/lecturers/softeng/sylvia/Photo";
         ilieva.name = "Силвия Илиева";
-        ilieva.id = "1";
+        ilieva.key = "1";
         return ilieva;
     }
 
@@ -273,7 +273,7 @@ public class LocalDataProvider {
 
     public static Category getProposalsCategory() {
         Category category = new Category();
-        category.id = "-1";
+        category.key = "-1";
         category.name = context.getString(R.string.category_proposals_title);
 
         return category;

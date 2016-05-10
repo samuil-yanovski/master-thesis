@@ -9,14 +9,14 @@ import java.util.ArrayList;
  * Created by Samuil on 1/1/2016.
  */
 public class Category implements Parcelable {
-    public String id;
+    public String key;
     public String name;
     public ArrayList<Thesis> theses;
 
     public Category() {}
 
     protected Category(Parcel in) {
-        id = in.readString();
+        key = in.readString();
         name = in.readString();
         theses = in.createTypedArrayList(Thesis.CREATOR);
     }
@@ -38,10 +38,10 @@ public class Category implements Parcelable {
         boolean equal = false;
         if (o instanceof Category) {
             Category other = (Category) o;
-            if (null == id && null == other.id) {
+            if (null == key && null == other.key) {
                 equal = true;
-            } else if (null != id) {
-                equal = id.equals(other.id);
+            } else if (null != key) {
+                equal = key.equals(other.key);
             }
         }
         return equal;
@@ -49,7 +49,7 @@ public class Category implements Parcelable {
 
     @Override
     public int hashCode() {
-        return null != id ? id.hashCode() : 0;
+        return null != key ? key.hashCode() : 0;
     }
 
     @Override
@@ -59,7 +59,7 @@ public class Category implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id);
+        dest.writeString(key);
         dest.writeString(name);
         dest.writeTypedList(theses);
     }
