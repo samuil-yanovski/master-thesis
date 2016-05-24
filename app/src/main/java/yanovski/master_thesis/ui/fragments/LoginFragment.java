@@ -27,6 +27,7 @@ import com.pushtorefresh.storio.contentresolver.StorIOContentResolver;
 import com.pushtorefresh.storio.contentresolver.queries.Query;
 import com.trello.rxlifecycle.RxLifecycle;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
@@ -37,12 +38,16 @@ import butterknife.OnClick;
 import butterknife.OnEditorAction;
 import java8.util.stream.Collectors;
 import java8.util.stream.StreamSupport;
+import retrofit2.Response;
 import rx.android.schedulers.AndroidSchedulers;
 import yanovski.master_thesis.MasterThesisApplication;
 import yanovski.master_thesis.R;
-import yanovski.master_thesis.data.LocalDataProvider;
 import yanovski.master_thesis.data.models.PhoneContact;
+import yanovski.master_thesis.data.models.Token;
+import yanovski.master_thesis.data.models.api.Credentials;
+import yanovski.master_thesis.data.models.api.TokenResponse;
 import yanovski.master_thesis.data.resolvers.PhoneContactGetResolver;
+import yanovski.master_thesis.network.MasterThesisServices;
 import yanovski.master_thesis.permissions.SnackBarInfoPermissionListener;
 import yanovski.master_thesis.ui.RegisterStudentActivity;
 import yanovski.master_thesis.ui.base.BaseFragment;
@@ -71,7 +76,7 @@ public class LoginFragment extends BaseFragment implements SnackBarInfoPermissio
     AutoCompleteTextView emailView;
     @Bind(R.id.password)
     @NotEmpty
-    @Password(min = 6, scheme = Password.Scheme.ALPHA_NUMERIC)
+    @Password(min = 6)
     EditText passwordView;
     @Bind(R.id.login_progress)
     View progressView;
@@ -238,30 +243,44 @@ public class LoginFragment extends BaseFragment implements SnackBarInfoPermissio
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+    public class UserLoginTask extends AsyncTask<Void, Void, Token> {
+
+        private Credentials credentials;
+        @Inject
+        MasterThesisServices apiService;
 
         UserLoginTask(String email, String password) {
+            credentials = new Credentials();
+            credentials.email = email;
+            credentials.password = password;
+            MasterThesisApplication.getMainComponent().inject(this);
         }
 
         @Override
-        protected Boolean doInBackground(Void... params) {
+        protected Token doInBackground(Void... params) {
             try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
+                // Simulate network access. LocalDataProvider.createPetrov()
+                Response<TokenResponse> response = apiService.login(credentials)
+                    .execute();
 
-            return true;
+                if (response.isSuccessful() && null != response.body()) {
+                    return response.body().data;
+                } else {
+                    return null;
+                }
+
+            } catch (IOException e) {
+                return null;
+            }
         }
 
         @Override
-        protected void onPostExecute(final Boolean success) {
+        protected void onPostExecute(Token token) {
             authTask = null;
             showProgress(false);
 
-            if (success) {
-                helper.enterApp(getActivity(), LocalDataProvider.createPetrov());
+            if (null != token) {
+                helper.enterApp(getActivity(), token);
             } else {
                 passwordView.setError(getString(R.string.error_incorrect_password));
                 passwordView.requestFocus();

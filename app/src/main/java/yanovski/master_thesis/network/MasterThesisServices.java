@@ -30,7 +30,7 @@ public interface MasterThesisServices {
     @POST("register")
     Call<TokenResponse> register(@Body Account account);
 
-    @POST("register")
+    @POST("login")
     Call<TokenResponse> login(@Body Credentials credentials);
 
     @GET("teachers")
@@ -78,6 +78,6 @@ public interface MasterThesisServices {
     @POST("dates/{key}")
     Call<GraduationDateResponse> updateDate(@Path("key") String key, @Body GraduationDateRequest date);
 
-    @POST("dates/{key}")
-    Call<GraduationDateResponse> daleteDate(@Path("key") String key);
+    @DELETE("dates/{key}")
+    Call<GraduationDateResponse> deleteDate(@Path("key") String key);
 }

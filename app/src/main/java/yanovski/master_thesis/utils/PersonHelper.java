@@ -18,6 +18,7 @@ import yanovski.master_thesis.data.models.Contacts;
 import yanovski.master_thesis.data.models.Person;
 import yanovski.master_thesis.data.models.Student;
 import yanovski.master_thesis.data.models.Teacher;
+import yanovski.master_thesis.data.models.Token;
 import yanovski.master_thesis.data.models.Types;
 import yanovski.master_thesis.ui.HomeActivity;
 import yanovski.master_thesis.ui.StudentsActivity;
@@ -67,13 +68,34 @@ public class PersonHelper {
         }
     }
 
-    public void enterApp(Activity activity, Person person) {
+    public void enterApp(Activity activity, Token token) {
+        Person person = getPerson(token);
         Account account =
             new Account(person.getContacts().email, activity.getString(R.string.account_type));
-        Bundle data = toBundle(person);
+        Bundle data = toBundle(token);
         AccountManager accountManager = AccountManager.get(activity);
         accountManager.addAccountExplicitly(account, null, data);
         navigateToMainActivity(activity, person);
+    }
+
+    private Person getPerson(Token token) {
+        return null != token.owner.student ? token.owner.student : token.owner.teacher;
+    }
+
+
+    private Bundle toBundle(Token token) {
+        Bundle data = null;
+
+        Person person = getPerson(token);
+        data = toBundle(person);
+
+        if (null == data) {
+            data = new Bundle();
+        }
+        data.putString(Constants.KEY_AUTH_TOKEN, token.auth);
+        data.putString(Constants.KEY_REFRESH_TOKEN, token.refresh);
+
+        return data;
     }
 
     private Bundle toBundle(Person person) {

@@ -49,7 +49,7 @@ public class RegisterStudentFragment extends BaseEditProfileFragment {
         activity.finish();
 
         Student samuil = LocalDataProvider.createSamuil();
-        helper.enterApp(activity, samuil);
+        helper.enterApp(activity, null);
         //        TODO: invoke network calls + show progress
     }
 

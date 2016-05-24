@@ -3,6 +3,7 @@ package yanovski.master_thesis.data.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import yanovski.master_thesis.data.models.api.Credentials;
 import yanovski.master_thesis.data.models.api.DateTimeData;
 
 /**
@@ -12,6 +13,7 @@ public class Token implements Parcelable {
     public String auth;
     public String refresh;
     public DateTimeData expirationDate;
+    public Credentials owner;
 
     public Token() {}
 
@@ -19,6 +21,7 @@ public class Token implements Parcelable {
         auth = in.readString();
         refresh = in.readString();
         expirationDate = in.readParcelable(DateTimeData.class.getClassLoader());
+        owner = in.readParcelable(Credentials.class.getClassLoader());
     }
 
     @Override
@@ -26,6 +29,7 @@ public class Token implements Parcelable {
         dest.writeString(auth);
         dest.writeString(refresh);
         dest.writeParcelable(expirationDate, flags);
+        dest.writeParcelable(owner, flags);
     }
 
     @Override

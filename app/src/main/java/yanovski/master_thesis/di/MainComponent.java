@@ -36,8 +36,10 @@ import yanovski.master_thesis.utils.UrlHelper;
  * Created by Samuil on 12/29/2015.
  */
 @Singleton
-@Component(modules = {ApplicationModule.class, DBModule.class, PicassoModule.class})
+@Component(modules = {ApplicationModule.class, DBModule.class, PicassoModule.class,
+    NetworkModule.class})
 public interface MainComponent {
+    void inject(LoginFragment.UserLoginTask task);
     void inject(BaseFragment fragment);
     void inject(LoginFragment fragment);
     void inject(InternshipFragment fragment);
