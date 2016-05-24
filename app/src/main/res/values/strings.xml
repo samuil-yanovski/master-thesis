@@ -29,6 +29,7 @@
     <string name="title_activity_students">Студенти</string>
     <string name="title_activity_categories">Категории</string>
     <string name="title_activity_interests">Интереси</string>
+    <string name="error_general">Възникна грешка. Моля опитай отновно.</string>
 
     <!-- Login -->
     <string name="prompt_email">Мейл</string>

@@ -9,24 +9,28 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import yanovski.master_thesis.MasterThesisApplication;
-import yanovski.master_thesis.data.LocalDataProvider;
 import yanovski.master_thesis.data.models.Category;
 import yanovski.master_thesis.data.models.Person;
 import yanovski.master_thesis.data.models.Teacher;
-import yanovski.master_thesis.data.models.ThesisProposal;
-import yanovski.master_thesis.data.models.Types;
+import yanovski.master_thesis.data.models.api.CategoriesResponse;
+import yanovski.master_thesis.network.MasterThesisServices;
 import yanovski.master_thesis.ui.adapters.ThesesAdapter;
 import yanovski.master_thesis.ui.base.BaseListFragment;
 
 /**
  * Created by Samuil on 12/30/2015.
  */
-public class ThesesFragment extends BaseListFragment {
+public class ThesesFragment extends BaseListFragment implements Callback<CategoriesResponse> {
 
     @Inject
     @Nullable
     Person person;
+    @Inject
+    MasterThesisServices apiServices;
 
     Teacher teacher;
 
@@ -43,21 +47,28 @@ public class ThesesFragment extends BaseListFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        apiServices.getCategories().enqueue(this);
 
-        ThesesAdapter adapter = new ThesesAdapter();
-
-        if (null != person && Types.TEACHER.equals(person.getType())) {
-            List<ThesisProposal> proposals = LocalDataProvider.getAllThesisProposals();
-            adapter.addThesisProposal(proposals);
-        }
-
-        List<Category> categories = LocalDataProvider.getAllCategories(teacher);
-        adapter.addCategories(categories);
-
-        getList().setAdapter(adapter);
     }
 
     @Override
     protected void addDecorations(RecyclerView list) {
+    }
+
+    @Override
+    public void onResponse(Call<CategoriesResponse> call, Response<CategoriesResponse> response) {
+        if (response.isSuccessful() && null != response.body()) {
+            ThesesAdapter adapter = new ThesesAdapter();
+
+            List<Category> categories = response.body().data;
+            adapter.addCategories(categories);
+
+            getList().setAdapter(adapter);
+        }
+    }
+
+    @Override
+    public void onFailure(Call<CategoriesResponse> call, Throwable t) {
+
     }
 }

@@ -12,11 +12,19 @@ import android.util.SparseBooleanArray;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import javax.inject.Inject;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import yanovski.master_thesis.Constants;
+import yanovski.master_thesis.MasterThesisApplication;
 import yanovski.master_thesis.R;
-import yanovski.master_thesis.data.LocalDataProvider;
 import yanovski.master_thesis.data.models.Student;
+import yanovski.master_thesis.data.models.api.StudentsResponse;
+import yanovski.master_thesis.network.MasterThesisServices;
 import yanovski.master_thesis.ui.StudentProfileActivity;
 import yanovski.master_thesis.ui.adapters.StudentsAdapter;
 import yanovski.master_thesis.ui.adapters.base.BaseRecyclerViewAdapter;
@@ -28,21 +36,19 @@ import yanovski.master_thesis.ui.base.BaseListFragment;
  * Created by Samuil on 12/30/2015.
  */
 public class StudentsFragment extends BaseListFragment implements
-    BaseRecyclerViewAdapter.OnItemClickListener {
+    BaseRecyclerViewAdapter.OnItemClickListener, Callback<StudentsResponse> {
+
+    @Inject
+    MasterThesisServices apiServices;
+
+    public StudentsFragment() {
+        MasterThesisApplication.getMainComponent().inject(this);
+    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        StudentsAdapter adapter = new StudentsAdapter();
-        adapter.setItems(LocalDataProvider.getAllStudents());
-        adapter.setOnItemClickListener(this);
-        getList().setAdapter(adapter);
-        switch (getMode()) {
-            case MultiSelect:Select: {
-                adapter.setSupportsSelections(true);
-                break;
-            }
-        }
+        apiServices.getStudents().enqueue(this);
     }
 
     @Override
@@ -100,5 +106,27 @@ public class StudentsFragment extends BaseListFragment implements
         Intent intent = new Intent(getActivity(), StudentProfileActivity.class);
         intent.putExtra(StudentProfileActivity.KEY_STUDENT, student);
         ActivityCompat.startActivity(activity, intent, options.toBundle());
+    }
+
+    @Override
+    public void onResponse(Call<StudentsResponse> call, Response<StudentsResponse> response) {
+        if (response.isSuccessful() && null != response.body()) {
+            List<Student> students = response.body().data;
+            StudentsAdapter adapter = new StudentsAdapter();
+            adapter.setItems(students);
+            adapter.setOnItemClickListener(this);
+            getList().setAdapter(adapter);
+            switch (getMode()) {
+                case MultiSelect:Select: {
+                    adapter.setSupportsSelections(true);
+                    break;
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onFailure(Call<StudentsResponse> call, Throwable t) {
+
     }
 }

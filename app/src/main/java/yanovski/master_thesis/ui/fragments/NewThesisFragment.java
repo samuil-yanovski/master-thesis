@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -22,12 +23,18 @@ import butterknife.Bind;
 import butterknife.OnClick;
 import butterknife.OnEditorAction;
 import icepick.State;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import yanovski.master_thesis.Constants;
 import yanovski.master_thesis.MasterThesisApplication;
 import yanovski.master_thesis.R;
 import yanovski.master_thesis.data.models.Category;
 import yanovski.master_thesis.data.models.Person;
 import yanovski.master_thesis.data.models.Teacher;
+import yanovski.master_thesis.data.models.api.NewThesis;
+import yanovski.master_thesis.data.models.api.ThesisResponse;
+import yanovski.master_thesis.network.MasterThesisServices;
 import yanovski.master_thesis.ui.CategoriesActivity;
 import yanovski.master_thesis.ui.TeachersActivity;
 import yanovski.master_thesis.ui.base.BaseFragment;
@@ -36,7 +43,7 @@ import yanovski.master_thesis.ui.utils.UIModes;
 /**
  * Created by Samuil on 12/29/2015.
  */
-public class NewThesisFragment extends BaseFragment {
+public class NewThesisFragment extends BaseFragment implements Callback<ThesisResponse> {
 
     private static final int REQUEST_CODE_SELECT_AUTHOR = 100;
     private static final int REQUEST_CODE_SELECT_CATEGORY = 101;
@@ -60,6 +67,9 @@ public class NewThesisFragment extends BaseFragment {
     @Inject
     @Nullable
     Person person;
+
+    @Inject
+    MasterThesisServices apiServices;
 
     @State
     Teacher teacher;
@@ -129,8 +139,12 @@ public class NewThesisFragment extends BaseFragment {
 
     @Override
     public void onValidationSucceeded() {
-        getActivity().finish();
-        //        TODO: invoke network calls + show progress
+        showProgress(true);
+        NewThesis data = new NewThesis();
+        data.category = category.key;
+        data.description = description.getText().toString();
+        data.title = title.getText().toString();
+        apiServices.createThesis(data).enqueue(this);
     }
 
     @Override
@@ -177,5 +191,31 @@ public class NewThesisFragment extends BaseFragment {
         } else {
             categoryLabel.setText(R.string.select_category);
         }
+    }
+
+    @Override
+    public void onResponse(Call<ThesisResponse> call, Response<ThesisResponse> response) {
+        showProgress(false);
+        if (response.isSuccessful()) {
+            getActivity().finish();
+        } else {
+            ThesisResponse body = response.body();
+            String message = null;
+            if (null != body && !TextUtils.isEmpty(body.message)) {
+                message = body.message;
+            } else {
+                message = getString(R.string.error_general);
+            }
+            Snackbar.make(getView(), message, Snackbar.LENGTH_LONG)
+                .show();
+
+        }
+    }
+
+    @Override
+    public void onFailure(Call<ThesisResponse> call, Throwable t) {
+        showProgress(false);
+        Snackbar.make(getView(), R.string.error_general, Snackbar.LENGTH_LONG)
+            .show();
     }
 }

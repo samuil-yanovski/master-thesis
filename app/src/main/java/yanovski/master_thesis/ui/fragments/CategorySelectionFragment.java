@@ -7,9 +7,16 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import javax.inject.Inject;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import yanovski.master_thesis.Constants;
-import yanovski.master_thesis.data.LocalDataProvider;
+import yanovski.master_thesis.MasterThesisApplication;
 import yanovski.master_thesis.data.models.Category;
+import yanovski.master_thesis.data.models.api.CategoriesResponse;
+import yanovski.master_thesis.network.MasterThesisServices;
 import yanovski.master_thesis.ui.adapters.CategoriesSelectionAdapter;
 import yanovski.master_thesis.ui.adapters.base.BaseRecyclerViewAdapter;
 import yanovski.master_thesis.ui.base.BaseListFragment;
@@ -18,14 +25,19 @@ import yanovski.master_thesis.ui.base.BaseListFragment;
  * Created by Samuil on 12/30/2015.
  */
 public class CategorySelectionFragment extends BaseListFragment implements
-    BaseRecyclerViewAdapter.OnItemClickListener {
+    BaseRecyclerViewAdapter.OnItemClickListener, Callback<CategoriesResponse> {
+
+    @Inject
+    MasterThesisServices apiServices;
+
+    public CategorySelectionFragment() {
+        MasterThesisApplication.getMainComponent().inject(this);
+    }
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        CategoriesSelectionAdapter adapter = new CategoriesSelectionAdapter();
-        adapter.setItems(LocalDataProvider.getAllCategories());
-        adapter.setOnItemClickListener(this);
-        getList().setAdapter(adapter);
+        apiServices.getCategories().enqueue(this);
     }
 
     @Override
@@ -46,5 +58,20 @@ public class CategorySelectionFragment extends BaseListFragment implements
         data.putExtra(Constants.KEY_ITEM, category);
         activity.setResult(Activity.RESULT_OK, data);
         activity.finish();
+    }
+
+    @Override
+    public void onResponse(Call<CategoriesResponse> call, Response<CategoriesResponse> response) {
+        if (response.isSuccessful() && null != response.body()) {
+            CategoriesSelectionAdapter adapter = new CategoriesSelectionAdapter();
+            adapter.setItems(response.body().data);
+            adapter.setOnItemClickListener(this);
+            getList().setAdapter(adapter);
+        }
+    }
+
+    @Override
+    public void onFailure(Call<CategoriesResponse> call, Throwable t) {
+
     }
 }
