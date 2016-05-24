@@ -70,7 +70,7 @@ public interface MasterThesisServices {
     Call<InterestResponse> deleteInterest(@Path("key") String key);
 
     @GET("dates")
-    Call<GraduationDatesResponse> getDateS(@Body GraduationDateRequest date);
+    Call<GraduationDatesResponse> getDates();
 
     @PUT("dates")
     Call<GraduationDateResponse> createDate(@Body GraduationDateRequest date);

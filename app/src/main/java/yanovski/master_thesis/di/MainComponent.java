@@ -15,6 +15,7 @@ import yanovski.master_thesis.ui.base.BaseDrawerActivity;
 import yanovski.master_thesis.ui.base.BaseEditProfileFragment;
 import yanovski.master_thesis.ui.base.BaseFragment;
 import yanovski.master_thesis.ui.base.BaseProfileFragment;
+import yanovski.master_thesis.ui.fragments.CalendarFragment;
 import yanovski.master_thesis.ui.fragments.CategorySelectionFragment;
 import yanovski.master_thesis.ui.fragments.EditStudentProfileFragment;
 import yanovski.master_thesis.ui.fragments.EditTeacherProfileFragment;
@@ -64,6 +65,7 @@ public interface MainComponent {
     void inject(NewThesisFragment fragment);
     void inject(StudentsFragment fragment);
     void inject(CategorySelectionFragment fragment);
+    void inject(CalendarFragment fragment);
     void inject(BaseDrawerActivity activity);
     void inject(MyProfileActivity activity);
     Context getContext();
