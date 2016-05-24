@@ -62,6 +62,7 @@ public class NewEventFragment extends BaseFragment implements
     TextView recipients;
 
     @Inject
+    @Nullable
     Person person;
 
     @State
@@ -84,10 +85,12 @@ public class NewEventFragment extends BaseFragment implements
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        switch (person.getType()) {
-            case TEACHER: {
-                container.setVisibility(View.VISIBLE);
-                break;
+        if (null != person) {
+            switch (person.getType()) {
+                case TEACHER: {
+                    container.setVisibility(View.VISIBLE);
+                    break;
+                }
             }
         }
     }

@@ -20,7 +20,6 @@ import butterknife.Bind;
 import butterknife.OnClick;
 import yanovski.master_thesis.MasterThesisApplication;
 import yanovski.master_thesis.R;
-import yanovski.master_thesis.data.models.Person;
 import yanovski.master_thesis.data.models.ThesisProposal;
 import yanovski.master_thesis.ui.adapters.ThesesAdapter;
 import yanovski.master_thesis.ui.adapters.base.BaseRecyclerViewAdapter;
@@ -131,8 +130,6 @@ public class ThesisProposalVHCreator implements ViewHolderCreator<ThesesAdapter.
 
     @Inject
     Picasso picasso;
-    @Inject
-    Person person;
 
     public ThesisProposalVHCreator() {
         MasterThesisApplication.getMainComponent()

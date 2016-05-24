@@ -3,6 +3,7 @@ package yanovski.master_thesis.ui.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
@@ -39,6 +40,7 @@ public class TeacherNavigationViewListener implements NavigationViewListener, Vi
     TextView email;
 
     @Inject
+    @Nullable
     Person currentPerson;
     @Inject
     Picasso picasso;
@@ -63,13 +65,15 @@ public class TeacherNavigationViewListener implements NavigationViewListener, Vi
 
     @Override
     public void personalize() {
-        username.setText(currentPerson.getName());
-        email.setText(currentPerson.getContacts().email);
-        picasso.load(currentPerson.getAvatar())
-            .placeholder(R.drawable.ic_person_white)
-            .error(R.drawable.ic_person_white)
-            .transform(new CircleTransform())
-            .into(profile);
+        if (null != currentPerson) {
+            username.setText(currentPerson.getName());
+            email.setText(currentPerson.getContacts().email);
+            picasso.load(currentPerson.getAvatar())
+                .placeholder(R.drawable.ic_person_white)
+                .error(R.drawable.ic_person_white)
+                .transform(new CircleTransform())
+                .into(profile);
+        }
     }
 
     @Override

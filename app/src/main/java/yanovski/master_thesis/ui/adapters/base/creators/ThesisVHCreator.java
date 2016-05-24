@@ -2,6 +2,7 @@ package yanovski.master_thesis.ui.adapters.base.creators;
 
 import android.animation.ValueAnimator;
 import android.graphics.Paint;
+import android.support.annotation.Nullable;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -130,6 +131,7 @@ public class ThesisVHCreator implements ViewHolderCreator<ThesesAdapter.Item> {
     @Inject
     Picasso picasso;
     @Inject
+    @Nullable
     Person person;
 
     public ThesisVHCreator() {
@@ -149,7 +151,7 @@ public class ThesisVHCreator implements ViewHolderCreator<ThesesAdapter.Item> {
             .inflate(R.layout.item_thesis, parent, false);
         ThesisViewHolder holder = new ThesisViewHolder(v);
 
-        if (Types.TEACHER.equals(person.getType())) {
+        if (null == person || Types.TEACHER.equals(person.getType())) {
             holder.ask.setVisibility(View.GONE);
         }
         return holder;

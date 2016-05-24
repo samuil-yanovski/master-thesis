@@ -13,6 +13,7 @@ public class Constants {
     public static final String KEY_NAME = "name";
     public static final String KEY_AVATAR = "avatar";
     public static final String KEY_TYPE = "type";
+    public static final String KEY_PERSON = "person";
     public static final String KEY_INTERESTS = "interests";
     public static final String KEY_AUTH_TOKEN = "auth_token";
     public static final String KEY_REFRESH_TOKEN = "refresh_token";

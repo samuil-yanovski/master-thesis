@@ -26,6 +26,7 @@ public class EditTeacherProfileFragment extends BaseEditProfileFragment {
     private static final int REQUEST_CODE_SELECT_INTERESTS = 400;
 
     @Inject
+    @Nullable
     Person person;
 
     @Override
@@ -42,7 +43,7 @@ public class EditTeacherProfileFragment extends BaseEditProfileFragment {
     @OnClick(R.id.interests)
     public void onInterestsClicked() {
         ArrayList<Interest> interests = new ArrayList<>();
-        if (null != ((Teacher) person).interests) {
+        if (null != person && null != ((Teacher) person).interests) {
             interests.addAll(((Teacher) person).interests);
         }
         Intent intent = new Intent(getActivity(), InterestsActivity.class);
@@ -57,6 +58,7 @@ public class EditTeacherProfileFragment extends BaseEditProfileFragment {
     }
 
     @Override
+    @Nullable
     public Person getPerson() {
         return person;
     }

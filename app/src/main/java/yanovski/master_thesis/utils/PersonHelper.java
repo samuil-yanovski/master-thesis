@@ -8,13 +8,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+
+import com.google.gson.Gson;
 
 import javax.inject.Inject;
 
 import yanovski.master_thesis.Constants;
 import yanovski.master_thesis.R;
 import yanovski.master_thesis.data.models.BasePerson;
-import yanovski.master_thesis.data.models.Contacts;
 import yanovski.master_thesis.data.models.Person;
 import yanovski.master_thesis.data.models.Student;
 import yanovski.master_thesis.data.models.Teacher;
@@ -28,8 +30,11 @@ import yanovski.master_thesis.ui.StudentsActivity;
  */
 public class PersonHelper {
 
+    private Gson gson;
+
     @Inject
-    public PersonHelper() {
+    public PersonHelper(Gson gson) {
+        this.gson = gson;
     }
 
     @SuppressLint("NewApi")
@@ -47,6 +52,7 @@ public class PersonHelper {
         }
     }
 
+    @Nullable
     public Person getCurrentPerson(Context context) {
         Person person = null;
 
@@ -101,14 +107,9 @@ public class PersonHelper {
     private Bundle toBundle(Person person) {
         Bundle data = new Bundle();
 
-        Contacts contacts = person.getContacts();
-        data.putString(Constants.KEY_NAME, person.getName());
-        data.putString(Constants.KEY_AVATAR, person.getAvatar());
         data.putString(Constants.KEY_TYPE, person.getType()
             .name());
-        data.putString(Constants.KEY_PHONE, contacts.phone);
-        data.putString(Constants.KEY_EMAIL, contacts.email);
-        data.putString(Constants.KEY_SKYPE, contacts.skype);
+        data.putString(Constants.KEY_PERSON, gson.toJson(person));
 
         return data;
     }
@@ -117,24 +118,18 @@ public class PersonHelper {
         String typeName = accountManager.getUserData(account, Constants.KEY_TYPE);
         Types type = Types.valueOf(typeName);
 
+        String personJson = accountManager.getUserData(account, Constants.KEY_PERSON);
         BasePerson person = null;
         switch (type) {
             case STUDENT: {
-                person = new Student();
+                person = gson.fromJson(personJson, Student.class);
                 break;
             }
             case TEACHER: {
-                person = new Teacher();
+                person = gson.fromJson(personJson, Teacher.class);
                 break;
             }
         }
-        person.contacts = new Contacts();
-
-        person.name = accountManager.getUserData(account, Constants.KEY_NAME);
-        person.avatar = accountManager.getUserData(account, Constants.KEY_AVATAR);
-        person.contacts.phone = accountManager.getUserData(account, Constants.KEY_PHONE);
-        person.contacts.email = accountManager.getUserData(account, Constants.KEY_EMAIL);
-        person.contacts.skype = accountManager.getUserData(account, Constants.KEY_SKYPE);
 
         return person;
     }

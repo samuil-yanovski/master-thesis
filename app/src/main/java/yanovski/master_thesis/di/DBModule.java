@@ -1,6 +1,7 @@
 package yanovski.master_thesis.di;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 
 import com.pushtorefresh.storio.contentresolver.ContentResolverTypeMapping;
 import com.pushtorefresh.storio.contentresolver.StorIOContentResolver;
@@ -45,6 +46,7 @@ public class DBModule {
     }
 
     @Provides
+    @Nullable
     public Person getCurrentPerson(Context context, PersonHelper helper) {
         return helper.getCurrentPerson(context);
     }

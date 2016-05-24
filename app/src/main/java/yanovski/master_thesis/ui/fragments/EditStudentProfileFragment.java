@@ -16,6 +16,7 @@ import yanovski.master_thesis.ui.base.BaseEditProfileFragment;
 public class EditStudentProfileFragment extends BaseEditProfileFragment {
 
     @Inject
+    @Nullable
     Person person;
 
     @Override
@@ -37,6 +38,7 @@ public class EditStudentProfileFragment extends BaseEditProfileFragment {
     }
 
     @Override
+    @Nullable
     public Person getPerson() {
         return person;
     }

@@ -37,6 +37,7 @@ public class MyProfileActivity extends BaseDrawerActivity {
     TextView name;
 
     @Inject
+    @Nullable
     Person person;
 
     @Override
@@ -144,15 +145,19 @@ public class MyProfileActivity extends BaseDrawerActivity {
     @NonNull
     private Intent getEditIntent() {
         Intent intent = null;
-        switch (person.getType()) {
-            case STUDENT: {
-                intent = new Intent(this, EditStudentProfileActivity.class);
-                break;
+        if (null != person) {
+            switch (person.getType()) {
+                case STUDENT: {
+                    intent = new Intent(this, EditStudentProfileActivity.class);
+                    break;
+                }
+                case TEACHER: {
+                    intent = new Intent(this, EditTeacherProfileActivity.class);
+                    break;
+                }
             }
-            case TEACHER: {
-                intent = new Intent(this, EditTeacherProfileActivity.class);
-                break;
-            }
+        } else {
+            intent = new Intent(this, EditStudentProfileActivity.class);
         }
         return intent;
     }
@@ -160,15 +165,19 @@ public class MyProfileActivity extends BaseDrawerActivity {
     @Override
     public void onCreateNavigateUpTaskStack(TaskStackBuilder builder) {
         super.onCreateNavigateUpTaskStack(builder);
-        switch (person.getType()) {
-            case STUDENT: {
-                builder.addParentStack(HomeActivity.class);
-                break;
+        if (null != person) {
+            switch (person.getType()) {
+                case STUDENT: {
+                    builder.addParentStack(HomeActivity.class);
+                    break;
+                }
+                case TEACHER: {
+                    builder.addParentStack(StudentsActivity.class);
+                    break;
+                }
             }
-            case TEACHER: {
-                builder.addParentStack(StudentsActivity.class);
-                break;
-            }
+        } else {
+            builder.addParentStack(HomeActivity.class);
         }
     }
 
@@ -176,15 +185,19 @@ public class MyProfileActivity extends BaseDrawerActivity {
     @Override
     public Intent getParentActivityIntent() {
         Intent intent = null;
-        switch (person.getType()) {
-            case STUDENT: {
-                intent = new Intent(this, HomeActivity.class);
-                break;
+        if (null != person) {
+            switch (person.getType()) {
+                case STUDENT: {
+                    intent = new Intent(this, HomeActivity.class);
+                    break;
+                }
+                case TEACHER: {
+                    intent = new Intent(this, StudentsActivity.class);
+                    break;
+                }
             }
-            case TEACHER: {
-                intent = new Intent(this, StudentsActivity.class);
-                break;
-            }
+        } else {
+            intent = new Intent(this, HomeActivity.class);
         }
         return intent;
     }

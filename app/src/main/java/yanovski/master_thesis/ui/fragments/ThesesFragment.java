@@ -25,6 +25,7 @@ import yanovski.master_thesis.ui.base.BaseListFragment;
 public class ThesesFragment extends BaseListFragment {
 
     @Inject
+    @Nullable
     Person person;
 
     Teacher teacher;
@@ -45,7 +46,7 @@ public class ThesesFragment extends BaseListFragment {
 
         ThesesAdapter adapter = new ThesesAdapter();
 
-        if (Types.TEACHER.equals(person.getType())) {
+        if (null != person && Types.TEACHER.equals(person.getType())) {
             List<ThesisProposal> proposals = LocalDataProvider.getAllThesisProposals();
             adapter.addThesisProposal(proposals);
         }

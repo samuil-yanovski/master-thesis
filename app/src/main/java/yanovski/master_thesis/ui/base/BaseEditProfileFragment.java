@@ -43,6 +43,7 @@ import yanovski.master_thesis.ui.utils.CircleTransform;
 public abstract class BaseEditProfileFragment extends BaseFragment implements
     SnackBarInfoPermissionListener.Callback, EasyImage.Callbacks {
 
+    @Nullable
     public abstract Person getPerson();
 
     // UI references.
