@@ -26,6 +26,7 @@ import yanovski.master_thesis.ui.fragments.NewThesisFragment;
 import yanovski.master_thesis.ui.fragments.RegisterStudentFragment;
 import yanovski.master_thesis.ui.fragments.StudentProfileFragment;
 import yanovski.master_thesis.ui.fragments.StudentsFragment;
+import yanovski.master_thesis.ui.fragments.TeachersFragment;
 import yanovski.master_thesis.ui.fragments.ThesesFragment;
 import yanovski.master_thesis.ui.utils.AvatarTarget;
 import yanovski.master_thesis.ui.utils.StudentNavigationViewListener;
@@ -66,6 +67,7 @@ public interface MainComponent {
     void inject(StudentsFragment fragment);
     void inject(CategorySelectionFragment fragment);
     void inject(CalendarFragment fragment);
+    void inject(TeachersFragment fragment);
     void inject(BaseDrawerActivity activity);
     void inject(MyProfileActivity activity);
     Context getContext();

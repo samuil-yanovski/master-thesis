@@ -68,6 +68,13 @@ public class CalendarFragment extends BaseListFragment implements
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        DateTime today = DateTime.now();
+        Date minDate = today.withDayOfMonth(1)
+            .toDate();
+        Date maxDate = today.plusYears(1)
+            .toDate();
+        calendar.init(minDate, maxDate)
+            .withSelectedDate(today.toDate());
         apiServices.getDates()
             .enqueue(this);
     }

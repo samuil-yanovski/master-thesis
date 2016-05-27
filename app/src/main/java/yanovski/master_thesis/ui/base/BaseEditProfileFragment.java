@@ -51,13 +51,13 @@ public abstract class BaseEditProfileFragment extends BaseFragment implements
     ImageView avatar;
     @Bind(R.id.name)
     @NotEmpty
-    EditText name;
+    protected EditText name;
     @Bind(R.id.phone)
-    EditText phone;
+    protected EditText phone;
     @Bind(R.id.email)
-    EditText email;
+    protected EditText email;
     @Bind(R.id.skype)
-    EditText skype;
+    protected EditText skype;
     @Bind(R.id.login_progress)
     View progressView;
 
@@ -68,7 +68,7 @@ public abstract class BaseEditProfileFragment extends BaseFragment implements
     Transformation transformation;
 
     @State
-    File imageFile;
+    protected File imageFile;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -124,7 +124,7 @@ public abstract class BaseEditProfileFragment extends BaseFragment implements
      * Shows the progress UI and hides the login form.
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-    private void showProgress(final boolean show) {
+    public void showProgress(final boolean show) {
         progressView.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 

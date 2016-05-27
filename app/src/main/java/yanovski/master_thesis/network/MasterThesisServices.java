@@ -9,6 +9,7 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import yanovski.master_thesis.data.models.Interest;
 import yanovski.master_thesis.data.models.api.Account;
+import yanovski.master_thesis.data.models.api.AccountUpdates;
 import yanovski.master_thesis.data.models.api.CategoriesResponse;
 import yanovski.master_thesis.data.models.api.Credentials;
 import yanovski.master_thesis.data.models.api.GraduationDateRequest;
@@ -40,10 +41,10 @@ public interface MasterThesisServices {
     Call<StudentsResponse> getStudents();
 
     @POST("teachers")
-    Call<TeacherResponse> updateCurrentTeacher(@Body Account account);
+    Call<TeacherResponse> updateCurrentTeacher(@Body AccountUpdates account);
 
     @POST("students")
-    Call<StudentsResponse> updateCurrentStudent(@Body Account account);
+    Call<StudentsResponse> updateCurrentStudent(@Body AccountUpdates account);
 
     @GET("categories")
     Call<CategoriesResponse> getCategories();
