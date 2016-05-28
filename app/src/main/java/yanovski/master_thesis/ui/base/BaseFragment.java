@@ -39,10 +39,10 @@ public abstract class BaseFragment extends RxFragment implements Validator.Valid
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         validator = new Validator(this);
         validator.setValidationListener(this);
         MasterThesisApplication.getMainComponent().inject(this);
+        super.onCreate(savedInstanceState);
     }
 
     @Nullable

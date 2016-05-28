@@ -30,10 +30,10 @@ public class RegisterStudentFragment extends BaseEditProfileFragment {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         MasterThesisApplication.getMainComponent().inject(this);
         currentStudent = new Student();
         currentStudent.contacts = new Contacts();
+        super.onCreate(savedInstanceState);
     }
 
     @Override

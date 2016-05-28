@@ -83,8 +83,8 @@ public class NewThesisFragment extends BaseFragment implements Callback<ThesisRe
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         MasterThesisApplication.getMainComponent().inject(this);
+        super.onCreate(savedInstanceState);
     }
 
     @Override

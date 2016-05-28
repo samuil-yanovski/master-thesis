@@ -36,8 +36,8 @@ public class ThesesFragment extends BaseListFragment implements Callback<Categor
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         MasterThesisApplication.getMainComponent().inject(this);
+        super.onCreate(savedInstanceState);
     }
 
     public void setTeacher(Teacher teacher) {

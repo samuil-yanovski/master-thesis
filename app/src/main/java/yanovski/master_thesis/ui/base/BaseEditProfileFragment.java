@@ -72,9 +72,9 @@ public abstract class BaseEditProfileFragment extends BaseFragment implements
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         MasterThesisApplication.getMainComponent().inject(this);
         transformation = new CircleTransform();
+        super.onCreate(savedInstanceState);
     }
 
     @Override

@@ -78,10 +78,12 @@ public class ThesesAdapter extends BaseRecyclerViewAdapter<ThesesAdapter.Item> {
         StreamSupport.stream(categories)
             .sorted((l, r) -> l.name.compareTo(r.name))
             .forEachOrdered(c -> {
-                items.add(new Item(c));
-                StreamSupport.stream(c.theses)
-                    .sorted((l, r) -> l.title.compareTo(r.title))
-                    .forEachOrdered(t -> items.add(new Item(t)));
+                if (null != c.theses && 0 < c.theses.size()) {
+                    items.add(new Item(c));
+                    StreamSupport.stream(c.theses)
+                        .sorted((l, r) -> l.title.compareTo(r.title))
+                        .forEachOrdered(t -> items.add(new Item(t)));
+                }
             });
 
 

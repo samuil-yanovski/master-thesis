@@ -43,8 +43,8 @@ public class EditTeacherProfileFragment extends BaseEditProfileFragment implemen
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         MasterThesisApplication.getMainComponent().inject(this);
+        super.onCreate(savedInstanceState);
     }
 
     @Override

@@ -3,6 +3,7 @@ package yanovski.master_thesis.ui.fragments;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.FragmentActivity;
@@ -37,8 +38,10 @@ public class TeachersFragment extends BaseListFragment implements
     @Inject
     MasterThesisServices apiServices;
 
-    public TeachersFragment() {
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         MasterThesisApplication.getMainComponent().inject(this);
+        super.onCreate(savedInstanceState);
     }
 
     @Override

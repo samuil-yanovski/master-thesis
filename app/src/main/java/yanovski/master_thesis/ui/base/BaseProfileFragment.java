@@ -59,9 +59,9 @@ public abstract class BaseProfileFragment extends BaseFragment {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        person = getPerson();
         MasterThesisApplication.getMainComponent().inject(this);
+        person = getPerson();
+        super.onCreate(savedInstanceState);
     }
 
     @Override

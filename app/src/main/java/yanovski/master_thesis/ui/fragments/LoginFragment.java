@@ -97,9 +97,9 @@ public class LoginFragment extends BaseFragment implements SnackBarInfoPermissio
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         MasterThesisApplication.getMainComponent()
             .inject(this);
+        super.onCreate(savedInstanceState);
         helper.tryAutoLogin(getActivity());
     }
 
